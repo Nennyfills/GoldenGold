@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import { clients } from '../../data'
-import { invoices } from '../../data'
-import {DisplayInvoice} from '../../Operations/invoiceOperations'
+import { clients } from '../../../data'
+import { invoices } from '../../../data'
+import {DisplayInvoice} from '../../../Operations/invoiceOperations'
 class ClientSingleInvoice extends Component{
 
     constructor(props){
@@ -12,7 +12,6 @@ class ClientSingleInvoice extends Component{
             invoice: {}
         };
         this.ClientBrief = this.ClientBrief.bind(this);
-
     }
 
     ClientBrief() {

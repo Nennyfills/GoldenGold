@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import { invoices } from '../../data'
-import { clients } from '../../data'
-import { InvoiceTable } from '../../Operations/invoiceOperations'
-import ClientHeader from './ClientHeader'
+import { invoices } from '../../../data'
+import { clients } from '../../../data'
+import { InvoiceTable } from '../../../Operations/invoiceOperations'
+import ClientHeader from '../ClientHeader'
 
 
 

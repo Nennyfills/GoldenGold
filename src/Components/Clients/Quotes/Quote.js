@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import { clients } from '../../data'
-import { quotes } from '../../data'
-import {DisplayQuote} from '../../Operations/QuoteOperations'
+import { clients } from '../../../data'
+import { quotes } from '../../../data'
+import {DisplayQuote} from '../../../Operations/QuoteOperations'
 class ClientSinglequote extends Component{
 
     constructor(props){

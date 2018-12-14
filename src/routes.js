@@ -24,22 +24,22 @@ const Client = Loadable({
 
 
 const ClientInvoice = Loadable({
-  loader: () => import('./Components/Clients/ClientInvoice'),
+  loader: () => import('./Components/Clients/Invoice/Invoices'),
   loading: Loading,
 });
 
 const ClientSingleInvoice = Loadable({
-  loader: () => import('./Components/Clients/ClientSingleInvoice'),
+  loader: () => import('./Components/Clients/Invoice/Invoice'),
   loading: Loading,
 });
 
 const ClientCreateInvoice = Loadable({
-  loader: () => import('./Components/Clients/CreateInvoice'),
+  loader: () => import('./Components/Clients/Invoice/Create'),
   loading: Loading,
 });
 
 const ClientPayments = Loadable({
-  loader: () => import('./Components/Clients/Clientpayment'),
+  loader: () => import('./Components/Clients/Payments/Payments'),
   loading: Loading,
 });
 
@@ -71,7 +71,7 @@ const  ClientRefunds= Loadable({
 });
 
 const  ClientAccounts= Loadable({
-  loader: () => import('./Components/Clients/ClientAccount'),
+  loader: () => import('./Components/Clients/AccountStatement'),
   loading: Loading,
 });
 
@@ -88,13 +88,13 @@ const BillingsQuotes = Loadable({
 });
 
 const ClientSingleQuote = Loadable({
-  loader: () => import('./Components/Clients/ClientSingleQuote'),
+  loader: () => import('./Components/Clients/Quotes/Quote'),
   loading: Loading,
 });
 
 
 const ClientCreateQuote = Loadable({
-  loader: () => import('./Components/Clients/CreateQuote'),
+  loader: () => import('./Components/Clients/Quotes/Create'),
   loading: Loading,
 });
 

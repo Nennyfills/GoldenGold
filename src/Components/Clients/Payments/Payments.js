@@ -1,24 +1,10 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import classnames from 'classnames';
-import { payments } from '../../data'
-import { clients } from '../../data'
+import { payments } from '../../../data'
+import { clients } from '../../../data'
+import { PaymentTable } from '../../../Operations/PaymentOperations'
 
-
-
-
-function ClientPaymentRow(props) {
-    const payment = props.payment
-
-
-    return (
-        <tr key={payment.id.toString()}>
-            <td>{payment.Method}</td>
-            <td>{payment.Amount}</td>
-            <td>{payment.Createddate}</td>
-        </tr>
-    )
-}
 
 
 class ClientInvoice extends Component {
@@ -89,20 +75,9 @@ class ClientInvoice extends Component {
                 </Row>
                 <Row className="w-100 p-3">
                     <Col xs="12" className="nopcol">
-                        <Col xs="12"><table class=" bg-white table table-hover table-sm table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">METHOD</th>
-                                    <th scope="col">AMOUNT</th>
-                                    <th scope="col">CREATED DATE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {payments.map((payment, index) =>
-                                    <ClientPaymentRow key={index} payment={payment} />
-                                )}
-                            </tbody>
-                        </table></Col>
+                        <Col xs="12">
+                        <PaymentTable payments ={payments} />
+                        </Col>
                     </Col>
                 </Row>
             </Row>)

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import { invoices } from '../../data'
-import { clients } from '../../data'
-import { CreateInvoice } from '../../Operations/invoiceOperations'
-import ClientHeader from './ClientHeader'
+import { quotes } from '../../../data'
+import { clients } from '../../../data'
+import { CreateQuote } from '../../../Operations/QuoteOperations'
+import ClientHeader from '../ClientHeader'
 
 
-class ClientInvoice extends Component {
+class ClientQuote extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -49,7 +49,7 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h3>Clients / {this.state.user.LastName} {this.state.user.FirstName}/ Add Invoice</h3>
+                                <h3>Clients / {this.state.user.LastName} {this.state.user.FirstName}/ Add Quote</h3>
                             </div>
                         </div>
                     </Col>
@@ -58,7 +58,7 @@ class ClientInvoice extends Component {
                 <Row className="w-100 p-3">
                     <Col xs="12" className="nopcol">
                         <Col xs="12" className="p-3 bg-white" >
-                            <CreateInvoice brief = {this.ClientBrief()}  />
+                            <CreateQuote brief = {this.ClientBrief()}  />
                         </Col>
                     </Col>
                 </Row>
@@ -67,4 +67,4 @@ class ClientInvoice extends Component {
     }
 }
 
-export default ClientInvoice;
+export default ClientQuote;
