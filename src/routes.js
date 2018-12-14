@@ -60,13 +60,13 @@ const  EditClient = Loadable({
 });
 
 const  ClientTickets = Loadable({
-  loader: () => import('./Components/Clients/ClientTicket'),
+  loader: () => import('./Components/Clients/Tickets/ClientTicket'),
   loading: Loading,
 });
 
 
 const  ClientDocs = Loadable({
-  loader: () => import('./Components/Clients/ClientDoc'),
+  loader: () => import('./Components/Clients/Documents/ClientDoc'),
   loading: Loading,
 });
 

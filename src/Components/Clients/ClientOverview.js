@@ -4,8 +4,6 @@ import classnames from 'classnames';
 import {clients} from '../../data'
 
 
-import Balance from './components/Balance'
-
 
 
 class Client extends Component {

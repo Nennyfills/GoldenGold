@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Badge, Row, Col, ButtonGroup, Button, Input, CardHeader, Card, CardBody, CardFooter } from 'reactstrap';
-import { clients } from '../../data'
+import { clients } from '../../../data'
 
 class ClientTicket extends Component {
     constructor(props) {

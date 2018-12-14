@@ -39,9 +39,6 @@ class ClientSinglePayment extends Component{
             user: theuser,
             payment: thepayment
         });
-
-        console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-        console.log(this.state)
     }
 
 
