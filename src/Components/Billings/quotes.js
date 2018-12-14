@@ -29,7 +29,7 @@ class Quotes extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1>Billings / Invoices</h1>
+                                <h1>Billings / Quotess</h1>
 
                             </div>
                             <div className="pageheader-body pl-4 pt-2">
@@ -39,9 +39,9 @@ class Quotes extends Component {
                                     </li>
                                     <li className="mytabnav-active">          <a href={"#/billing/quotes"}>Quotes</a>
                                     </li>
-                                    <li>          <a href={"#/billing/invoices"}>Payments</a>
+                                    <li>          <a href={"#/billing/payments"}>Payments</a>
                                     </li>
-                                    <li>          <a href={"#/billing/Refunds"}>Refunds</a>
+                                    <li>          <a href={"#/billing/refunds"}>Refunds</a>
                                     </li>
                                 </ul>
                             </div>

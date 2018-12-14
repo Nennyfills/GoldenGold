@@ -462,7 +462,8 @@ var InvoiceItems =
 }]
 
 
-var quotes =[]
+var quotes =[{id:34, quoteno:"3F15" , Client:"GOKE BABALOLA" , Total:"$99" ,     Createddate: "1 Aug 2018", uid:244
+}]
 export {
   invoices,
   clients,

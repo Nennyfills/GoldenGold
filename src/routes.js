@@ -87,12 +87,24 @@ const BillingsQuotes = Loadable({
   loading: Loading,
 });
 
+const ClientSingleQuote = Loadable({
+  loader: () => import('./Components/Clients/ClientSingleQuote'),
+  loading: Loading,
+});
+
+
+const ClientCreateQuote = Loadable({
+  loader: () => import('./Components/Clients/CreateQuote'),
+  loading: Loading,
+});
+
 const routes = [
     { path: '/', exact: true, name: 'Home', component: Home },
     { path: '/dashboard', name: 'Dashboard', component: Dashboard },
     { path: '/clients', exact:true, name: 'Clients', component: Clients },
     { path: '/clients/new',  name: 'Add', component: newClient },
     { path: '/clients/CreateInvoice/:id',  exact:true,  name: 'Client', component: ClientCreateInvoice },
+    { path: '/clients/CreateQuote/:id',  exact:true,  name: 'Client', component: ClientCreateQuote },
     { path: '/clients/invoices/list/:id',  exact:true,  name: 'Client', component: ClientInvoice },
     { path: '/clients/payments/list/:id',  exact:true,  name: 'Client', component: ClientPayments },
     { path: '/clients/tickets/list/:id',  exact:true,  name: 'Tickets', component: ClientTickets },
@@ -100,6 +112,8 @@ const routes = [
     { path: '/clients/refunds/list/:id',  exact:true,  name: 'refunds', component: ClientRefunds },
     { path: '/clients/accounts/list/:id',  exact:true,  name: 'accounts', component: ClientAccounts },
     { path: '/clients/edit/:id',  name: 'Edit', component: EditClient },
+    { path: '/:uid/quote/:id',  exact:true,  name: 'Client', component: ClientSingleQuote },
+
     { path: '/:uid/invoice/:id',  exact:true,  name: 'Client', component: ClientSingleInvoice },
     { path: '/clients/:id',  name: 'Client', component: Client },
     { path: '/billing', exact:true, name: 'Billing', component: Billing },
