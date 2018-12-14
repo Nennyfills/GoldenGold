@@ -351,7 +351,7 @@ var accounts = [
     "id": 265,
 
     "Date": "1 Aug 2018",
-    "Item": "Invoice #18000683                                                                               due                             15 Aug 2018",
+    "Item": "Invoice #18000683       due                     15 Aug 2018",
     "Invoiced": "$29.90",
     "Payments": "",
     "Balance": "− $29.90"
@@ -360,7 +360,7 @@ var accounts = [
     "id": 225,
 
     "Date": "11 Aug 2018",
-    "Item": "Payment                                                                              (Check)",
+    "Item": "Payment                       (Check)",
     "Invoiced": "",
     "Payments": "$29.90",
     "Balance": "$0.00"
@@ -369,7 +369,7 @@ var accounts = [
     "id": 145,
 
     "Date": "1 Sep 2018",
-    "Item": "Invoice #18000843                                                                               due                             15 Sep 2018",
+    "Item": "Invoice #18000843         due       15 Sep 2018",
     "Invoiced": "$29.90",
     "Payments": "",
     "Balance": "− $29.90"

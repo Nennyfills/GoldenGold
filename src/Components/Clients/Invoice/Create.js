@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import { invoices } from '../../../data'
 import { clients } from '../../../data'
-import { CreateInvoice } from '../../../Operations/invoiceOperations'
+import { CreateInvoice } from '../../../Operations/Invoices'
 import ClientHeader from '../components/ClientHeader'
 
 

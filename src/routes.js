@@ -66,7 +66,7 @@ const  ClientTickets = Loadable({
 
 
 const  ClientDocs = Loadable({
-  loader: () => import('./Components/Clients/Documents/ClientDoc'),
+  loader: () => import('./Components/Clients/Documents/Documents'),
   loading: Loading,
 });
 

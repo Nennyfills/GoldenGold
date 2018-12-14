@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
 import { clients } from '../../../data'
 import { invoices } from '../../../data'
-import {DisplayInvoice} from '../../../Operations/invoiceOperations'
+import {DisplayInvoice} from '../../../Operations/Invoices'
 class ClientSingleInvoice extends Component{
 
     constructor(props){

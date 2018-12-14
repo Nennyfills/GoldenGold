@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col,  } from 'reactstrap';
-import {QuoteTable} from '../../Operations/QuoteOperations'
+import {QuoteTable} from '../../Operations/Quotes'
 import { quotes } from '../../data'
 
 class Quotes extends Component {

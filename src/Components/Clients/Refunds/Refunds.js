@@ -3,40 +3,25 @@ import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle }
 import classnames from 'classnames';
 import { refunds } from '../../../data'
 import { clients } from '../../../data'
+import {RefundTable} from '../../../Operations/Refunds'
 
 
-
-
-function ClientRefundRow(props) {
-    const refund = props.refund
-
-
-    return (
-        <tr key={refund.id.toString()}>
-            <td>{refund.Method}</td>
-            <td>{refund.Amount}</td>
-            <td>{refund.Createddate}</td>
-        </tr>
-    )
-}
 
 
 class ClientInvoice extends Component {
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
 
         this.state = {
-            user: {}, dropdownOpen: false
-        };
-
+            user: {}, modal: false
+        };   
+        this.toggle = this.toggle.bind(this);
     }
-
-
+  
     toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
+      this.setState({
+        modal: !this.state.modal
+      });
     }
 
     componentDidMount() {
@@ -56,15 +41,9 @@ class ClientInvoice extends Component {
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
                                 <h1>Clients / {this.state.user.LastName} {this.state.user.FirstName}</h1>
-                                <Dropdown className="plusdrop" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                    <DropdownToggle caret>
-                                        <i className="fa fa-plus"></i>
-                                    </DropdownToggle>
-                                    <DropdownMenu className="bg-white">
-                                        <DropdownItem className="bg-white">Another Payment</DropdownItem>
-                                        <DropdownItem className="bg-white">Another Ticket</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown> <a className=""> <i class="fa fa-power-off  decbtn"></i>
+                                                        
+                                        <i className="fa fa-plus" onClick={this.toggle}></i>
+                                    <a className=""> <i class="fa fa-power-off  decbtn"></i>
                                 </a>
                             </div>
                             <div className="pageheader-body pl-4 pt-2">
@@ -90,20 +69,9 @@ class ClientInvoice extends Component {
                 </Row>
                 <Row className="w-100 p-3">
                     <Col xs="12" className="nopcol">
-                        <Col xs="12"><table class=" bg-white table table-hover table-sm table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">METHOD</th>
-                                    <th scope="col">AMOUNT</th>
-                                    <th scope="col">CREATED DATE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {refunds.map((refund, index) =>
-                                    <ClientRefundRow key={index} refund={refund} />
-                                )}
-                            </tbody>
-                        </table></Col>
+                        <Col xs="12">
+                        <RefundTable refunds ={refunds} isOpen={this.state.modal} toggle={this.toggle} />
+                        </Col>
                     </Col>
                 </Row>
             </Row>)

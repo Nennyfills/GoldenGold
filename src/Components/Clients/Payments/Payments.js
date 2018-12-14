@@ -3,26 +3,26 @@ import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle }
 import classnames from 'classnames';
 import { payments } from '../../../data'
 import { clients } from '../../../data'
-import { PaymentTable } from '../../../Operations/PaymentOperations'
+import { PaymentTable } from '../../../Operations/Payments'
 
 
 
 class ClientInvoice extends Component {
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
 
         this.state = {
-            user: {}, dropdownOpen: false
+            user: {}, modal: false
         };
 
+   
+        this.toggle = this.toggle.bind(this);
     }
-
-
+  
     toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
+      this.setState({
+        modal: !this.state.modal
+      });
     }
 
     componentDidMount() {
@@ -42,15 +42,8 @@ class ClientInvoice extends Component {
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
                                 <h1>Clients / {this.state.user.LastName} {this.state.user.FirstName}</h1>
-                                <Dropdown className="plusdrop" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                    <DropdownToggle caret>
-                                        <i className="fa fa-plus"></i> Payment
-                                    </DropdownToggle>
-                                    <DropdownMenu className="bg-white">
-                                        <DropdownItem className="bg-white">Another Payment</DropdownItem>
-                                        <DropdownItem className="bg-white">Another Ticket</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown> <a className=""> <i class="fa fa-power-off  decbtn"></i>
+                                        <i className="fa fa-plus" onClick={this.toggle}></i> Payment
+                                     <a className=""> <i class="fa fa-power-off  decbtn"></i>
                                 </a>
                             </div>
                             <div className="pageheader-body pl-4 pt-2">
@@ -76,7 +69,7 @@ class ClientInvoice extends Component {
                 <Row className="w-100 p-3">
                     <Col xs="12" className="nopcol">
                         <Col xs="12">
-                        <PaymentTable payments ={payments} />
+                        <PaymentTable payments ={payments} isOpen={this.state.modal} toggle={this.toggle} />
                         </Col>
                     </Col>
                 </Row>

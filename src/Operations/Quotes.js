@@ -1,49 +1,42 @@
 import React from 'react'
 import { Badge, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
-import { PItemTable, SItemTable } from './PandSOperations'
+import { PItemTable, SItemTable } from './PandS'
 
-function InvoiceRow(props) {
-    const invoice = props.invoice
-    const invoiceLink = "#/" + invoice.uid + "/invoice/" + invoice.id
+function QuoteRow(props) {
+    const quote = props.quote
+    const quoteLink = "#/" + quote.uid + "/quote/" + quote.id
 
-    const getBadge = (status) => {
-        return status === 'Paid' ? 'success' :
-            status === 'Unpaid' ? 'danger' :
-                'primary'
-    }
+  
 
     return (
-        <tr key={invoice.id.toString()}>
-            <th scope="row"><a href={invoiceLink}>{invoice.Invoiceno}</a></th>
-            <td>{invoice.Total}</td>
-            <td>{invoice.Amountdue}</td>
-            <td>{invoice.Createddate}</td>
-            <td>{invoice.Datedue}</td>
-            <td><Badge color={getBadge(invoice.Status)}>{invoice.Status}</Badge></td>
+        <tr key={quote.id.toString()}>
+            <th scope="row"><a href={quoteLink}>{quote.quoteno}</a></th>
+            <td>{quote.Client}</td>
+            <td>{quote.Total}</td>
+            <td>{quote.Createddate}</td>
         </tr>
     )
 }
 
 
-function InvoiceTable(props) {
-    const invoices = props.invoices
+function QuoteTable(props) {
+    const quotes = props.quotes
 
     return (
         <table className=" bg-white table table-hover table-sm table-striped table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">INVOICE NO</th>
+                    <th scope="col">QUOTE NO</th>
+                    <th scope="col">CLIENT</th>
                     <th scope="col">TOTAL</th>
-                    <th scope="col">AMOUNT DUE</th>
                     <th scope="col">CREATED DATE</th>
-                    <th scope="col">DUE DATE</th>
-                    <th scope="col">STATUS</th>
+                  
                 </tr>
             </thead>
             <tbody>
-                {invoices.map((invoice, index) =>
-                    <InvoiceRow key={index} invoice={invoice} />
+                {quotes.map((quote, index) =>
+                    <QuoteRow key={index} quote={quote} />
                 )}
             </tbody>
         </table>
@@ -51,26 +44,20 @@ function InvoiceTable(props) {
 }
 
 
-function DisplayInvoice(props) {
-    const invoice = props.invoice
+function DisplayQuote(props) {
+    const quote = props.quote
     var Brief = props.brief
 
-    const getBadge = (status) => {
-        return status === 'Paid' ? 'success' :
-            status === 'Unpaid' ? 'danger' :
-                'primary'
-    }
+  
     return (
         <Row className="w-100 block">
             <Col>
-                <h4 className="thin ">Invoice - {invoice.id}
-                    <label className="xx-small"><Badge color={getBadge(invoice.Status)} className="m-1">{invoice.Status}</Badge></label> </h4>
-
+                <h4 className="thin mb-3">Quote - {quote.id} </h4>
 
                 <p className="n-25">
-                    <span className="xx-small" >{invoice.Createddate}</span>
-                    <span className="pl-3 xx-small">{invoice.Duedate}</span>
+                    <span className="xx-small" >{quote.Createddate}</span>
                 </p>
+                
             </Col>
 
             <table className="table">
@@ -79,7 +66,7 @@ function DisplayInvoice(props) {
                         <td>Sender</td>
                         <td>
                             UBNT ISP
-        427 West 12800 South <br />
+                            427 West 12800 South <br />
                             Draper UT  84020 <br />
                             United States</td>
                         <td>Recipients</td>
@@ -88,7 +75,7 @@ function DisplayInvoice(props) {
                     </tr>
                 </tbody>
             </table>
-            <InvoiceItemTable items={[1]} />
+            <QuoteItemTable items={[1]} />
             <hr />
             <Row className=" p-3">
                 <div>
@@ -111,9 +98,75 @@ function DisplayInvoice(props) {
     )
 }
 
+function QuoteItemTable(props) {
+    var items = props.items
+    var summary = props.summary ? props.summary : {} 
+    return (
+        <table className="table">
+            <thead>
+                <tr>
+                    <th className="">Label</th>
+                    <th className="">Price</th>
+                    <th><span className="">Quantity</span> <span className="">Qty</span>
+                    </th><th className=""> Total</th>
+                </tr>
+            </thead>
 
+            <tbody>
+                {items.map((item, index) =>
+                    <QuoteItemRow key={index} quote={item} />
+                )}
+                <QuoteSummary summary = {summary} />
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    )
+}
 
-function CreateInvoice(props) {
+function QuoteItemRow(props) {
+    var quote  = props.quote
+    return (
+        <tr>
+            <td className="">{quote.Label}</td>
+            <td className="">{quote.Unitprice}</td>
+            <td>{quote.Quantity}</td>
+            <td className="">${quote.Totalprice}</td>
+        </tr>
+    )
+}
+
+function QuoteSummary(props) {
+    var summary = props.summary
+    return (
+        <tr>
+            <td className="" colspan="1">
+            </td>
+            <td className="" colspan="3">
+                <table className="table">
+                    <tbody>
+                        <tr>
+                            <th>    Subtotal</th>
+                            <td className="">${summary.Subtotal}</td>
+                        </tr>
+                    </tbody>
+                    <tbody className="">
+                        <tr>
+                            <th>    Total price </th>
+                            <td className="">
+                                <strong>${summary.Totalprice}</strong>
+                            </td>
+                        </tr>
+                       
+                    </tbody>
+                   
+                </table>
+            </td>
+        </tr>
+    )
+}
+
+function CreateQuote(props) {
     var Brief = props.brief
     var Items = props.items ? props.items:[]; 
     return (
@@ -122,8 +175,8 @@ function CreateInvoice(props) {
                 <Col md={6}>
                     <Form>
                         <FormGroup>
-                            <Label for="exampleEmail">Invoice No</Label>
-                            <Input className="input-sm" type="text" name="invoiceNo" id="invoiceNo" placeholder="invoice No" />
+                            <Label for="exampleEmail">Quote No</Label>
+                            <Input className="input-sm" type="text" name="quoteNo" id="quoteNo" placeholder="quote No" />
                         </FormGroup>
                         <FormGroup>
                             <Label for="examplePassword">Day Left </Label>
@@ -172,7 +225,7 @@ function CreateInvoice(props) {
                     </Row>
                 </Col>
                 <Col sm="8" className="" style={{backgroundColor:"#e0e0e0"}}>
-                    <InvoiceItemTable items={Items} />
+                    <QuoteItemTable items={Items} />
                 </Col>
                 <br />
             
@@ -191,86 +244,5 @@ function CreateInvoice(props) {
 
 
 
-function InvoiceItemTable(props) {
-    var items = props.items
-    var summary = props.summary ? props.summary : {} 
-    return (
-        <table className="table">
-            <thead>
-                <tr>
-                    <th className="">Label</th>
-                    <th className="">Price</th>
-                    <th><span className="">Quantity</span> <span className="">Qty</span>
-                    </th><th className=""> Total</th>
-                </tr>
-            </thead>
 
-            <tbody>
-                {items.map((item, index) =>
-                    <InvoiceItemRow key={index} invoice={item} />
-                )}
-                <InvoiceSummary summary = {summary} />
-            </tbody>
-            <tfoot>
-            </tfoot>
-        </table>
-    )
-}
-
-function InvoiceItemRow(props) {
-    var invoice  = props.invoice
-    return (
-        <tr>
-            <td className="">{invoice.Label}</td>
-            <td className="">{invoice.Unitprice}</td>
-            <td>{invoice.Quantity}</td>
-            <td className="">${invoice.Totalprice}</td>
-        </tr>
-    )
-}
-
-function InvoiceSummary(props) {
-    var summary = props.summary
-    return (
-        <tr>
-            <td className="" colspan="1">
-            </td>
-            <td className="" colspan="3">
-                <table className="table">
-                    <tbody>
-                        <tr>
-                            <th>    Subtotal</th>
-                            <td className="">${summary.Subtotal}</td>
-                        </tr>
-                    </tbody>
-                    <tbody className="">
-                        <tr>
-                            <th>    Total price </th>
-                            <td className="">
-                                <strong>${summary.Totalprice}</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>    Amount paid </th>
-                            <td className="">${summary.Ammountpaid}</td>
-                        </tr>
-                    </tbody>
-                    <tbody className="">
-                        <tr>
-                            <th>    Amount due</th>
-                            <td className="">
-                                <strong>${summary.Amountdue}</strong>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    )
-}
-
-
-
-export {
-    InvoiceTable, CreateInvoice, DisplayInvoice
-}
+export {QuoteTable , DisplayQuote, CreateQuote}

@@ -3,37 +3,27 @@ import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle }
 import classnames from 'classnames';
 import { docs } from '../../../data'
 import { clients } from '../../../data'
+import {DocumentTable} from '../../../Operations/Documents'
 
-
-
-function ClientDocRow(props) {
-    const doc = props.doc
-
-    return (
-        <tr key={doc.id.toString()}>
-            <td>{doc.Method}</td>
-            <td>{doc.Amount}</td>
-            <td>{doc.Createddate}</td>
-        </tr>
-    )
-}
 
 
 class ClientDoc extends Component {
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
-
         this.state = {
             user: {}
         };
 
+
+        this.toggle = this.toggle.bind(this);
     }
-
-
+  
     toggle() {
-        
+      this.setState({
+        modal: !this.state.modal
+      });
     }
+
 
     componentDidMount() {
         console.log(this.state)
@@ -52,15 +42,9 @@ class ClientDoc extends Component {
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
                                 <h1>Clients / {this.state.user.LastName} {this.state.user.FirstName}</h1>
-                                <Dropdown className="plusdrop" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                    <DropdownToggle caret>
-                                        <i className="fa fa-plus"></i> Payment
-                                    </DropdownToggle>
-                                    <DropdownMenu className="bg-white">
-                                        <DropdownItem className="bg-white">Another Payment</DropdownItem>
-                                        <DropdownItem className="bg-white">Another Ticket</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown> <a className=""> <i class="fa fa-power-off  decbtn"></i>
+                        
+                                        <i className="fa fa-plus" onClick={this.toggle}></i> Document
+                                   <a className=""> <i class="fa fa-power-off  decbtn"></i>
                                 </a>
                             </div>
                             <div className="pageheader-body pl-4 pt-2">
@@ -86,22 +70,9 @@ class ClientDoc extends Component {
                 </Row>
                 <Row className="w-100 p-3">
                     <Col xs="12" className="nopcol">
-                        <Col xs="12"><table class=" bg-white table table-hover table-sm table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">NAME</th>
-                                    <th scope="col">TYPE</th>
-                                    <th scope="col">CREATED DATE</th>
-                                    <th scope="col">USER</th>
-                                    <th scope="col">SIZE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {docs.map((document, index) =>
-                                    <ClientDocRow key={index} doc={document} />
-                                )}
-                            </tbody>
-                        </table></Col>
+                        <Col xs="12">
+                        <DocumentTable documents={docs} isOpen={this.state.modal} toggle={this.toggle}/>
+                        </Col>
                     </Col>
                 </Row>
             </Row>)

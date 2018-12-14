@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import { quotes } from '../../../data'
 import { clients } from '../../../data'
-import { CreateQuote } from '../../../Operations/QuoteOperations'
+import { CreateQuote } from '../../../Operations/Quotes'
 import ClientHeader from '../components/ClientHeader'
 
 
