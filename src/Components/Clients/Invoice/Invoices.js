@@ -3,7 +3,7 @@ import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle }
 import { invoices } from '../../../data'
 import { clients } from '../../../data'
 import { InvoiceTable } from '../../../Operations/invoiceOperations'
-import ClientHeader from '../ClientHeader'
+import ClientHeader from '../components/ClientHeader'
 
 
 

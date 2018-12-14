@@ -3,7 +3,7 @@ import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle }
 import { quotes } from '../../../data'
 import { clients } from '../../../data'
 import { CreateQuote } from '../../../Operations/QuoteOperations'
-import ClientHeader from '../ClientHeader'
+import ClientHeader from '../components/ClientHeader'
 
 
 class ClientQuote extends Component {

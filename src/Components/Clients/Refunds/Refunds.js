@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import classnames from 'classnames';
-import { refunds } from '../../data'
-import { clients } from '../../data'
+import { refunds } from '../../../data'
+import { clients } from '../../../data'
 
 
 

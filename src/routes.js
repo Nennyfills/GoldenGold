@@ -33,6 +33,12 @@ const ClientSingleInvoice = Loadable({
   loading: Loading,
 });
 
+
+const ClientSinglePayment = Loadable({
+  loader: () => import('./Components/Clients/Payments/Payment'),
+  loading: Loading,
+});
+
 const ClientCreateInvoice = Loadable({
   loader: () => import('./Components/Clients/Invoice/Create'),
   loading: Loading,
@@ -66,7 +72,7 @@ const  ClientDocs = Loadable({
 
 
 const  ClientRefunds= Loadable({
-  loader: () => import('./Components/Clients/ClientRefund'),
+  loader: () => import('./Components/Clients/Refunds/Refunds'),
   loading: Loading,
 });
 
@@ -113,6 +119,7 @@ const routes = [
     { path: '/clients/accounts/list/:id',  exact:true,  name: 'accounts', component: ClientAccounts },
     { path: '/clients/edit/:id',  name: 'Edit', component: EditClient },
     { path: '/:uid/quote/:id',  exact:true,  name: 'Client', component: ClientSingleQuote },
+    { path: '/:uid/payment/:id',  exact:true,  name: 'Client', component: ClientSinglePayment },
 
     { path: '/:uid/invoice/:id',  exact:true,  name: 'Client', component: ClientSingleInvoice },
     { path: '/clients/:id',  name: 'Client', component: Client },
