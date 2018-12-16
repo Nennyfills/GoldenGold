@@ -265,17 +265,24 @@ li  :hover{
   font-size: xx-small
 }
 
+
+.mytabnav-active a {
+  color: #00a0df !important
+}
+
 .mytabnav li a {
   display: block;
   text-align: center;
   padding: .5rem;
   text-decoration: none;
+  color: #212121
 }
 
 .mytabnav-active {
   background-color: #edf0f3;
   border-bottom: 1px solid #39444d;
 }
+
 
 th{font-weight: lighter; font-size: small}
 
@@ -460,4 +467,18 @@ margin: 0;
 
 .row-reverse{
   flex-direction: row-reverse
+}
+
+.br-5{
+  border-radius: 5px !important
+}
+.sub-menu{
+  margin-bottom: 0;
+  background-color: #272f37;
+  list-style: none;
+}
+
+.sub-menu li{
+
+background-color: #272f37;
 }

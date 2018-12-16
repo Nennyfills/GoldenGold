@@ -22,7 +22,8 @@ function RefundTable(props) {
     const refunds = props.refunds
 
     return (
-        <Row><table class=" bg-white table table-hover table-sm table-striped table-bordered">
+        <Row className="w-100">
+        <table class=" bg-white table table-hover table-sm table-striped table-bordered">
         <thead>
             <tr>
                 <th scope="col">METHOD</th>

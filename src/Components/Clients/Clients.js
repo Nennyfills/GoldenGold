@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Input, Button } from 'reactstrap';
+import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Input, Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
 
 import { clients } from '../../data'
 
@@ -41,56 +41,62 @@ class Clients extends Component {
       clients: []
     };
     this.ActiveClient = this.ActiveClient.bind(this);
+    this.ActiveClientCount = this.ActiveClientCount.bind(this);
     this.InActiveClient = this.InActiveClient.bind(this);
     this.showAll = this.showAll.bind(this);
-this.searchName = this.searchName.bind(this);
-this.querying = this.querying.bind(this);
-this.clear = this.clear.bind(this);
+    this.searchName = this.searchName.bind(this);
+    this.querying = this.querying.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   componentDidMount() {
     this.setState({
-      clients: clients , showing :"all"
+      clients: clients, showing: "all"
     });
+  }
+
+  ActiveClientCount(){
+    return    clients.filter(user => user.status.toString().toLowerCase() == "active").length
+
   }
 
   ActiveClient() {
     const theuser = this.state.clients.filter(user => user.status.toString().toLowerCase() == "active")
     this.setState({
-      clients: theuser, showing :"active"
+      clients: theuser, showing: "active"
     });
   }
 
   showAll() {
     this.setState({
-      clients: clients , showing :"all"
+      clients: clients, showing: "all"
     });
   }
 
-  
+
   InActiveClient() {
     const theuser = this.state.clients.filter(user => user.status.toString().toLowerCase() == "inactive")
     this.setState({
-      clients: theuser , showing :"inactive"
+      clients: theuser, showing: "inactive"
     });
   }
 
-  searchName(){
-var query = this.state.query
-    const theuser = this.state.clients.filter(user => user.FirstName.toString().toLowerCase().includes(query) ||  user.LastName.toString().toLowerCase().includes(query))
+  searchName() {
+    var query = this.state.query
+    const theuser = this.state.clients.filter(user => user.FirstName.toString().toLowerCase().includes(query) || user.LastName.toString().toLowerCase().includes(query))
     this.setState({
-      clients: theuser , showing :"all"
+      clients: theuser, showing: "all"
     });
   }
 
-  querying(e){
+  querying(e) {
     this.setState({
-      query : e.target.value
+      query: e.target.value
     });
   }
-  clear(){
+  clear() {
     this.setState({
-      query : ""
+      query: ""
 
     })
   }
@@ -111,30 +117,30 @@ var query = this.state.query
               <div className="pageheader-body pl-4 pt-2">
                 <ul className="mytabnav">
 
-                  <li className={this.state.showing == "all" ? "mytabnav-active" : ""} onClick={this.showAll}>          <a>All Client</a>
+                  <li className={this.state.showing == "all" ? "mytabnav-active" : ""} onClick={this.showAll}>          <a>All Client <span className="text-info"> {clients.length}</span></a>
                   </li>
-                  <li className={this.state.showing == "active" ? "mytabnav-active" : ""} onClick={this.ActiveClient}>          <a>Active Client</a>
+                  <li className={this.state.showing == "active" ? "mytabnav-active" : ""} onClick={this.ActiveClient}>          <a>Active Client <span className="text-success"> {this.ActiveClientCount()}</span></a>
                   </li>
                   <li className={this.state.showing == "inactive" ? "mytabnav-active" : ""} onClick={this.InActiveClient}>          <a>Suspended Client</a>
                   </li>
-                  
+
                 </ul>
               </div>
             </div>
           </Col>
         </Row>
         <Row className="w-100 default-bg p-4">
-          <Col xs="5"> <a className="lh36 text-black-50"> {new Date().toDateString()} </a> || <a className="text-black-50">Export Data</a> </Col>
+          <Col xs="5"> <a href="#" className="text-black-50 btn btn-sm">Export Data</a> <a className="small text-black-50"> {new Date().toDateString()} </a>   </Col>
           <Col xs="6"> <form>
             <div class="form-row">
               <div class="col">
-                <input type="text" class="form-control" placeholder="Search Here" onChange={this.querying}  value={this.state.query} />
+                <input type="text" class="form-control" placeholder="Search Here" onChange={this.querying} value={this.state.query} />
               </div>
 
             </div>
           </form> </Col>
           <Col xs="1" className="nopcol">
-            <i class="fa fa-times lh36 text-black-50"  onClick={this.clear}></i>
+            <i class="fa fa-times lh36 text-black-50" onClick={this.clear}></i>
             <i class="fa fa-check-circle pl-3 lh36 text-black-50" onClick={this.searchName}></i>
           </Col>
 
@@ -157,7 +163,30 @@ var query = this.state.query
                 <ClientRow key={index} user={user} />
               )}
             </tbody>
-          </table></Col>
+
+          </table>
+          </Col>
+          <Row className="w-100">
+            <Col sm="2">
+              <Input type="select" name="select" id="itemSelect" bsSize="sm">
+            <option>15 Item</option>
+            <option>30 Items</option>
+            <option>45 Items</option>
+            <option>60 Items</option>
+            <option>75 Items</option>
+          </Input>
+          </Col>
+          <Col sm="8">
+                <ButtonToolbar className="float-right">
+                  <ButtonGroup size="sm">
+                    <Button className="br-5">1</Button>
+                    <Button className="br-5">2</Button>
+                    <Button className="br-5">3</Button>
+                    <Button className="br-5">4</Button>
+                  </ButtonGroup>
+                </ButtonToolbar>
+            </Col>
+          </Row>
         </Row>
       </Row>
     )

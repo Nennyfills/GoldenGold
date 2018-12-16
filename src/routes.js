@@ -93,6 +93,16 @@ const BillingsQuotes = Loadable({
   loading: Loading,
 });
 
+const BillingsPayments = Loadable({
+  loader: () => import('./Components/Billings/Payments'),
+  loading: Loading,
+});
+
+const BillingsRefunds = Loadable({
+  loader: () => import('./Components/Billings/Refunds'),
+  loading: Loading,
+});
+
 const ClientSingleQuote = Loadable({
   loader: () => import('./Components/Clients/Quotes/Quote'),
   loading: Loading,
@@ -125,6 +135,9 @@ const routes = [
     { path: '/clients/:id',  name: 'Client', component: Client },
     { path: '/billing', exact:true, name: 'Billing', component: Billing },
     { path: '/billing/quotes', exact:true, name: 'Billing', component: BillingsQuotes },
+    { path: '/billing/invoices', exact:true, name: 'Billing', component: Billing },
+    { path: '/billing/payments', exact:true, name: 'Billing', component: BillingsPayments },
+    { path: '/billing/refunds', exact:true, name: 'Billing', component: BillingsRefunds },
 
 ];
 

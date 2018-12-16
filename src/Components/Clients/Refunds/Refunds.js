@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { refunds } from '../../../data'
 import { clients } from '../../../data'
 import {RefundTable} from '../../../Operations/Refunds'
-
+import ClientHeader from '../components/Header'
 
 
 
@@ -43,27 +43,10 @@ class ClientInvoice extends Component {
                                 <h1>Clients / {this.state.user.LastName} {this.state.user.FirstName}</h1>
                                                         
                                         <i className="fa fa-plus" onClick={this.toggle}></i>
-                                    <a className=""> <i class="fa fa-power-off  decbtn"></i>
-                                </a>
+                                 
                             </div>
-                            <div className="pageheader-body pl-4 pt-2">
-                                <ul className="mytabnav" style={{ fontWeight: "lighter", fontSize: "smaller" }}>
+                            <ClientHeader userID={this.state.user.id} active={"Refund"} />
 
-                                       <li className="">          <a  href={"#/clients/"+ this.state.user.id} >Overview</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/payments/list/"+ this.state.user.id}>Payments</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/invoices/list/"+ this.state.user.id}>Invoices</a>
-                                    </li>
-                                    <li className="mytabnav-active">          <a href={"#/clients/Refunds/list/" + this.state.user.id}>Refunds</a>
-                                    </li> <li>          <a href={"#/clients/Accounts/list/" + this.state.user.id}>Account Statement</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/Documents/list/" + this.state.user.id}>Documents</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/tickets/list/"+ this.state.user.id}>Tickets</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </Col>
                 </Row>

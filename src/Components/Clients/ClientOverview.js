@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import classnames from 'classnames';
 import {clients} from '../../data'
+import ClientHeader from './components/Header'
 
 
 
@@ -45,37 +45,22 @@ class Client extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1>Clients</h1>
+                                <h1>Clients / {this.state.user.FirstName}</h1>
                                 <Dropdown className="plusdrop" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                     <DropdownToggle caret>
                                         <i className="fa fa-plus fa-1x"></i>
                                     </DropdownToggle>
                                     <DropdownMenu className="bg-white">
-                                        <DropdownItem className="bg-white">Another Payment</DropdownItem>
-                                        <DropdownItem className="bg-white">Another Ticket</DropdownItem>
+                                    <DropdownItem className="bg-white"> <a href={"#/clients/CreateInvoice/" + this.state.user.id }> Invoice</a></DropdownItem>
+                                    <DropdownItem className="bg-white"> <a>Service</a></DropdownItem>
+                                    <DropdownItem className="bg-white"> <a>Payment</a></DropdownItem>
+                                    <DropdownItem className="bg-white"> <a>Documents</a></DropdownItem>
+                                        <DropdownItem className="bg-white"> <a>Ticket</a></DropdownItem>
                                     </DropdownMenu>
-                                </Dropdown> <a className=""> <i class="fa fa-power-off  decbtn"></i>
-                                </a>
+                                </Dropdown>  <Button outline color="warning" className="float-right btn-sm"> View as client
+                                </Button>
                             </div>
-                            <div className="pageheader-body pl-4 pt-2">
-                                <ul className="mytabnav" style={{ fontWeight: "lighter", fontSize: "smaller" }}>
-
-                                    <li className="mytabnav-active">          <a  href={"#/clients/"+ this.state.user.id} >Overview</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/payments/list/"+ this.state.user.id}>Payments</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/invoices/list/"+ this.state.user.id}>Invoices</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/Refunds/list/" + this.state.user.id}>Refunds</a>
-                                    </li> <li>          <a href={"#/clients/Accounts/list/" + this.state.user.id}>Account Statement</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/Documents/list/" + this.state.user.id}>Documents</a>
-                                    </li>
-                                   
-                                    <li>          <a href={"#/clients/tickets/list/"+ this.state.user.id}>Tickets</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <ClientHeader userID={this.state.user.id} active={"Overview"} />
                         </div>
                     </Col>
                 </Row>

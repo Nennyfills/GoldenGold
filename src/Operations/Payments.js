@@ -22,7 +22,7 @@ function PaymentTable(props) {
     const payments = props.payments
 
     return (
-        <Row>
+        <Row className="w-100">
             <table className=" bg-white table table-hover table-sm table-striped table-bordered">
                 <thead>
                     <tr>

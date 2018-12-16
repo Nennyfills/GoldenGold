@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Badge, Row, Col, ButtonGroup, Button, Input, CardHeader, Card, CardBody, CardFooter } from 'reactstrap';
 import { clients } from '../../../data'
-
+import ClientHeader from '../components/Header'
 class ClientTicket extends Component {
     constructor(props) {
         super(props);
@@ -33,25 +33,8 @@ class ClientTicket extends Component {
       </ButtonGroup>
                              
                             </div>
-                            <div className="pageheader-body pl-4 pt-2">
-                                <ul className="mytabnav" style={{ fontWeight: "lighter", fontSize: "smaller" }}>
+                            <ClientHeader userID={this.state.user.id} active={"Ticket"} />
 
-                                    <li className="">          <a href={"#/clients/" + this.state.user.id} >Overview</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/payments/list/" + this.state.user.id}>Payments</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/invoices/list/" + this.state.user.id}>Invoices</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/Refunds/list/" + this.state.user.id}>Refunds</a>
-                                    </li> <li>          <a href={"#/clients/Accounts/list/" + this.state.user.id}>Account Statement</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/Documents/list/" + this.state.user.id}>Documents</a>
-                                    </li>
-                                  
-                                    <li className="mytabnav-active">          <a href={"#/clients/tickets/list/" + this.state.user.id}>Tickets</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </Col>
                 </Row>

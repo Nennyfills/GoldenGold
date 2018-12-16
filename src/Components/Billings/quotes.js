@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Row, Col,  } from 'reactstrap';
 import {QuoteTable} from '../../Operations/Quotes'
 import { quotes } from '../../data'
+import Header from './Components/Header'
 
 class Quotes extends Component {
 
@@ -27,25 +28,8 @@ class Quotes extends Component {
             <Row>
                 <Row className="w-100">
                     <Col xs="12" className="nopcol">
-                        <div className="PageHeader  bg-white">
-                            <div className="PageHeader-head">
-                                <h1>Billings / Quotess</h1>
+                    <Header section="Quotes"/>
 
-                            </div>
-                            <div className="pageheader-body pl-4 pt-2">
-                                <ul className="mytabnav" style={{ fontWeight: "lighter", fontSize: "smaller" }}>
-
-                                    <li>          <a href={"#/billing/invoices" + this.state.user.id} >Invoices</a>
-                                    </li>
-                                    <li className="mytabnav-active">          <a href={"#/billing/quotes"}>Quotes</a>
-                                    </li>
-                                    <li>          <a href={"#/billing/payments"}>Payments</a>
-                                    </li>
-                                    <li>          <a href={"#/billing/refunds"}>Refunds</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </Col>
                 </Row>
                 <Row className="w-100 p-3">
