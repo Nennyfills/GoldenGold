@@ -34,20 +34,35 @@ input {
 
 } */
 /* .inputSearch input[type="text"] {
-  padding-left:;
+  padding-left:
 } */
-table {
-  width: 100%;
-}
-.tHead {
+
+.table {
   background-color: white;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #646867;
 }
-.tBody {
-  background-color: #d3fcf9;
+.input {
+  height: "100px" !important;
+  width: "16px" !important;
 }
-.buttonSpan {
-  margin-left: 60%;
+
+.tBtn {
+  height: 25px;
+  width: 10px;
 }
-.addressSpan {
-  margin-left: 20%;
+.tAllButton {
+  position: relative;
+}
+.tIcon {
+  color: #b0b1b2;
+}
+
+.tAllButton i {
+  position: absolute;
+  padding-left: 8px;
+  padding-top: 8px;
+}
+.numberBtn {
+  color: #b0b1b2;
 }

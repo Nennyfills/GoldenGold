@@ -32,7 +32,7 @@ class Site extends Component {
           Sites{" "}
           <span className="pl-3">
             <Button
-              color="primary"
+              color="info"
               outline
               className="pl-4 pr-4 pb-0 pt-0 "
               id={"Tooltip-" + this.props.id}
@@ -53,7 +53,7 @@ class Site extends Component {
           <InputGroupAddon className="" addonType="prepend">
             <InputGroupText className="pt-0 pb-0 mr-2">
               <Input className="" addon type="checkbox" />
-              <span className="pl-2">0</span>
+              <span className="pl-2 numberBtn">0</span>
             </InputGroupText>
             <Button className="pt-0 pb-0" color="danger" outline>
               {" "}
@@ -72,37 +72,47 @@ class Site extends Component {
             </p>
           </InputGroupAddon>
 
-          <Table hover bordered className="mt-4 ">
+          <Table hover striped size="sm" className="mt-4 ">
             <thead className="tHead m-5">
-              <tr>
+              <tr className="tHead">
                 <th>
-                  Name <i class="fas fa-sort-down" />{" "}
+                  NAME <i class="fas fa-sort-down" />{" "}
                 </th>
-                <th>Address</th>
+                <th>ADDRESS</th>
+                <th />
               </tr>
             </thead>
             <tbody className="tBody">
               <tr>
                 <td>
                   {" "}
-                  <span className="tName">
-                    <InputGroupAddon className="tInput" addonType="prepend">
-                      <Input className="" addon type="checkbox" />
-                      <span className="pl-2"> Mark </span>
-                    </InputGroupAddon>
-                  </span>
+                  <InputGroupAddon className="" addonType="prepend">
+                    <span className="pr-2">
+                      <Input className="tInput" addon type="checkbox" />
+                    </span>
+                    Mark
+                  </InputGroupAddon>
                 </td>
                 <td className="tCell">
-                  <span className="addressSpan ">Otto </span>
-                  <span className="buttonSpan">
-                    <button>
-                      <i className="fas fa-pen " />
-                    </button>
+                  <span bordered className="addressSpan ">
+                    Otto{" "}
+                  </span>
+                </td>
+                <td className="tAllButton">
+                  <span className="float-right p-0">
+                    <i className="fas fa-pen tIcon" />
+                    <Button className="tBtn" color="secondary" outline />
                   </span>
                 </td>
               </tr>
             </tbody>
           </Table>
+          <div>
+            <Button className="numberBtn" color="light">
+              <span className="pr-2">0</span>of<span className="pl-2">0</span>{" "}
+              <i class="fas fa-sort-down" />
+            </Button>
+          </div>
         </div>
       </div>
     );
