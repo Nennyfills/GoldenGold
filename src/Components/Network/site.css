@@ -1,0 +1,53 @@
+.box {
+  height: 60px;
+  background-color: white;
+  box-shadow: red;
+}
+.remove {
+  margin-left: 110px;
+  height: 5px;
+  color: #b0b1b2;
+}
+.tick {
+  padding-left: 20px;
+  height: 5px;
+}
+.inputSearch {
+  position: relative;
+  width: 70%;
+  padding-left: 600px;
+  height: 25px;
+}
+input {
+  outline: none;
+  background-color: #edf0f3;
+  border: solid 1px #bfddfc !important;
+}
+.inputSearch i {
+  position: absolute;
+  padding-left: 4px;
+  padding-top: 4px;
+  color: #b0b1b2;
+}
+/* .inputSearch input[type="text"]:focus + i {
+  color: dodgerblue;
+
+} */
+/* .inputSearch input[type="text"] {
+  padding-left:;
+} */
+table {
+  width: 100%;
+}
+.tHead {
+  background-color: white;
+}
+.tBody {
+  background-color: #d3fcf9;
+}
+.buttonSpan {
+  margin-left: 60%;
+}
+.addressSpan {
+  margin-left: 20%;
+}
