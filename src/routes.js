@@ -114,6 +114,37 @@ const ClientCreateQuote = Loadable({
   loading: Loading,
 });
 
+const SystemProducts = Loadable({
+  loader: () => import('./Components/Systems/products/products'),
+  loading: Loading,
+});
+
+
+const SystemProduct = Loadable({
+  loader: () => import('./Components/Systems/products/product'),
+  loading: Loading,
+});
+
+const SystemServices = Loadable({
+  loader: () => import('./Components/Systems/services/services'),
+  loading: Loading,
+});
+
+const SystemService = Loadable({
+  loader: () => import('./Components/Systems/services/service'),
+  loading: Loading,
+});
+
+const SystemServicesCreate = Loadable({
+  loader: () => import('./Components/Systems/services/create'),
+  loading: Loading,
+});
+
+const SystemProductsCreate = Loadable({
+  loader: () => import('./Components/Systems/products/create'),
+  loading: Loading,
+});
+
 const routes = [
     { path: '/', exact: true, name: 'Home', component: Home },
     { path: '/dashboard', name: 'Dashboard', component: Dashboard },
@@ -138,6 +169,13 @@ const routes = [
     { path: '/billing/invoices', exact:true, name: 'Billing', component: Billing },
     { path: '/billing/payments', exact:true, name: 'Billing', component: BillingsPayments },
     { path: '/billing/refunds', exact:true, name: 'Billing', component: BillingsRefunds },
+    { path: '/system', exact:true, name: 'System', component: SystemProduct },
+    { path: '/system/products/',  exact:true,  name: 'Products', component: SystemProducts },
+    { path: '/system/products/create', exact:true, name: 'Products', component: SystemProductsCreate },
+    { path: '/system/products/:id',  exact:true,  name: 'Products', component: SystemProduct },
+    { path: '/system/services', exact:true, name: 'Services', component: SystemServices },
+    { path: '/system/services/create', exact:true, name: 'Services', component: SystemServicesCreate },
+    { path: '/system/services/:id', exact:true, name: 'Services', component: SystemService },
 
 ];
 

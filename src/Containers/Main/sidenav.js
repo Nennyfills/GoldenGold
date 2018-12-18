@@ -31,7 +31,7 @@ toggle() {
                     <NavLink  className="myNav" onClick={this.toggle}> <i class="fas  fa fa-toolbox p5" style={{ }}></i> <span> Systems</span> </NavLink>
                     <Collapse isOpen={this.state.collapse} className="sub-menu">
                     <ListGroup>
-                    <ListGroupItem> <a href="#/system/logs">Preferences </a></ListGroupItem>
+                    <ListGroupItem> <a href="#/system/prefs">Preferences </a></ListGroupItem>
 
         <ListGroupItem> <a href="#/system/products"> Products </a></ListGroupItem>
         <ListGroupItem> <a href="#/system/services">Services </a> </ListGroupItem>

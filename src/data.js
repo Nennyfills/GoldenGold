@@ -345,6 +345,23 @@ var payments = [{
 ]
 
 var docs = []
+var products = [
+  {   
+      id:"454", 
+      Label: "Green Router",
+      Description:"",
+      Price:"4500",
+      Createddate:"8 Mar 2018"
+    },
+    
+    {id:"455", 
+    Label:"Chinko Morderm", 
+    Description:"", 
+    Price:"0500", 
+    Createddate:"19 Mar 2018"
+  }
+]
+var services = [{id:"454", Label:"4 month installation", Description:"", Price:"14500" , Createddate:"8 Mar 2018"}]
 var refunds = []
 var accounts = [
   {
@@ -470,5 +487,5 @@ export {
   payments,
   docs,
   refunds,
-  accounts, InvoiceItems, quotes
+  accounts, InvoiceItems, quotes ,products , services
 }

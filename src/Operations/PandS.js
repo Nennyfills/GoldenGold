@@ -9,17 +9,18 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 
 
 
-function PItemTable(){
+function PItemTable(props){
+    var products = props.products ? props.products : []
     return(
         
-<UncontrolledCollapse toggler="#producttoggler">
-    <Card>
-        <CardBody> 
-            <ListGroup flush>
-                <ListGroupItem tag="a">Intel Router</ListGroupItem>
-                <ListGroupItem tag="a">Advanced Digital Radio</ListGroupItem>
-                <ListGroupItem tag="a">Green Anthena</ListGroupItem>
-                <ListGroupItem tag="a">5HP Split Air Condition</ListGroupItem>
+<UncontrolledCollapse toggler="#producttoggler" className="w-100">
+    <Card className="bg-transparent p-1 w-100">
+        <CardBody className="p-0"> 
+            <ListGroup flush className="">
+            {products.map((product, index) =>
+                        <ListGroupItem className="bg-transparent hand" key={index} tag="a" onClick={() => props.addproduct(product)} >{product.Label}</ListGroupItem>
+                    )}
+              
             </ListGroup>
         </CardBody>
     </Card>
@@ -28,15 +29,18 @@ function PItemTable(){
 }
 
 
-function SItemTable(){
+function SItemTable(props){
+        var services = props.services ? props.services : []
+
     return(
         
-<UncontrolledCollapse toggler="#servicetoggler">
-    <Card>
-        <CardBody> 
+<UncontrolledCollapse toggler="#servicetoggler" className="w-100">
+    <Card className="bg-transparent p-1 w-100">
+        <CardBody className="p-0"> 
             <ListGroup flush>
-                <ListGroupItem tag="a">Advanced unlimited</ListGroupItem>
-                <ListGroupItem tag="a">Medium range</ListGroupItem>      
+            {services.map((service, index) =>
+                            <ListGroupItem className="bg-transparent hand" key={index} tag="a" onClick={() => props.addservice(service)} >{service.Label}</ListGroupItem>
+                    )}     
             </ListGroup>
         </CardBody>
     </Card>
