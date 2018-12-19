@@ -4,6 +4,7 @@ import { invoices } from '../../../data'
 import { clients } from '../../../data'
 import { InvoiceTable } from '../../../Operations/Invoices'
 import ClientHeader from '../components/Header'
+import {searchObjectListbyid , searchObjectListbyvalue} from '../../../Controller/controller'
 
 
 

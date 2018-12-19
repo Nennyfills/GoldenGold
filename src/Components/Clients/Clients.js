@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Input, Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
 
 import { clients } from '../../data'
+import {searchObjectListbyid , searchObjectListbyvalue} from '../../Controller/controller'
 
 
 
@@ -83,7 +84,8 @@ class Clients extends Component {
 
   searchName() {
     var query = this.state.query
-    const theuser = this.state.clients.filter(user => user.FirstName.toString().toLowerCase().includes(query) || user.LastName.toString().toLowerCase().includes(query))
+    let theuser =     searchObjectListbyvalue(this.state.clients , "FirstName" , query);
+
     this.setState({
       clients: theuser, showing: "all"
     });
