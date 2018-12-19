@@ -97,7 +97,7 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h3>Clients / {this.state.user.LastName} {this.state.user.FirstName}/ Add Invoice</h3>
+                                <h3><a href="/#Clients"> Clients </a>  / <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a>/ Add Invoice</h3>
                             </div>
                         </div>
                     </Col>

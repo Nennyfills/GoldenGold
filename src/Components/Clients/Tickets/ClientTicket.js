@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Badge, Row, Col, ButtonGroup, Button, Input, CardHeader, Card, CardBody, CardFooter } from 'reactstrap';
-import { clients } from '../../../data'
+import { clients , tickets } from '../../../data'
 import ClientHeader from '../components/Header'
+import { TicketList } from '../../../Operations/Tickets';
 class ClientTicket extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +27,8 @@ class ClientTicket extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1>Clients / {this.state.user.LastName} {this.state.user.FirstName}</h1>  <ButtonGroup className="float-right">
+                            <h1> <a href={"/#Clients" }> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
+  <ButtonGroup className="float-right">
         <Button className="btn-outline-success btn-sm">Left</Button>
         <Button className="btn-outline-warning btn-sm">Middle</Button>
         <Button className="btn-outline-primary btn-sm">Right</Button>
@@ -41,39 +43,13 @@ class ClientTicket extends Component {
 
 
                 <Row className="w-100">
-                        <Col xs="5" id="t-1" className="p-0">
-                            <Card className="w-100 mb-1 mt-1">
-                                <CardHeader className="p-1 pl-3 pr-3">
-                                    <div>
-                                        <span className="float-left smalller"> <i className="fa fa-user-circle text-primary"></i> Portal Admin</span>
-                                        <span className="float-right xx-small">1/11/2018 <i className="fa fa-dot-circle text-primary fa-1x "></i> </span>
-                                    </div>
-                                </CardHeader>
-                                <CardBody className="p-3">
-                                    <div className="ticket-heading">Out of Service for 20Hours</div>
-                                    <span class="ticket-brief">
-                                        Ipsam ratione omnis perspiciatis excepturi perferendis numquam iste dolor. Vel laborum molestias…
-                                                                    </span>
-                                </CardBody>
-                            </Card>
-
-                            <Card className="w-100 mb-1 mt-1">
-                                <CardHeader className="p-1 pl-3 pr-3">
-                                    <div>
-                                        <span className="float-left smalller"> <i className="fa fa-user-circle text-primary"></i> Eidetic Brown</span>
-                                        <span className="float-right xx-small">1/11/2018 <i className="fa fa-dot-circle text-primary fa-1x"></i> </span>
-                                    </div>
-                                </CardHeader>
-                                <CardBody className="p-3">
-                                    <div className="ticket-heading">Out of Service for 20Hours</div>
-                                    <span class="ticket-brief">
-                                        Ipsam ratione omnis perspiciatis excepturi perferendis numquam iste dolor. Vel laborum molestias…
-                                                                    </span>
-                                </CardBody>
-                            </Card>
+                        <Col xs="5" id="t-1" className="p-1">
+                            
+<TicketList tickets={tickets}/>
+                       
                         </Col>
                         
-                        <Col xs="7" className="p-0 mt-1">
+                        <Col xs="7" className="p-2">
                             <Row className="w-100 card-header bg-white">
                                 <div className="t-d-h">Out of Service for 20Hours</div>
                             </Row>

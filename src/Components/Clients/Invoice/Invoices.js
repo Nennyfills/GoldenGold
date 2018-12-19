@@ -11,8 +11,9 @@ class ClientInvoice extends Component {
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
+        this.mtoggle = this.mtoggle.bind(this);
         this.state = {
-            user: {}, dropdownOpen: false
+            user: {}, dropdownOpen: false , invoices:[]
         };
     }
 
@@ -28,9 +29,22 @@ class ClientInvoice extends Component {
         const theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
 
         this.setState({
-            user: theuser
+            user: theuser,
+            invoices:invoices
         });
     }
+
+    mtoggle(e) {
+        this.filterByStatus(e.target.value)
+     }
+ 
+ 
+     filterByStatus(val){
+         let filtered = invoices.filter(invoices =>  invoices.Status == val)
+         this.setState({
+             invoices: filtered
+         });
+     }
 
     render() {
         return (
@@ -39,7 +53,7 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1>Clients / {this.state.user.LastName} {this.state.user.FirstName}/ Add Invoice</h1>
+                                <h1> <a href={"/#Clients" }> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
                                 <a href={"#/clients/CreateInvoice/" + this.state.user.id}>  <i className="fa fa-plus"></i> Invoice </a>
 
                             </div>
@@ -75,7 +89,7 @@ class ClientInvoice extends Component {
                         </Input>
                     </Col>
                     <Col xs="2" className="p-2">
-                        <Input type="select" name="select" id="exampleSelect" bsSize="sm">
+                        <Input type="select" name="select" id="exampleSelect" bsSize="sm" onChange={this.mtoggle}>
                             <option>Status</option>
                             <option>Paid</option>
                             <option>Unpaid</option>
@@ -84,7 +98,7 @@ class ClientInvoice extends Component {
                     </Col>
                     <Col xs="12" className="nopcol">
                         <Col xs="12">
-                            <InvoiceTable invoices={invoices} />
+                            <InvoiceTable invoices={this.state.invoices} />
                         </Col>
                     </Col>
                 </Row>

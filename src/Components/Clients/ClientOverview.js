@@ -45,7 +45,7 @@ class Client extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1>Clients / {this.state.user.FirstName}</h1>
+                                <h1><a href="/#Clients"> Clients </a> / {this.state.user.FirstName}</h1>
                                 <Dropdown className="plusdrop" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                     <DropdownToggle caret>
                                         <i className="fa fa-plus fa-1x"></i>

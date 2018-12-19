@@ -42,7 +42,7 @@ class ClientDoc extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1>Clients / {this.state.user.LastName} {this.state.user.FirstName}</h1>
+                            <h1> <a href={"/#Clients" }> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
                         
                                         <i className="fa fa-plus" onClick={this.toggle}></i> Document
                             </div>

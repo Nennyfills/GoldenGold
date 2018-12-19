@@ -485,3 +485,16 @@ background-color: #272f37;
 
 
 .hand{cursor: pointer}
+
+.app.flex-row.align-items-center {
+  height: 100vh;
+}
+
+.app, app-dashboard, app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.flex-center{
+align-self: center;}

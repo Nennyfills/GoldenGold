@@ -10,6 +10,8 @@ class service extends Component{
         this.state = {
             service:{}
         }
+        this.saveproduct = this.saveproduct.bind(this);
+
     }
 
     componentDidMount(){
@@ -18,6 +20,13 @@ class service extends Component{
             service :theservice
         })
     }
+
+    saveproduct(service){
+        //APICall()
+        console.log("service")
+        console.log(service)
+    }
+
     render(){
         return( <Row className="w-100">
         <Row className="w-100">
@@ -31,7 +40,7 @@ class service extends Component{
         </Col>
         </Row>
         <Row className="w-100 p-3">
-        <CreateService  />
+        <CreateService  save ={(service) => this.saveproduct(service)} />
 </Row>
         </Row>)
     }

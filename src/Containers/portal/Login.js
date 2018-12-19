@@ -1,7 +1,31 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom'
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
 
 class Login extends Component {
+
+  constructor(props){
+    super(props)
+    this.LogAdmin = this.LogAdmin.bind(this);
+
+    this.state ={
+      isLoggedIn:false
+    }
+  }
+
+
+  LogAdmin(){
+
+    this.setState({
+      isLoggedIn : true
+    })
+    sessionStorage.setItem("isLoggedIn" , true)
+    this.props.history.push('/dashboard')
+    //return(
+    //<Redirect to='/go' />
+    //)
+  }
+
   render() {
     return (
       <div className="app flex-row align-items-center">
@@ -32,7 +56,7 @@ class Login extends Component {
                       </InputGroup>
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4">Login</Button>
+                          <Button color="primary" className="px-4" onClick={this.LogAdmin}>Login</Button>
                         </Col>
                         <Col xs="6" className="text-right">
                           <Button color="link" className="px-0">Forgot password?</Button>
@@ -44,10 +68,10 @@ class Login extends Component {
                 <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: 44 + '%' }}>
                   <CardBody className="text-center">
                     <div>
-                      <h2>Sign up</h2>
+                      <h2>Client View</h2>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
                         labore et dolore magna aliqua.</p>
-                      <Button color="primary" className="mt-3" active>Register Now!</Button>
+                      <Button color="primary" className="mt-3" active>Continue</Button>
                     </div>
                   </CardBody>
                 </Card>

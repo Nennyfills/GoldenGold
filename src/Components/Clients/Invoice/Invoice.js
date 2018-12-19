@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
 import { clients } from '../../../data'
-import { invoices } from '../../../data'
+import { invoices , invoiceItems  } from '../../../data'
 import {DisplayInvoice} from '../../../Operations/Invoices'
 class ClientSingleInvoice extends Component{
 
@@ -9,7 +9,8 @@ class ClientSingleInvoice extends Component{
         super(props)
         this.state = {
             user: {},
-            invoice: {}
+            invoice: {},
+            theinvoiceItems:[] , summary:{}
         };
         this.ClientBrief = this.ClientBrief.bind(this);
     }
@@ -34,13 +35,32 @@ class ClientSingleInvoice extends Component{
         const theuser = clients.find(user => user.id.toString() === this.props.match.params.uid)
         
         const theinvoice = invoices.find(invoice => invoice.id.toString() === this.props.match.params.id)
+        const theinvoiceItems = invoiceItems.filter(invoices => invoices.InvoiceID.toString() === this.props.match.params.id)
 
+        this.getSummary(theinvoiceItems)
         this.setState({
             user: theuser,
-            invoice: theinvoice
+            invoice: theinvoice,
+            theinvoiceItems : theinvoiceItems
         });
     }
 
+    getSummary(params) {
+        var totalP = 0;
+        var paid = 0;
+         let summary = {}
+         params.forEach(element => {            
+            totalP = totalP +  Number(element.TotalPrice)
+        });
+        summary.Subtotal = totalP;
+        summary.Amountdue = totalP;
+        summary.Totalprice = totalP;
+        summary.Ammountpaid = paid; 
+
+        this.setState({summary : summary} , () =>{
+            console.log("rdjtygujo")
+        });
+  }
 
     render(){
         return( <Row className="w-100">
@@ -48,7 +68,7 @@ class ClientSingleInvoice extends Component{
                 <Col xs="12" className="nopcol">
                     <div className="PageHeader  bg-white">
                         <div className="PageHeader-head">
-                            <h1> {this.state.user.LastName} {this.state.user.FirstName}/ Invoice</h1>
+                            <h1>  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a>/ Invoice</h1>
                             <a href={"#/clients/CreateInvoice/" + this.state.user.id }>  <i className="fa fa-plus"></i> Invoice </a>
                         </div>
                     </div>
@@ -56,7 +76,7 @@ class ClientSingleInvoice extends Component{
             </Row>
             <Row className="w-100 p-3">
             <Row className="w-100 bg-white">
-            <DisplayInvoice invoice = {this.state.invoice} brief = {this.ClientBrief()}/>
+            <DisplayInvoice invoice = {this.state.invoice} brief = {this.ClientBrief()} invoiceItems={this.state.theinvoiceItems} summary={this.state.summary}/>
             </Row>
             </Row>
         </Row>)

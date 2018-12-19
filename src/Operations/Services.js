@@ -86,12 +86,16 @@ function DisplayService(props) {
 
 
 function CreateService(props) {
+    var service = {}
+        function creating(e){
+            service[e.target.name] = e.target.value
+        }
     return(
         <Row className="w-100 bg-white p-3 justify-content-center ">
-            <Form className="w-75">
+            <div className="w-75">
             <FormGroup>
           <Label for="exampleEmail">Label</Label>
-          <Input type="label" name="label" id="label" placeholder="Label" />
+          <Input type="label" name="label" id="label" placeholder="Label" onChange={(e) => creating(e)} />
         </FormGroup>
 
          <FormGroup>
@@ -112,10 +116,10 @@ function CreateService(props) {
          <FormGroup className="float-right">
 
         <Button outline color="warning">CANCEL</Button>{' '}
-        <Button outline color="primary">SAVE</Button>
+        <Button outline color="primary" onClick={() => props.save(service)}>SAVE</Button>
         </FormGroup>
 
-            </Form>
+            </div>
         </Row>
     )
 }

@@ -56,7 +56,7 @@ var clients = [{
     Serviceplans: "Basic",
     Connectedto: "Lake Tower – Lake Gateway",
     status: "Banned",
-    type: "Individual",
+    type: "Company",
     houseAddress: "Az/13",
     streetAddress: "FHE UTAKO",
     city: "ABUJA",
@@ -284,62 +284,62 @@ var payments = [{
     "id": 234,
 
     "Method": "Check",
-    "Amount": "$29.90",
+    "Amount": 29.90,
     "Createddate": "10 Nov 2018 7:18 am"
   },
   {
     "id": 246,
     uid:244,
     "Method": "Check",
-    "Amount": "$29.90",
+    "Amount": 679.90,
     "Createddate": "6 Oct 2018 8:09 am"
   },
   {
     "id": 21,
     uid:244,
     "Method": "Check",
-    "Amount": "$29.90",
+    "Amount": 1129.90,
     "Createddate": "9 Sep 2018 8:03 am"
   },
   {
     "id": 24, uid:245,
     "Method": "Check",
-    "Amount": "$29.90",
+    "Amount": 19.9,
     "Createddate": "11 Aug 2018 7:50 am"
   },
   {
     "id": 241, uid:254,
 
     "Method": "Check",
-    "Amount": "$29.90",
+    "Amount": 29.90,
     "Createddate": "7 Jul 2018 7:43 am"
   },
   {
     "id": 274,
     uid:255,
     "Method": "Check",
-    "Amount": "$29.90",
+    "Amount": 2990,
     "Createddate": "9 Jun 2018 7:36 am"
   },
   {
     "id": 412,
     uid:255,
     "Method": "Check",
-    "Amount": "$29.90",
+    "Amount": 299.0,
     "Createddate": "5 May 2018 8:26 am"
   },
   {
     "id": 240,
     uid:253,
     "Method": "Check",
-    "Amount": "$29.90",
+    "Amount": 655,
     "Createddate": "5 Apr 2018 8:13 am"
   },
   {
     "id": 245,
     uid:244,
     "Method": "Check",
-    "Amount": "$29.90",
+    "Amount": 78,
     "Createddate": "8 Mar 2018 7:08 am"
   }
 ]
@@ -440,7 +440,7 @@ var accounts = [
 ]
 
 
-var InvoiceItems =
+var invoiceItems =
 [{
   Id : 39,
   Type :"Product",
@@ -448,7 +448,7 @@ var InvoiceItems =
   Label : "Cold Room dispenser", 
   Price: "3",
   Quantity: "3000",
-  Total: "9000"
+  TotalPrice: "9000"
 },
 {
   Id : 9,
@@ -457,7 +457,7 @@ var InvoiceItems =
   Label : "Lovely set of Lenovo", 
   Price: "1",
   Quantity: "300",
-  Total: "300"
+  TotalPrice: "300"
 },
 {
   Id : 139,
@@ -466,7 +466,7 @@ var InvoiceItems =
   Label : "Smael Sport watch", 
   Price: "3",
   Quantity: "10",
-  Total: "30"
+  TotalPrice: "30"
 },
 {
   Id : 9,
@@ -475,17 +475,19 @@ var InvoiceItems =
   Label : "Cold Room dispenser", 
   Price: "3",
   Quantity: "3000",
-  Total: "9000"
+  TotalPrice: "9000"
 }]
 
 
 var quotes =[{id:34, quoteno:"3F15" , Client:"GOKE BABALOLA" , Total:"$99" ,     Createddate: "1 Aug 2018", uid:244
 }]
+
+var tickets =[{id:23, Title:"Out of service 2 days" , Author:"Portal Admin", Createddate:"1/11/18", "Brief":"psam ratione omnis perspiciatis excepturi perferendis numquam iste dolor. Vel laborum molestias culpa perferendis et dolores temporibus. Et magnam in..." , Note:"psam ratione omnis perspiciatis excepturi perferendis numquam iste dolor. Vel laborum molestias culpa perferendis et dolores temporibus. Et magnam in praesentium aspernatur. Doloremque culpa voluptas ut harum dolorem rerum. Quibusdam minima unde mollitia porro. In impedit cumque nemo ducimus. Incidunt eveniet eos commodi omnis quos. Et maxime nihil molestias facere non. A sed ducimus iste commodi ipsa sapiente quia. Minima sed explicabo a alias facere. Ipsa minima velit minima dolorum sapiente debitis qui voluptates. Dolorum iure eos sunt necessitatibus exercitationem voluptates molestiae. Autem officiis ut consequatur ratione aut facilis illo maiores." , }]
 export {
   invoices,
   clients,
   payments,
   docs,
   refunds,
-  accounts, InvoiceItems, quotes ,products , services
+  accounts, invoiceItems, quotes ,products , services, tickets
 }
