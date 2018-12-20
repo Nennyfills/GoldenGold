@@ -5,7 +5,7 @@ import { Table } from "reactstrap";
 
 const DataSite = props => {
   return (
-    <Table hover size="sm" className="mt-5 ">
+    <Table hover size="sm" className="mt-5 table">
       <thead className="tHead m-5">
         <tr className="tHead">
           <th>
