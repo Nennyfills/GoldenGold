@@ -1,7 +1,7 @@
 import React from 'react'
-import { Badge, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Badge, Row, Col, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { UncontrolledCollapse, Button, CardBody, CardHeader, Card } from 'reactstrap';
-import { PItemTable, SItemTable } from './PandSOperations'
+import { PItemTable, SItemTable } from './PandS'
 
 function PaymentRow(props) {
     const payment = props.payment
@@ -22,27 +22,81 @@ function PaymentTable(props) {
     const payments = props.payments
 
     return (
-        <table className=" bg-white table table-hover table-sm table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">PAYMENT NO</th>
-                    <th scope="col">METHOD</th>
-                    <th scope="col">AMOUNT</th>
-                    <th scope="col">CREATED DATE</th>
-                </tr>
-            </thead>
-            <tbody>
-                {payments.map((payment, index) =>
-                    <PaymentRow key={index} payment={payment} />
-                )}
-            </tbody>
-        </table>
-    )
+        <Row className="w-100">
+            <table className=" bg-white table table-hover table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">PAYMENT NO</th>
+                        <th scope="col">METHOD</th>
+                        <th scope="col">AMOUNT</th>
+                        <th scope="col">CREATED DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {payments.map((payment, index) =>
+                        <PaymentRow key={index} payment={payment} />
+                    )}
+                </tbody>
+            </table>
+            <Modal isOpen={props.isOpen} toggle={props.toggle}>
+                <ModalHeader toggle={props.toggle}>ADD PAYMENT</ModalHeader>
+                <ModalBody>
+                    <Form>
+
+                        <FormGroup tag="fieldset">
+                            <legend className="small">Add to Invoice</legend>
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="radio" name="radio1" />{' '}
+                                    Invoice A
+            </Label>
+                            </FormGroup>
+                            <FormGroup check>
+                                <Label check>
+                                    <Input type="radio" name="radio1" />{' '}
+                                    Invoice B
+            </Label>
+                            </FormGroup>
+                        </FormGroup>
+
+                        <FormGroup>
+                            <Label for="exampleSelect">Method</Label>
+                            <Input type="select" name="select" id="exampleSelect">
+                                <option>Check</option>
+                                <option>Cash</option>
+                                <option>Bank transfer</option>
+
+                            </Input>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="number" placeholder="Ammount" />
+                        </FormGroup>
+                        <FormGroup>
+                            <FormGroup>
+                                <Label for="exampleSelect">Currency</Label>
+                                <Input type="select" name="select" id="exampleSelect">
+                                    <option>NAIRA</option>
+                                    <option>USD</option>
+
+                                </Input>
+                            </FormGroup>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input placeholder="Add note" />
+                        </FormGroup>
+                    </Form>
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={props.toggle}>Save</Button>{' '}
+                    <Button color="secondary" onClick={props.toggle}>Cancel</Button>
+                </ModalFooter>
+            </Modal>
+        </Row>)
 }
 
 function DisplayPayment(props) {
-    const payment = props.payment ? props.payment :{}
-    const client = props.client ? props.client :{}
+    const payment = props.payment ? props.payment : {}
+    const client = props.client ? props.client : {}
 
     return (
         <Row className="w-100">
@@ -51,7 +105,7 @@ function DisplayPayment(props) {
 
                     <Card >
                         <CardHeader>
-                            <div  className="card-header__title">
+                            <div className="card-header__title">
                                 Basic information
                                 </div>
                         </CardHeader>
@@ -62,7 +116,7 @@ function DisplayPayment(props) {
                                         <th>The client</th>
                                         <td>
                                             <a href="/client/255" className="client-avatar">
-                                                <span className="" style={{backgroundColor: "#039be5"}}>
+                                                <span className="" style={{ backgroundColor: "#039be5" }}>
                                                     MC
                                             </span>
                                                 <span className="font-weight-bold">
@@ -72,7 +126,7 @@ function DisplayPayment(props) {
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr><hr/></tr>
+                                    <tr><hr /></tr>
                                     <tr>
                                         <th>ID</th>
                                         <td>{payment.id}</td>
@@ -105,27 +159,27 @@ function DisplayPayment(props) {
                             </table>
                         </CardBody>
                     </Card>
-             
+
 
                 </Col>
                 <Col>
-                <Card >
+                    <Card >
                         <CardHeader>
-                            <div  className="card-header__title">
+                            <div className="card-header__title">
                                 Invoice information
                                 </div>
                         </CardHeader>
                         <CardBody>
                             <h3 className="thin">PAYMENT NOT ATTACHED TO ANY INVOICE</h3>
-                            </CardBody>
-                            </Card>
+                        </CardBody>
+                    </Card>
                 </Col>
-               <div className="block">
-               <br/></div>
+                <div className="block">
+                    <br /></div>
             </Row>
 
             <Row className="w-100 p-1">
-            
+
                 <Col>
                     <Input type="textarea" placeholder="ADD NOTES" />
                 </Col>

@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import classnames from 'classnames';
-import { refunds } from '../../../data'
+import { docs } from '../../../data'
 import { clients } from '../../../data'
-import {RefundTable} from '../../../Operations/Refunds'
+import {DocumentTable} from '../../../Operations/Documents'
 import ClientHeader from '../components/Header'
 
 
 
-class ClientInvoice extends Component {
+class ClientDoc extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
-            user: {}, modal: false
-        };   
+            user: {}
+        };
+
+
         this.toggle = this.toggle.bind(this);
     }
   
@@ -23,6 +24,7 @@ class ClientInvoice extends Component {
         modal: !this.state.modal
       });
     }
+
 
     componentDidMount() {
         console.log(this.state)
@@ -41,11 +43,10 @@ class ClientInvoice extends Component {
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
                             <h1> <a href={"/#Clients" }> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
-                                                        
-                                        <i className="fa fa-plus" onClick={this.toggle}></i>
-                                 
+                        
+                                        <i className="fa fa-plus" onClick={this.toggle}></i> Document
                             </div>
-                            <ClientHeader userID={this.state.user.id} active={"Refund"} />
+                            <ClientHeader userID={this.state.user.id} active={"Document"}/>
 
                         </div>
                     </Col>
@@ -53,7 +54,7 @@ class ClientInvoice extends Component {
                 <Row className="w-100 p-3">
                     <Col xs="12" className="nopcol">
                         <Col xs="12">
-                        <RefundTable refunds ={refunds} isOpen={this.state.modal} toggle={this.toggle} />
+                        <DocumentTable documents={docs} isOpen={this.state.modal} toggle={this.toggle}/>
                         </Col>
                     </Col>
                 </Row>
@@ -61,6 +62,6 @@ class ClientInvoice extends Component {
     }
 }
 
-export default ClientInvoice;
+export default ClientDoc;
 
 

@@ -70,7 +70,7 @@ class NewClient extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1>Clients /
+                                <h1> <a href="/#Clients"> Clients </a> /
     Add client</h1> 
                             </div>
                         </div>

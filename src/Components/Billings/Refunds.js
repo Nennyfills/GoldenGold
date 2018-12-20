@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import Header from './Components/Header'
-import { InvoiceTable } from '../../Operations/Invoices';
-import { invoices } from '../../data'
+import { refunds } from '../../data'
+import {RefundTable} from '../../Operations/Refunds'
 
-
-class Invoices extends Component {
+class Refunds extends Component {
 
     constructor(props) {
         super(props);
@@ -14,22 +13,26 @@ class Invoices extends Component {
         this.state = {
             user: {}, dropdownOpen: false
         };
-    }  
+
+    }
+
+
     toggle() {
-        this.setState(prevState => ({dropdownOpen: !prevState.dropdownOpen
+        this.setState(prevState => ({
+            dropdownOpen: !prevState.dropdownOpen
         }));
     }
+
     render() {
         return (
             <Row>
                 <Row className="w-100">
                     <Col xs="12" className="nopcol">
-                    <Header section="Invoices"/>
-
+                       <Header section="Refunds"/>
                     </Col>
                 </Row>
                 <Row className="w-100 p-3">
-                <InvoiceTable invoices ={invoices}/>
+                <RefundTable refunds ={refunds}/>
 
 </Row>
             </Row>
@@ -37,6 +40,6 @@ class Invoices extends Component {
     }
 }
 
+export default Refunds;
 
-export default Invoices
 

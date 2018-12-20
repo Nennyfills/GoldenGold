@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Badge, Row, Col, Dropdown, DropdownItem, Input, Button } from 'reactstrap';
 import classnames from 'classnames';
 import { accounts } from '../../data'
 import { clients } from '../../data'
-
+import ClientHeader from './components/Header'
 
 
 
@@ -69,40 +69,25 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1>Clients / {this.state.user.LastName} {this.state.user.FirstName}</h1>
-                                <Dropdown className="plusdrop" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                                    <DropdownToggle caret>
-                                        <i className="fa fa-plus"></i>
-                                    </DropdownToggle>
-                                    <DropdownMenu className="bg-white">
-                                        <DropdownItem className="bg-white">Another Payment</DropdownItem>
-                                        <DropdownItem className="bg-white">Another Ticket</DropdownItem>
-                                    </DropdownMenu>
-                                </Dropdown> <a className=""> <i class="fa fa-power-off  decbtn"></i>
-                                </a>
+                            <h1> <a href={"/#Clients" }> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
                             </div>
-                            <div className="pageheader-body pl-4 pt-2">
-                                <ul className="mytabnav" style={{ fontWeight: "lighter", fontSize: "smaller" }}>
-
-                                       <li className="">          <a  href={"#/clients/"+ this.state.user.id} >Overview</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/payments/list/"+ this.state.user.id}>Payments</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/invoices/list/"+ this.state.user.id}>Invoices</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/Refunds/list/" + this.state.user.id}>Refunds</a>
-                                    </li> <li className="mytabnav-active">          <a href={"#/clients/Accounts/list/" + this.state.user.id}>Account Statement</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/Documents/list/" + this.state.user.id}>Documents</a>
-                                    </li>
-                                    <li>          <a href={"#/clients/tickets/list/"+ this.state.user.id}>Tickets</a>
-                                    </li>
-                                </ul>
-                            </div>
+                            <ClientHeader userID={this.state.user.id} active={"Statement"} />
                         </div>
                     </Col>
                 </Row>
                 <Row className="w-100 p-3">
+                <Col xs="2" className="p-2">
+                        <Button outline color="warning" className="btn-sm">Export</Button>{' '}
+                    </Col>
+                    <Col xs="8" className="p-2">
+                    </Col>
+                    <Col xs="2" className="p-2">
+                        <Input type="select" name="select" id="exampleSelect" bsSize="sm">
+                            <option>Last 4 Month</option>
+                            <option>ALL</option>
+                            <option>This year</option>
+                        </Input>
+                    </Col>
                     <Col xs="12" className="nopcol">
                         <Col xs="12"><table class=" bg-white table table-hover table-sm table-striped table-bordered">
                             <thead>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Badge, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
-import { PItemTable, SItemTable } from './PandSOperations'
+import { PItemTable, SItemTable } from './PandS'
 
 function QuoteRow(props) {
     const quote = props.quote
