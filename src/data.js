@@ -338,7 +338,7 @@ var payments = [{
   {
     "id": 245,
     uid:244,
-    "Method": "Check",
+    "Method": "Cash",
     "Amount": 78,
     "Createddate": "8 Mar 2018 7:08 am"
   }
