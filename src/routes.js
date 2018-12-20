@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import React from "react";
 import Loadable from "react-loadable";
 import Home from "./Containers/Main/home";
@@ -599,5 +598,3 @@ const routes = [
 ];
 
 export default routes;
->>>>>>> d9003451882b9b472ef914f5fa5b440bf1b17159
->>>>>>> cdbe8602ef75fa1449d2b21ea50be7cb9202bc6a
