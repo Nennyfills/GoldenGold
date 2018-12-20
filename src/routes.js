@@ -98,7 +98,12 @@ const ClientCreateQuote = Loadable({
 
 //Networking route
 const NetworkingSite = Loadable({
-  loader: () => import("./Components/Network/site"),
+  loader: () => import("./Components/Network/sites/sites"),
+  loading: Loading
+});
+
+const NewSite = Loadable({
+  loader: () => import("./Components/Network/sites/new"),
   loading: Loading
 });
 
@@ -184,10 +189,16 @@ const routes = [
     component: BillingsQuotes
   },
   {
-    path: "/network/site",
+    path: "/sites",
     exact: true,
     name: "Network",
     component: NetworkingSite
+  },
+  {
+    path: "/sites/new",
+    exact: true,
+    name: "Network",
+    component: NewSite
   }
 ];
 

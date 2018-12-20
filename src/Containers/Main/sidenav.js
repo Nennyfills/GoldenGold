@@ -46,32 +46,23 @@ class Sidenav extends Component {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#" onClick={this.toggle}>
+          <NavLink
+            // activeStyle={{ backgroundColor: "#1e201e" }}
+            href="#"
+            onClick={this.toggle}
+          >
             <i className="fas fa-network-wired p5" style={{}} />{" "}
             <span className="mr-4"> Network</span>{" "}
             <i className={this.handleArrow()} />
           </NavLink>
           <Collapse isOpen={this.state.collapse}>
-            {/* <DropdownItem divider /> */}
-            <NavLink
-              //   style={{ color: "#82867B" }}
-              href="/#/network/site"
-              className="networkStyle"
-            >
+            <NavLink href="/#/sites" className="networkStyle">
               <span> Sites </span>
             </NavLink>
-            <NavLink
-              //   style={{ color: "#82867B" }}
-              href="/#site"
-              className="networkStyle"
-            >
+            <NavLink href="/#site" className="networkStyle">
               <span> Devices </span>
             </NavLink>
-            <NavLink
-              //   style={{ color: "#82867B" }}
-              href="/#site"
-              className="networkStyle"
-            >
+            <NavLink href="/#site" className="networkStyle">
               <span> Outages </span>
             </NavLink>
             <NavLink
