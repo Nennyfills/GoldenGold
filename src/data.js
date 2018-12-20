@@ -1,19 +1,19 @@
 var invoices = [{
-    "id": "67",
+    "id": 67,
     "Invoiceno": "18001137",
-    "Total": "$49.90",
-    "Amountdue": "$49.90",
+    "Total": 49.90,
+    "Amountdue": 49.90,
     "Createddate": "1 Nov 2018",
     "Duedate": "overdue for 6 days",
     "Status": "Unpaid",
     "uid": 256
   },
   {
-    "id": "62",
+    "id": 62,
 
     "Invoiceno": "18000819",
-    "Total": "$49.90",
-    "Amountdue": "$0.00",
+    "Total": 49.90,
+    "Amountdue": 0.00,
     "Createddate": "1 Sep 2018",
     "Duedate": "15 Sep 2018",
     "Status": "Paid",
@@ -21,11 +21,11 @@ var invoices = [{
 
   },
   {
-    "id": "76",
+    "id": 76,
 
     "Invoiceno": "18000982",
-    "Total": "$49.90",
-    "Amountdue": "$49.90",
+    "Total": 49.90,
+    "Amountdue": 49.90,
     "Createddate": "1 Oct 2018",
     "Duedate": "overdue for 37 days",
     "Status": "Unpaid"
@@ -34,10 +34,10 @@ var invoices = [{
   },
 
   {
-    "id": "3",
+    "id": 3,
     "Invoiceno": "18000660",
-    "Total": "$49.90",
-    "Amountdue": "$0.00",
+    "Total": 49.90,
+    "Amountdue": 0.00,
     "Createddate": "1 Aug 2018",
     "Duedate": "15 Aug 2018",
     "Status": "Paid"
@@ -52,7 +52,7 @@ var clients = [{
     id: 256,
     FirstName: "Rigoberto",
     LastName: "Koch",
-    Balance: "$0.00",
+    Balance: 0.00,
     Serviceplans: "Basic",
     Connectedto: "Lake Tower – Lake Gateway",
     status: "Banned",
@@ -70,7 +70,7 @@ var clients = [{
     "id": 255,
     "FirstName": "Mariela",
     "LastName": "Crist",
-    "Balance": "$79.90",
+    "Balance": 79.90,
     "Serviceplans": "Basic",
     "Connectedto": "Lake Tower – Lake Gateway",
     "status": "Inactive",
@@ -88,7 +88,7 @@ var clients = [{
     "id": 254,
     "FirstName": "Ruth",
     "LastName": "Kuhn",
-    "Balance": "-$99.80",
+    "Balance": -99.80,
     "Serviceplans": "Advanced",
     "Connectedto": "Lake Tower – Lake Gateway",
     "status": "Active",
@@ -105,7 +105,7 @@ var clients = [{
     "id": 253,
     "FirstName": "Chelsey",
     "LastName": "Prohaska",
-    "Balance": "-$59.80",
+    "Balance": -59.80,
     "Serviceplans": "Basic",
     "Connectedto": "Golf Tower – Golf Gateway",
     "status": "Pending",
@@ -122,7 +122,7 @@ var clients = [{
     "id": 252,
     "FirstName": "Willow",
     "LastName": "Kassulke",
-    "Balance": "$0.00",
+    "Balance": 0.0,
     "Serviceplans": "Advanced",
     "Connectedto": "Golf Tower – Golf Gateway",
     "status": "Banned",
@@ -139,7 +139,7 @@ var clients = [{
     "id": 251,
     "FirstName": "Edwardo",
     "LastName": "White",
-    "Balance": "$0.00",
+    "Balance": 0.00,
     "Serviceplans": "Basic",
     "Connectedto": "Lake Tower – Lake Gateway",
     "status": "Active",
@@ -155,7 +155,7 @@ var clients = [{
     "id": 250,
     "FirstName": "Kallie",
     "LastName": "Metz",
-    "Balance": "-$199.60",
+    "Balance": -199.60,
     "Serviceplans": "Advanced",
     "Connectedto": "Lake Tower – Lake Gateway",
     "status": "Active",
@@ -171,7 +171,7 @@ var clients = [{
     "id": 249,
     "FirstName": "Stewart",
     "LastName": "Schultz",
-    "Balance": "-$80.00",
+    "Balance": -80.00,
     "Serviceplans": "Advanced, Pro",
     "Connectedto": "Lake Tower – Lake Gateway",
     "status": "Pending",
@@ -187,7 +187,7 @@ var clients = [{
     "id": 248,
     "FirstName": "Kunde",
     "LastName": "Cordell",
-    "Balance": "$0.00",
+    "Balance": 0.00,
     "Serviceplans": "Advanced",
     "Connectedto": "Lake Tower – Lake Gateway",
     "status": "Banned",
@@ -203,7 +203,7 @@ var clients = [{
     "id": 247,
     "FirstName": "Fay",
     "LastName": "Calista",
-    "Balance": "$0.00",
+    "Balance": 0.00,
     "Serviceplans": "Basic",
     "Connectedto": "Golf Tower – Golf Gateway",
     "status": "Active",
@@ -219,7 +219,7 @@ var clients = [{
     "id": 246,
     "FirstName": "Mosciski",
     "LastName": "Christop",
-    "Balance": "$0.00",
+    "Balance": 0.00,
     "Serviceplans": "Pro",
     "Connectedto": "Lake Tower – Lake Gateway",
     "status": "Active",
@@ -235,7 +235,7 @@ var clients = [{
     "id": 245,
     "FirstName": "Koss",
     "LastName": "Brent",
-    "Balance": "$79.90",
+    "Balance": 79.90,
     "Serviceplans": "Basic",
     "Connectedto": "Lake Tower – Lake Gateway",
     "status": "Inactive",
@@ -251,7 +251,7 @@ var clients = [{
     "id": 244,
     "FirstName": "Funk",
     "LastName": "Tia",
-    "Balance": "$0.00",
+    "Balance": 0.00,
     "Serviceplans": "Pro",
     "Connectedto": "Lake Tower – Lake Gateway",
     "status": "Pending",
@@ -267,7 +267,7 @@ var clients = [{
     "id": 243,
     "FirstName": "Streich",
     "LastName": "Catharine",
-    "Balance": "$0.00",
+    "Balance": 0.00,
     "Serviceplans": "Basic",
     "Connectedto": "Golf Tower – Golf Gateway",
     "status": "Banned",
@@ -350,14 +350,14 @@ var products = [
       id:"454", 
       Label: "Green Router",
       Description:"",
-      Price:"4500",
+      Price:4500,
       Createddate:"8 Mar 2018"
     },
     
     {id:"455", 
     Label:"Chinko Morderm", 
     Description:"", 
-    Price:"0500", 
+    Price:500, 
     Createddate:"19 Mar 2018"
   }
 ]
@@ -369,9 +369,9 @@ var accounts = [
 
     "Date": "1 Aug 2018",
     "Item": "Invoice #18000683       due                     15 Aug 2018",
-    "Invoiced": "$29.90",
+    "Invoiced": 29.90,
     "Payments": "",
-    "Balance": "− $29.90"
+    "Balance": "− 29.90"
   },
   {
     "id": 225,
@@ -379,17 +379,17 @@ var accounts = [
     "Date": "11 Aug 2018",
     "Item": "Payment                       (Check)",
     "Invoiced": "",
-    "Payments": "$29.90",
-    "Balance": "$0.00"
+    "Payments": 29.90,
+    "Balance": "0.00"
   },
   {
     "id": 145,
 
     "Date": "1 Sep 2018",
     "Item": "Invoice #18000843         due       15 Sep 2018",
-    "Invoiced": "$29.90",
+    "Invoiced": 29.90,
     "Payments": "",
-    "Balance": "− $29.90"
+    "Balance": -29.90
   },
   {
     "id": 240,
@@ -397,17 +397,17 @@ var accounts = [
     "Date": "9 Sep 2018",
     "Item": "Payment                                                                              (Check)",
     "Invoiced": "",
-    "Payments": "$29.90",
-    "Balance": "$0.00"
+    "Payments": 29.90,
+    "Balance": 0.00
   },
   {
     "id": 2995,
 
     "Date": "1 Oct 2018",
     "Item": "Invoice #18001008                                                                               due                             15 Oct 2018",
-    "Invoiced": "$29.90",
+    "Invoiced": 29.9,
     "Payments": "",
-    "Balance": "− $29.90"
+    "Balance": -29.90
   },
   {
     "id": 24511,
@@ -415,26 +415,23 @@ var accounts = [
     "Date": "6 Oct 2018",
     "Item": "Payment                                                                              (Check)",
     "Invoiced": "",
-    "Payments": "$29.90",
-    "Balance": "$0.00"
+    "Payments": 29.90,
+    "Balance": 0.00
   },
   {
     "id": 1145,
 
     "Date": "1 Nov 2018",
     "Item": "Invoice #18001167                                                                               due                             15 Nov 2018",
-    "Invoiced": "$29.90",
+    "Invoiced": 29.90,
     "Payments": "",
-    "Balance": "− $29.90"
+    "Balance": -29.90
   },
   {
     "id": 2480,
 
     "Date": "10 Nov 2018",
-    "Item": "Payment                                                                              (Check)",
-    "Invoiced": "",
-    "Payments": "$29.90",
-    "Balance": "$0.00"
+    "Item": "Payment                                              00"
   }
 
 ]
@@ -446,9 +443,9 @@ var invoiceItems =
   Type :"Product",
   InvoiceID: "67" , 
   Label : "Cold Room dispenser", 
-  Price: "3",
-  Quantity: "3000",
-  TotalPrice: "9000"
+  Price: 30000,
+  Quantity: 3,
+  TotalPrice: 9000
 },
 {
   Id : 9,
@@ -464,22 +461,22 @@ var invoiceItems =
   Type :"Product",
   InvoiceID: "62" , 
   Label : "Smael Sport watch", 
-  Price: "3",
-  Quantity: "10",
-  TotalPrice: "30"
+  Price: "30",
+  Quantity: 10,
+  TotalPrice: 300
 },
 {
   Id : 9,
   Type :"Product",
   InvoiceID: "3" , 
   Label : "Cold Room dispenser", 
-  Price: "3",
-  Quantity: "3000",
-  TotalPrice: "9000"
+  Price: 3,
+  Quantity: 300,
+  TotalPrice: 9000
 }]
 
 
-var quotes =[{id:34, quoteno:"3F15" , Client:"GOKE BABALOLA" , Total:"$99" ,     Createddate: "1 Aug 2018", uid:244
+var quotes =[{id:34, quoteno:"3F15" , Client:"GOKE BABALOLA" , Total:"99" ,     Createddate: "1 Aug 2018", uid:244
 }]
 
 var tickets =[{id:23, Title:"Out of service 2 days" , Author:"Portal Admin", Createddate:"1/11/18", "Brief":"psam ratione omnis perspiciatis excepturi perferendis numquam iste dolor. Vel laborum molestias culpa perferendis et dolores temporibus. Et magnam in..." , Note:"psam ratione omnis perspiciatis excepturi perferendis numquam iste dolor. Vel laborum molestias culpa perferendis et dolores temporibus. Et magnam in praesentium aspernatur. Doloremque culpa voluptas ut harum dolorem rerum. Quibusdam minima unde mollitia porro. In impedit cumque nemo ducimus. Incidunt eveniet eos commodi omnis quos. Et maxime nihil molestias facere non. A sed ducimus iste commodi ipsa sapiente quia. Minima sed explicabo a alias facere. Ipsa minima velit minima dolorum sapiente debitis qui voluptates. Dolorum iure eos sunt necessitatibus exercitationem voluptates molestiae. Autem officiis ut consequatur ratione aut facilis illo maiores." , }]
