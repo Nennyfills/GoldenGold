@@ -59,7 +59,10 @@ var clients = [
     city: "ABUJA",
     state: "FCT",
     phones: "23456789897 34656776645354",
-    email: "gvsjbhvs@dvgnkdv.sf"
+    email: "gvsjbhvs@dvgnkdv.sf",
+    balance:10.00,
+    credit: 0.01,
+    outstanding: 9.10
   },
   {
     id: 255,
@@ -75,7 +78,10 @@ var clients = [
     city: "Sango",
     state: "Ogun",
     phones: "234 46787 879 34",
-    email: "vbhjcs@csewb.com"
+    email: "vbhjcs@csewb.com",
+    balance:10.00,
+    credit: 0.00,
+    outstanding: 0.00
   },
   {
     id: 254,
@@ -92,6 +98,9 @@ var clients = [
     state: "Ondo",
     phones: "7867 243565",
     email: "thbrgevfcs@i.com"
+    ,   balance:10.00,
+    credit: 0.00,
+    outstanding: 0.00
   },
   {
     id: 253,
@@ -107,7 +116,9 @@ var clients = [
     city: "Abuja",
     state: "FCT",
     phones: "546576564 4",
-    email: "jthrgevfcve@hh.com"
+    email: "jthrgevfcve@hh.com",   balance:10.00,
+    credit: 0.00,
+    outstanding: 0.00
   },
   {
     id: 252,
@@ -123,142 +134,9 @@ var clients = [
     city: "Mowe",
     state: "Ogun",
     phones: "2343564 6756",
-    email: "we@hh.cods.vom"
-  },
-  {
-    id: 251,
-    FirstName: "Edwardo",
-    LastName: "White",
-    Balance: 0.0,
-    Serviceplans: "Basic",
-    Connectedto: "Lake Tower – Lake Gateway",
-    status: "Active",
-    houseAddress: "009",
-    streetAddress: "Laderin Estate",
-    city: "Uyo",
-    state: "Akwa Ibon",
-    phones: "3243546 345",
-    email: "wol@hhsf.co.uk"
-  },
-  {
-    id: 250,
-    FirstName: "Kallie",
-    LastName: "Metz",
-    Balance: -199.6,
-    Serviceplans: "Advanced",
-    Connectedto: "Lake Tower – Lake Gateway",
-    status: "Active",
-    houseAddress: "Ag",
-    streetAddress: "FHE Elega",
-    city: "Benin",
-    state: "Edo",
-    phones: "234 556 7888 22",
-    email: "goldenboy@gold.com"
-  },
-  {
-    id: 249,
-    FirstName: "Stewart",
-    LastName: "Schultz",
-    Balance: -80.0,
-    Serviceplans: "Advanced, Pro",
-    Connectedto: "Lake Tower – Lake Gateway",
-    status: "Pending",
-    houseAddress: "11A",
-    streetAddress: "Flow out of Idiot",
-    city: "Ikeja",
-    state: "Lagos",
-    phones: "4354653 66",
-    email: "flow@pipe.com"
-  },
-  {
-    id: 248,
-    FirstName: "Kunde",
-    LastName: "Cordell",
-    Balance: 0.0,
-    Serviceplans: "Advanced",
-    Connectedto: "Lake Tower – Lake Gateway",
-    status: "Banned",
-    houseAddress: "34A",
-    streetAddress: "Popular Request Avenue",
-    city: "Ogba",
-    state: "Lagos",
-    phones: "4566787 76",
-    email: "flow@godmade.vcon"
-  },
-  {
-    id: 247,
-    FirstName: "Fay",
-    LastName: "Calista",
-    Balance: 0.0,
-    Serviceplans: "Basic",
-    Connectedto: "Golf Tower – Golf Gateway",
-    status: "Active",
-    houseAddress: "33A",
-    streetAddress: "Brotheres Plaza Gold Gate",
-    city: "Abuja",
-    state: "FCT",
-    phones: "+2424 4534653",
-    email: "jump@kill.com"
-  },
-  {
-    id: 246,
-    FirstName: "Mosciski",
-    LastName: "Christop",
-    Balance: 0.0,
-    Serviceplans: "Pro",
-    Connectedto: "Lake Tower – Lake Gateway",
-    status: "Active",
-    houseAddress: "1A",
-    streetAddress: "Beyounce is too good",
-    city: "Ife",
-    state: "Osun",
-    phones: "546578985746",
-    email: "money@bank.com"
-  },
-  {
-    id: 245,
-    FirstName: "Koss",
-    LastName: "Brent",
-    Balance: 79.9,
-    Serviceplans: "Basic",
-    Connectedto: "Lake Tower – Lake Gateway",
-    status: "Inactive",
-    houseAddress: "1",
-    streetAddress: "Lovers Lake",
-    city: "Abuja",
-    state: "FCT",
-    phones: "324759",
-    email: "remove@bvn.com"
-  },
-  {
-    id: 244,
-    FirstName: "Funk",
-    LastName: "Tia",
-    Balance: 0.0,
-    Serviceplans: "Pro",
-    Connectedto: "Lake Tower – Lake Gateway",
-    status: "Pending",
-    houseAddress: "12",
-    streetAddress: "Eat the golden fence",
-    city: "uyo",
-    state: "Akwa ibon",
-    phones: "23435647635 4",
-    email: "phone@me.com"
-  },
-  {
-    id: 243,
-    FirstName: "Streich",
-    LastName: "Catharine",
-    Balance: 0.0,
-    Serviceplans: "Basic",
-    Connectedto: "Golf Tower – Golf Gateway",
-    status: "Banned",
-    houseAddress: "H3",
-    streetAddress: "House of Cards",
-    city: "Warri",
-    state: "Delta",
-    phones: "23435647 56",
-    email: "giving@god.com"
+    email: "we@hh.cods.vom",   balance:10.00,
+    credit: 0.00,
+    outstanding: 0.01
   }
 ];
 

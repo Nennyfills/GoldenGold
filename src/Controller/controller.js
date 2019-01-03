@@ -3,7 +3,7 @@ function searchObjectListbyid(list, key) {
 }
 
 
-function searchObjectListbyvalue(list, values) {
+function searchObjectListbyvalue(list, values ={}) {
     var results = [];
     Object.keys(values).forEach(async function eachKey(key) {
         var r = await list.filter(item => {

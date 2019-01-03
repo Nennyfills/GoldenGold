@@ -7,6 +7,7 @@ class Login extends Component {
   constructor(props){
     super(props)
     this.LogAdmin = this.LogAdmin.bind(this);
+    this.LogClient = this.LogClient.bind(this);
 
     this.state ={
       isLoggedIn:false
@@ -20,10 +21,20 @@ class Login extends Component {
       isLoggedIn : true
     })
     sessionStorage.setItem("isLoggedIn" , true)
+    sessionStorage.setItem("isadmin" , "admin")
     this.props.history.push('/dashboard')
-    //return(
-    //<Redirect to='/go' />
-    //)
+   
+  }
+
+  
+  LogClient(){
+
+    this.setState({
+      isLoggedIn : true
+    })
+    sessionStorage.setItem("isLoggedIn" , true)
+    this.props.history.push('/clientzone')
+   
   }
 
   render() {
@@ -54,11 +65,14 @@ class Login extends Component {
                         </InputGroupAddon>
                         <Input type="password" placeholder="Password" autoComplete="current-password" />
                       </InputGroup>
+                      
                       <Row>
                         <Col xs="6">
-                          <Button color="primary" className="px-4" onClick={this.LogAdmin}>Login</Button>
+                        
+                    <Button color="primary" className="px-4" onClick={this.LogAdmin}>ADMIN Login</Button>
                         </Col>
                         <Col xs="6" className="text-right">
+                        <Button color="primary" className="px-4" onClick={this.LogClient}>Client Login</Button>
                           <Button color="link" className="px-0">Forgot password?</Button>
                         </Col>
                       </Row>
@@ -68,10 +82,6 @@ class Login extends Component {
                 <Card className="text-white bg-primary py-5 d-md-down-none" style={{ width: 44 + '%' }}>
                   <CardBody className="text-center">
                     <div>
-                      <h2>Client View</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-                      <Button color="primary" className="mt-3" active>Continue</Button>
                     </div>
                   </CardBody>
                 </Card>

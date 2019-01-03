@@ -156,9 +156,16 @@ const NewSite = Loadable({
   loading: Loading
 });
 
+
+const clientzone = Loadable({
+  loader: () => import("./Components/client-zone/overview"),
+  loading: Loading
+});
+
 const routes = [
-    { path: '/', exact: true, name: 'Home', component: Home },
-    { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/', exact: true, name: 'Home', component: Home },
+  { path: '/clientzone', exact: true, name: 'Client Zone', component: clientzone },
+  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
     { path: '/clients', exact:true, name: 'Clients', component: Clients },
     { path: '/clients/new',  name: 'Add', component: newClient },
     { path: '/clients/CreateInvoice/:id',  exact:true,  name: 'Client', component: ClientCreateInvoice },
