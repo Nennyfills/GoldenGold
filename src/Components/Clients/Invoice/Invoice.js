@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import { clients } from '../../../data'
-import { invoices , invoiceItems  } from '../../../data'
+import { clients } from '../../../db'
+import { invoices , invoiceItems  } from '../../../db'
 import {DisplayInvoice} from '../../../Operations/Invoices'
 class ClientSingleInvoice extends Component{
 
@@ -68,8 +68,8 @@ class ClientSingleInvoice extends Component{
                 <Col xs="12" className="nopcol">
                     <div className="PageHeader  bg-white">
                         <div className="PageHeader-head">
-                            <h1>  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a>/ Invoice</h1>
-                            <a href={"#/clients/CreateInvoice/" + this.state.user.id }>  <i className="fa fa-plus"></i> Invoice </a>
+                            <h1>  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a>/ Invoice</h1>
+                            <a href={"/admin/clients/CreateInvoice/" + this.state.user.id }>  <i className="fa fa-plus"></i> Invoice </a>
                         </div>
                     </div>
                 </Col>

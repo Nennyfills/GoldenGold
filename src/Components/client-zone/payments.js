@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Table } from 'reactstrap';
-import { payments } from '../../data'
-import { clients } from '../../data'
+import { payments } from '../../db'
+import { clients } from '../../db'
 import { PaymentTable } from '../../Operations/Payments'
 
 class Payments extends Component {

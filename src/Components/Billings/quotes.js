@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col,  } from 'reactstrap';
 import {QuoteTable} from '../../Operations/Quotes'
-import { quotes } from '../../data'
+import { quotes } from '../../db'
 import Header from './Components/Header'
 
 class Quotes extends Component {

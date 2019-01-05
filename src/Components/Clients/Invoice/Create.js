@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import { invoices } from '../../../data'
-import { clients, products, services } from '../../../data'
+import { invoices } from '../../../db'
+import { clients, products, services } from '../../../db'
 import { CreateInvoice } from '../../../Operations/Invoices'
 import ClientHeader from '../components/ClientHeader'
 
@@ -97,7 +97,7 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h3><a href="/#Clients"> Clients </a>  / <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a>/ Add Invoice</h3>
+                                <h3><a href="/admin/Clients"> Clients </a>  / <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a>/ Add Invoice</h3>
                             </div>
                         </div>
                     </Col>

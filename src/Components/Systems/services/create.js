@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
 import ServiceHeader from '../conponents/Header';
-import {services} from '../../../data'
+import {services} from '../../../db'
 import {ServiceTable, DisplayService, CreateService} from '../../../Operations/Services'
 
 class service extends Component{
@@ -34,7 +34,7 @@ class service extends Component{
             <div className="PageHeader  bg-white">
                 <div className="PageHeader-head">
                     <h1>services / </h1>
-                    <a href={"#/systems/createservice/"}>  <i className="fa fa-plus"></i> services </a>
+                    <a href={"/admin/systems/createservice/"}>  <i className="fa fa-plus"></i> services </a>
                 </div>
             </div>
         </Col>

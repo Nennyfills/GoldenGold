@@ -56,7 +56,7 @@ class NewClient extends Component {
         
         if(this.state.goback ==  true){
             goal =       <Redirect
-                 to= "/Clients"
+                 to= "/admin/Clients"
                  
                />
              }else{
@@ -70,7 +70,7 @@ class NewClient extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1> <a href="/#Clients"> Clients </a> /
+                                <h1> <a href="/admin/Clients"> Clients </a> /
     Add client</h1> 
                             </div>
                         </div>

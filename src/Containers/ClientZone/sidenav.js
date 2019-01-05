@@ -27,32 +27,32 @@ class Sidenav extends Component {
     return (
       <Nav vertical className="navContainer">
         <NavItem style={{}}>
-          <NavLink href="/" className="myNav">
+          <NavLink href="/clientzone" className="myNav">
             {" "}
             <i className="fa fa-barcode p5" style={{}} />{" "}
             <span> Account</span>{" "}
           </NavLink>
         </NavItem>
         <NavItem style={{}}>
-          <NavLink href="/#/clientzone/payments" className="myNav">
+          <NavLink href="/clientzone/payments" className="myNav">
             {" "}
             <i className="fas fa-credit-card p5" style={{}} /> <span> Payments</span>{" "}
           </NavLink>
         </NavItem>
         <NavItem style={{}}>
-          <NavLink href="/#/clientzone/invoices" className="myNav">
+          <NavLink href="/clientzone/invoices" className="myNav">
             {" "}
             <i className="fas fa-magic p5" style={{}} /> <span> Invoices</span>{" "}
           </NavLink>
         </NavItem>
         <NavItem style={{}}>
-          <NavLink href="/#/clientzone/quotes" className="myNav">
+          <NavLink href="/clientzone/quotes" className="myNav">
             {" "}
             <i className="fas fa-list p5" style={{}} /> <span> Quotes</span>{" "}
           </NavLink>
         </NavItem>
         <NavItem style={{}}>
-          <NavLink href="/#/clientzone/support" className="myNav">
+          <NavLink href="/clientzone/support" className="myNav">
             {" "}
             <i className="fas fa-compass p5" style={{}} /> <span> Support</span>{" "}
           </NavLink>

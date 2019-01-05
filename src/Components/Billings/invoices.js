@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import Header from './Components/Header'
 import { InvoiceTable } from '../../Operations/Invoices';
-import { invoices } from '../../data'
+import { invoices } from '../../db'
 
 
 class Invoices extends Component {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import {products} from '../../../data'
+import {products} from '../../../db'
 import { DisplayProduct } from '../../../Operations/Products';
 
 class Product extends Component{

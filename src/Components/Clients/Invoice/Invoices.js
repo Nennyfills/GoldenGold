@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, Button, Input, FormGroup, Form } from 'reactstrap';
-import { invoices } from '../../../data'
-import { clients } from '../../../data'
+import { invoices } from '../../../db'
+import { clients } from '../../../db'
 import { InvoiceTable } from '../../../Operations/Invoices'
 import ClientHeader from '../components/Header'
 import {searchObjectListbyid , searchObjectListbyvalue} from '../../../Controller/controller'
@@ -54,9 +54,10 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1> <a href={"/#Clients" }> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
-                                <a href={"#/clients/CreateInvoice/" + this.state.user.id}>  <i className="fa fa-plus"></i> Invoice </a>
-
+                                <h1> <a href={"/admin/Clients" }> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
+                                <a href={"/admin/clients/CreateInvoice/" + this.state.user.id}>  <i className="fa fa-plus"></i> Invoice </a>
+                                <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
+                                </a>
                             </div>
                             <ClientHeader userID={this.state.user.id} active={"Invoice"} />
                         </div>

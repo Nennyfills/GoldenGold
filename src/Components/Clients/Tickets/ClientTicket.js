@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Badge, Row, Col, ButtonGroup, Button, Input, CardHeader, Card, CardBody, CardFooter } from 'reactstrap';
-import { clients , tickets } from '../../../data'
+import { clients , tickets } from '../../../db'
 import ClientHeader from '../components/Header'
 import { TicketList } from '../../../Operations/Tickets';
 class ClientTicket extends Component {

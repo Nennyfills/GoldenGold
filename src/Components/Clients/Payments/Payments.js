@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, Input, FormGroup, Button } from 'reactstrap';
 import classnames from 'classnames';
-import { payments } from '../../../data'
-import { clients } from '../../../data'
+import { payments } from '../../../db'
+import { clients } from '../../../db'
 import { PaymentTable } from '../../../Operations/Payments'
 import ClientHeader from '../components/Header'
 
@@ -77,9 +77,11 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1> <a href={"/#Clients"}> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
+                                <h1> <a href={"/admin/Clients"}> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
                                 <i className="fa fa-plus" onClick={this.toggle}></i> Payment
-                            </div>
+                                <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
+                                </a> </div>
+                            
                             <ClientHeader userID={this.state.user.id} active="Payment" />
 
                         </div>

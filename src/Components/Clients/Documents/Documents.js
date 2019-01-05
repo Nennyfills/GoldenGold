@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import classnames from 'classnames';
-import { docs } from '../../../data'
-import { clients } from '../../../data'
+import { docs } from '../../../db'
+import { clients } from '../../../db'
 import {DocumentTable} from '../../../Operations/Documents'
 import ClientHeader from '../components/Header'
 
@@ -42,10 +42,11 @@ class ClientDoc extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                            <h1> <a href={"/#Clients" }> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
+                            <h1> <a href={"/admin/Clients" }> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
                         
                                         <i className="fa fa-plus" onClick={this.toggle}></i> Document
-                            </div>
+                                        <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
+                                </a>  </div>
                             <ClientHeader userID={this.state.user.id} active={"Document"}/>
 
                         </div>

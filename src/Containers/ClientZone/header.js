@@ -11,13 +11,15 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem } from 'reactstrap';
-    
+    import { Route , withRouter, Redirect} from 'react-router-dom';
+
 
 class Header extends Component {
     constructor(props) {
         super(props);
     
         this.toggle = this.toggle.bind(this);
+        this.logout = this.logout.bind(this);
         this.state = {
           isOpen: false
         };
@@ -27,14 +29,25 @@ class Header extends Component {
           isOpen: !this.state.isOpen
         });
       }
+      ret =  ()=>{
+        sessionStorage.clear();
+
+      }
       
+      logout(){
+        this.ret()    
+        this.setState({redirect:true})   
+      }
   render() {
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to='/'/>;
+    }
     return (
         <Navbar color=""  className="naf"  style={{backgroundColor:"#00a0df", color:"white !important", zIndex:"50"}} light expand="md">
-
-                <i id="sidebarCollapse" className="fas fa fa-bars"></i>
-               
-            <div style={{color:"white" , marginLeft:"25px"}} href="/">ISP-TEMPLATE</div>
+                <i id="sidebarCollapse" className="fas fa fa-bars"></i>               
+                <div style={{color:"white" , marginLeft:"25px"}} href="/">ISP-TEMPLATE</div>
         
           <NavbarToggler onClick={this.toggle} className="mr-2" />       
           
@@ -57,7 +70,7 @@ class Header extends Component {
                   </DropdownItem>
                   <DropdownItem divider />
                   <DropdownItem>
-                    Reset
+                    <a onClick={this.logout}>Exit</a>
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>

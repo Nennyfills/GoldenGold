@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
 import ServiceHeader from '../conponents/Header';
-import {services} from '../../../data'
+import {services} from '../../../db'
 import {ServiceTable, DisplayService} from '../../../Operations/Services'
 
 class service extends Component{

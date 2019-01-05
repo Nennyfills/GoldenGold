@@ -24,7 +24,8 @@ const Invoices = Loadable({
 });
 
 const routes = [
-  { path: '/', exact: true, name: 'Home', component: Dashboard },
+  { path: '/clientzone',  exact: true, name: 'Home', component: Dashboard },
+  { path: '/clientzone/overview', exact: true, name: 'Home', component: Dashboard },
   { path: '/clientzone/payments', exact: true, name: 'Home', component: Payments },
   { path: '/clientzone/invoices', exact: true, name: 'Invoices', component: Invoices },
   { path: '/clientzone/quotes', exact: true, name: 'Home', component: Payments },

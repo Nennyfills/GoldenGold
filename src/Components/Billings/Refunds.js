@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import Header from './Components/Header'
-import { refunds } from '../../data'
+import { refunds } from '../../db'
 import {RefundTable} from '../../Operations/Refunds'
 
 class Refunds extends Component {

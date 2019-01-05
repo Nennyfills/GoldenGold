@@ -35,13 +35,13 @@ class Sidenav extends Component {
           </NavLink>
         </NavItem>
         <NavItem style={{}}>
-          <NavLink href="/#clients" className="myNav">
+          <NavLink href="/admin/clients" className="myNav">
             {" "}
             <i className="fas fa-user p5" style={{}} /> <span> Clients</span>{" "}
           </NavLink>
         </NavItem>
         <NavItem style={{}}>
-          <NavLink href="/#billing" className="myNav">
+          <NavLink href="/admin/billing" className="myNav">
             {" "}
             <i className="fas  fa-credit-card p5" style={{}} />{" "}
             <span> Billing</span>{" "}
@@ -57,24 +57,24 @@ class Sidenav extends Component {
             <i className={this.handleArrow()} />
           </NavLink>
           <Collapse isOpen={this.state.collapse}>
-            <NavLink href="/#/sites" className="networkStyle">
+            <NavLink href="/admin/sites" className="networkStyle">
               <span> Sites </span>
             </NavLink>
-            <NavLink href="/#site" className="networkStyle">
+            <NavLink href="/admin/site" className="networkStyle">
               <span> Devices </span>
             </NavLink>
-            <NavLink href="/#site" className="networkStyle">
+            <NavLink href="/admin/site" className="networkStyle">
               <span> Outages </span>
             </NavLink>
             <NavLink
               //   style={{ color: "#82867B" }}
-              href="/#site"
+              href="/admin/site"
               className="networkStyle"
             >
               <span> Unknown devices </span>
             </NavLink>
             <NavLink
-              href="/#site"
+              href="/admin/site"
               className="networkStyle"
             >
               <span> Network map </span>
@@ -85,11 +85,11 @@ class Sidenav extends Component {
                     <NavLink  className="myNav" onClick={this.toggle}> <i class="fas  fa fa-toolbox p5" style={{ }}></i> <span> Systems</span> </NavLink>
                     <Collapse isOpen={this.state.collapse} className="sub-menu">
                     <ListGroup>
-                    <ListGroupItem> <a href="#/system/prefs">Preferences </a></ListGroupItem>
+                    <ListGroupItem> <a href="/admin/system/prefs">Preferences </a></ListGroupItem>
 
-        <ListGroupItem> <a href="#/system/products"> Products </a></ListGroupItem>
-        <ListGroupItem> <a href="#/system/services">Services </a> </ListGroupItem>
-        <ListGroupItem> <a href="#/system/logs">Logs </a></ListGroupItem>
+        <ListGroupItem> <a href="/admin/system/products"> Products </a></ListGroupItem>
+        <ListGroupItem> <a href="/admin/system/services">Services </a> </ListGroupItem>
+        <ListGroupItem> <a href="/admin/system/logs">Logs </a></ListGroupItem>
        
       </ListGroup>
         </Collapse>

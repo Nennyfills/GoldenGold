@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Input, Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
-
-import { clients } from '../../data'
+import { clients } from '../../db'
 import {searchObjectListbyid , searchObjectListbyvalue} from '../../Controller/controller'
-
-
 
 
 function ClientRow(props) {
   const user = props.user
-  const userLink = `#/clients/${user.id}`
-  const editLink = `#/clients/edit/${user.id}`
+  const userLink = `/admin/clients/${user.id}`
+  const editLink = `/admin/clients/edit/${user.id}`
 
   const getBadge = (status) => {
     return status === 'Active' ? 'success' :
@@ -113,7 +110,7 @@ class Clients extends Component {
           <Col xs="12" className="nopcol">
             <div className="PageHeader  bg-white">
               <div className="PageHeader-head">
-                <h1>Clients</h1> <a href="#/clients/new" className="add-btn"> <i style={{ verticalAlign: "bottom" }} class="material-icons">add</i>
+                <h1>Clients</h1> <a href="/admin/clients/new" className="add-btn"> <i style={{ verticalAlign: "bottom" }} class="material-icons">add</i>
                 </a>
               </div>
               <div className="pageheader-body pl-4 pt-2">

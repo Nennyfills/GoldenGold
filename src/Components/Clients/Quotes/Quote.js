@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import { clients } from '../../../data'
-import { quotes } from '../../../data'
+import { clients } from '../../../db'
+import { quotes } from '../../../db'
 import {DisplayQuote} from '../../../Operations/Quotes'
 class ClientSinglequote extends Component{
 
@@ -50,7 +50,7 @@ class ClientSinglequote extends Component{
                     <div className="PageHeader  bg-white">
                         <div className="PageHeader-head">
                             <h1> {this.state.user.LastName} {this.state.user.FirstName}/ quote</h1>
-                            <a href={"#/clients/Createquote/" + this.state.user.id }>  <i className="fa fa-plus"></i> quote </a>
+                            <a href={"/admin/clients/Createquote/" + this.state.user.id }>  <i className="fa fa-plus"></i> quote </a>
                         </div>
                     </div>
                 </Col>

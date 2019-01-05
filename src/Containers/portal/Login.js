@@ -10,34 +10,45 @@ class Login extends Component {
     this.LogClient = this.LogClient.bind(this);
 
     this.state ={
-      isLoggedIn:false
     }
   }
 
+  checkif(){
+    this.setState({
+      rtoa : sessionStorage.getItem("isAdmin"),
+      rtoc : sessionStorage.getItem("isClient")
+    })  
+  }
+
+  componentDidMount(){
+    this.checkif()
+  }
 
   LogAdmin(){
-
+    sessionStorage.setItem("isAdmin" , true)
     this.setState({
-      isLoggedIn : true
-    })
-    sessionStorage.setItem("isLoggedIn" , true)
-    sessionStorage.setItem("isadmin" , "admin")
-    this.props.history.push('/dashboard')
-   
+      rtoa : true
+    })   
   }
 
   
   LogClient(){
-
+    sessionStorage.setItem("isClient" , true)       
     this.setState({
-      isLoggedIn : true
+      rtoc : true
     })
-    sessionStorage.setItem("isLoggedIn" , true)
-    this.props.history.push('/clientzone')
-   
   }
 
   render() {
+    const { rtoc } = this.state;
+    const { rtoa } = this.state;
+
+    if (rtoc) {
+      return <Redirect to='/clientzone'/>;
+    }
+    if (rtoa) {
+      return <Redirect to='/admin'/>;
+    }
     return (
       <div className="app flex-row align-items-center">
         <Container>

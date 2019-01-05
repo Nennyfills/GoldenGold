@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import { clients } from '../../data'
+import { clients } from '../../db'
 import ClientHeader from './components/Header'
 
 
@@ -45,20 +45,20 @@ class Client extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1><a href="/#Clients"> Clients </a> / {this.state.user.FirstName}</h1>
+                                <h1><a href="/admin/Clients"> Clients </a> / {this.state.user.FirstName}</h1>
                                 <Dropdown className="plusdrop" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                     <DropdownToggle caret>
                                         <i className="fa fa-plus fa-1x"></i>
                                     </DropdownToggle>
                                     <DropdownMenu className="bg-white">
-                                        <DropdownItem className="bg-white"> <a href={"#/clients/CreateInvoice/" + this.state.user.id}> Invoice</a></DropdownItem>
+                                        <DropdownItem className="bg-white"> <a href={"/clients/CreateInvoice/" + this.state.user.id}> Invoice</a></DropdownItem>
                                         <DropdownItem className="bg-white"> <a>Service</a></DropdownItem>
                                         <DropdownItem className="bg-white"> <a>Payment</a></DropdownItem>
                                         <DropdownItem className="bg-white"> <a>Documents</a></DropdownItem>
                                         <DropdownItem className="bg-white"> <a>Ticket</a></DropdownItem>
                                     </DropdownMenu>
-                                </Dropdown>  <Button outline color="warning" className="float-right btn-sm"> View as client
-                                </Button>
+                                </Dropdown>  <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
+                                </a>
                             </div>
                             <ClientHeader userID={this.state.user.id} active={"Overview"} />
                         </div>

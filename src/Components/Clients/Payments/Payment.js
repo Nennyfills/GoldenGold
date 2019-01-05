@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import { clients } from '../../../data'
-import { payments } from '../../../data'
+import { clients } from '../../../db'
+import { payments } from '../../../db'
 import {DisplayPayment} from '../../../Operations/Payments'
 class ClientSinglePayment extends Component{
 
@@ -49,8 +49,8 @@ class ClientSinglePayment extends Component{
                     <div className="PageHeader  bg-white">
                         <div className="PageHeader-head">
                             <h1> {this.state.user.LastName} {this.state.user.FirstName}/ Payment</h1>
-                            <a href={"#/clients/createpayment/" + this.state.user.id }>  <i className="fa fa-plus"></i> Payment </a>
-                            <a href={"#/clients/Deletepayment/" + this.state.user.id } className="p-1 text-warning">  <i className="fa fa-times-circle"></i>  </a>
+                            <a href={"/admin/clients/createpayment/" + this.state.user.id }>  <i className="fa fa-plus"></i> Payment </a>
+                            <a href={"/admin/clients/Deletepayment/" + this.state.user.id } className="p-1 text-warning">  <i className="fa fa-times-circle"></i>  </a>
                         </div>
                     </div>
                 </Col>

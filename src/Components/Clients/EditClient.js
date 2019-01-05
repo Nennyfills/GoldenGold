@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card, CardBody, CardTitle, Form, Row, Col, FormGroup, Input, Label, Button } from 'reactstrap'
 
-import { clients } from '../../data'
+import { clients } from '../../db'
 
 
 

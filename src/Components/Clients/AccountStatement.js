@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, Input, Button } from 'reactstrap';
 import classnames from 'classnames';
-import { accounts } from '../../data'
-import { clients } from '../../data'
+import { accounts } from '../../db'
+import { clients } from '../../db'
 import ClientHeader from './components/Header'
 
 
