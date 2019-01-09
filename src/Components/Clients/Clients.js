@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Input, Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
-import { clients } from '../../db'
-import {searchObjectListbyid , searchObjectListbyvalue} from '../../Controller/controller'
+import { searchObjectListbyid, searchObjectListbyvalue } from '../../Controller/controller'
+const apicalls = require('../../utilities/apicalls');
 
 
 function ClientRow(props) {
@@ -47,14 +47,21 @@ class Clients extends Component {
     this.clear = this.clear.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      clients: clients, showing: "all"
-    });
+
+  async componentDidMount() {
+    fetch('http://localhost:3600/api/clients')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          clients: data, showing: "all"
+        });
+      })
+      .catch(error => console.error(error))
+
   }
 
-  ActiveClientCount(){
-    return    clients.filter(user => user.status.toString().toLowerCase() == "active").length
+  ActiveClientCount() {
+    return this.state.clients.filter(user => user.status.toString().toLowerCase() == "active").length
 
   }
 
@@ -66,6 +73,7 @@ class Clients extends Component {
   }
 
   showAll() {
+    let clients = apicalls.getlist("http://localhost:3600/api/clients")
     this.setState({
       clients: clients, showing: "all"
     });
@@ -81,7 +89,7 @@ class Clients extends Component {
 
   searchName() {
     var query = this.state.query
-    let theuser =     searchObjectListbyvalue(this.state.clients , "FirstName" , query);
+    let theuser = searchObjectListbyvalue(this.state.clients, "FirstName", query);
 
     this.setState({
       clients: theuser, showing: "all"
@@ -103,7 +111,7 @@ class Clients extends Component {
 
 
 
-    const clientList = this.state.clients.filter((user) => user.ID > 0)
+
     return (
       <Row>
         <Row className="w-100">
@@ -115,8 +123,7 @@ class Clients extends Component {
               </div>
               <div className="pageheader-body pl-4 pt-2">
                 <ul className="mytabnav">
-
-                  <li className={this.state.showing == "all" ? "mytabnav-active" : ""} onClick={this.showAll}>          <a>All Client <span className="text-info"> {clients.length}</span></a>
+                  <li className={this.state.showing == "all" ? "mytabnav-active" : ""} onClick={this.showAll}>          <a>All Client <span className="text-info"> {this.state.clients.length}</span></a>
                   </li>
                   <li className={this.state.showing == "active" ? "mytabnav-active" : ""} onClick={this.ActiveClient}>          <a>Active Client <span className="text-success"> {this.ActiveClientCount()}</span></a>
                   </li>
@@ -168,22 +175,22 @@ class Clients extends Component {
           <Row className="w-100">
             <Col sm="2">
               <Input type="select" name="select" id="itemSelect" bsSize="sm">
-            <option>15 Item</option>
-            <option>30 Items</option>
-            <option>45 Items</option>
-            <option>60 Items</option>
-            <option>75 Items</option>
-          </Input>
-          </Col>
-          <Col sm="8">
-                <ButtonToolbar className="float-right">
-                  <ButtonGroup size="sm">
-                    <Button className="br-5">1</Button>
-                    <Button className="br-5">2</Button>
-                    <Button className="br-5">3</Button>
-                    <Button className="br-5">4</Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
+                <option>15 Item</option>
+                <option>30 Items</option>
+                <option>45 Items</option>
+                <option>60 Items</option>
+                <option>75 Items</option>
+              </Input>
+            </Col>
+            <Col sm="8">
+              <ButtonToolbar className="float-right">
+                <ButtonGroup size="sm">
+                  <Button className="br-5">1</Button>
+                  <Button className="br-5">2</Button>
+                  <Button className="br-5">3</Button>
+                  <Button className="br-5">4</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
             </Col>
           </Row>
         </Row>

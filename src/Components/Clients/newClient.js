@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardBody, CardTitle, Form, Row, Col, FormGroup, Input, Label, Button } from 'reactstrap'
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 
 class NewClient extends Component {
@@ -11,7 +11,7 @@ class NewClient extends Component {
         this.state = {
             ictype: "none",
             cctype: "none"
-            ,client:{}
+
         };
         this.toggle = this.toggle.bind(this);
         this.submitform = this.submitform.bind(this);
@@ -21,11 +21,15 @@ class NewClient extends Component {
 
 
     toggle(e) {
+
         if (e.target.value == "Individual") {
             this.setState({
                 ictype: "block",
-                cctype: "none"
+                cctype: "none",
             })
+            let client = Object.assign({}, this.state.client);    //creating copy of object
+            client.type = 'Individual';                        //updating value
+            this.setState({ client });
         }
 
         if (e.target.value == "Company") {
@@ -33,37 +37,58 @@ class NewClient extends Component {
                 cctype: "block",
                 ictype: "none",
             })
+            let client = Object.assign({}, this.state.client);    //creating copy of object
+            client.type = 'Company';                        //updating value
+            this.setState({ client });
         }
     }
 
-    change = e =>{
+    change = e => {
+        let client = Object.assign({}, this.state.client);
+        client[e.target.name] = e.target.value;
         this.newC[e.target.name] = e.target.value;
-
-        this.setState({
-            client :this.newC
-        })
-        console.log(this.state)
+        this.setState({ client }, () => {
+            console.log(this.state)
+        });
     }
-    submitform(client){
-        //postOnlineWithFetch()
-        this.setState({
-           goback:true
-        })
+    submitform() {
+        this.postRequest('http://localhost:3600/api/clients', JSON.stringify(this.state.client))
+       
+    }
+
+
+    postRequest(url, data) {
+        return fetch(url,
+            {
+                method: 'POST',
+                body: data,
+                headers: new Headers({
+                    'Content-Type': 'application/json'
+                }),
+            })
+            .then(response => {
+                if(response.status < 399){
+                this.setState({
+                    goback: true
+                })}else{
+
+                }
+            })
     }
 
     render() {
         var goal;
-        
-        if(this.state.goback ==  true){
-            goal =       <Redirect
-                 to= "/admin/Clients"
-                 
-               />
-             }else{
-                 goal=<hr></hr>
-             }
+
+        if (this.state.goback == true) {
+            goal = <Redirect
+                to="/admin/Clients"
+
+            />
+        } else {
+            goal = <hr></hr>
+        }
         return (
-            
+
             <Row>
                 {goal}
                 <Row className="w-100 mb-3" >
@@ -71,7 +96,7 @@ class NewClient extends Component {
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
                                 <h1> <a href="/admin/Clients"> Clients </a> /
-    Add client</h1> 
+    Add client</h1>
                             </div>
                         </div>
                     </Col>
@@ -90,8 +115,8 @@ class NewClient extends Component {
                                                     <Form>
                                                         <FormGroup>
                                                             <Label for="exampleSelect">Select Client Type</Label>
-                                                            <Input type="select" name="select" id="ct" onChange={this.toggle}>
-                                                                <option selected disabled>Choose One</option>
+                                                            <Input type="select" name="type" id="ct" onChange={this.toggle}>
+                                                                <option>Choose One</option>
                                                                 <option>Company</option>
                                                                 <option>Individual</option>
                                                             </Input>
@@ -115,17 +140,17 @@ class NewClient extends Component {
                                                         <Row form>
                                                             <Col md={6}>
                                                                 <FormGroup>
-                                                                    <Input type="text" name="fname" id="exampleEmail"  onChange={e => this.change(e)} placeholder="First Name" />
+                                                                    <Input type="text" name="Ifirstname" id="exampleEmail" onChange={e => this.change(e)} placeholder="First Name" />
                                                                 </FormGroup>
                                                             </Col>
                                                             <Col md={6}>
                                                                 <FormGroup>
-                                                                    <Input type="text" name="lname" id="examplePassword"  onChange={e => this.change(e)} placeholder="Last Name" />
+                                                                    <Input type="text" name="Ilastname" id="examplePassword" onChange={e => this.change(e)} placeholder="Last Name" />
                                                                 </FormGroup>
                                                             </Col>
                                                         </Row>
                                                         <FormGroup>
-                                                            <Input type="text" name="note" id="note"  onChange={e => this.change(e)} placeholder="Add note" />
+                                                            <Input type="text" name="Inote" id="note" onChange={e => this.change(e)} placeholder="Add note" />
                                                         </FormGroup>
 
 
@@ -146,31 +171,31 @@ class NewClient extends Component {
                                                 <Col md={{ size: 8, offset: 2 }} sm="12">
                                                     <Form>
                                                         <FormGroup>
-                                                            <Input type="text" name="cname" id="cname" placeholder="Company Name" />
+                                                            <Input type="text" name="Ccompanyname" id="cname" placeholder="Company Name" onChange={this.change} />
                                                         </FormGroup>
                                                         <Row form>
                                                             <Col md={6}>
                                                                 <FormGroup>
-                                                                    <Input type="text" name="fname" id="exampleEmail" placeholder="Contact Person First Name" />
+                                                                    <Input type="text" name="Cfirstname" id="exampleEmail" placeholder="Contact Person First Name" onChange={this.change} />
                                                                 </FormGroup>
                                                             </Col>
                                                             <Col md={6}>
                                                                 <FormGroup>
-                                                                    <Input type="text" name="lname" id="examplePassword" placeholder="Contact Person Last Name" />
+                                                                    <Input type="text" name="Clastname" id="examplePassword" placeholder="Contact Person Last Name" onChange={this.change} />
                                                                 </FormGroup>
                                                             </Col>
                                                         </Row>
                                                         <FormGroup>
-                                                            <Input type="text" name="note" id="note" placeholder="Reg Number" />
+                                                            <Input type="text" name="RegNumber" id="note" placeholder="Reg Number" onChange={this.change} />
                                                         </FormGroup>
                                                         <FormGroup>
-                                                            <Input type="text" name="note" id="note" placeholder="Tax ID" />
+                                                            <Input type="text" name="TaxId" id="note" placeholder="Tax ID" onChange={this.change} />
                                                         </FormGroup>
                                                         <FormGroup>
-                                                            <Input type="text" name="note" id="note" placeholder="Website" />
+                                                            <Input type="text" name="website" id="note" placeholder="Website" onChange={this.change} />
                                                         </FormGroup>
                                                         <FormGroup>
-                                                            <Input type="text" name="note" id="note" placeholder="Add note" />
+                                                            <Input type="text" name="note" id="note" placeholder="Add note" onChange={this.change} />
                                                         </FormGroup>
 
 
@@ -190,32 +215,32 @@ class NewClient extends Component {
                                             <Row form>
                                                 <Col>
                                                     <FormGroup>
-                                                        <Input type="text" name="note" id="note" placeholder="House Number" />
+                                                        <Input type="text" name="phones" id="note" placeholder="House Number" onChange={this.change} />
                                                     </FormGroup>
                                                     <FormGroup>
-                                                        <Input type="text" name="note" id="note" placeholder="Street Address" />
+                                                        <Input type="text" name="streetaddress" id="note" placeholder="Street Address" onChange={this.change} />
                                                     </FormGroup>
                                                     <FormGroup>
-                                                        <Input type="text" name="note" id="note" placeholder="City" />
+                                                        <Input type="text" name="city" id="note" placeholder="City" onChange={this.change} />
                                                     </FormGroup>
                                                     <FormGroup>
-                                                        <Input type="text" name="note" id="note" placeholder="State" />
+                                                        <Input type="text" name="state" id="note" placeholder="State" onChange={this.change} />
                                                     </FormGroup>
                                                     <Row form>
                                                         <Col md={6}>
                                                             <FormGroup>
-                                                                <Input type="text" name="city" id="exampleCity" placeholder="Longitude" />
+                                                                <Input type="text" name="long" id="exampleCity" placeholder="Longitude" onChange={this.change} />
                                                             </FormGroup>
                                                         </Col>
                                                         <Col md={6}>
                                                             <FormGroup>
-                                                                <Input type="text" name="state" id="exampleState" placeholder="Latitude" />
+                                                                <Input type="text" name="lat" id="exampleState" placeholder="Latitude" onChange={this.change} />
                                                             </FormGroup>
                                                         </Col>
 
                                                     </Row>
                                                 </Col>
-                                                <Col><div class="mapouter"><div class="gmap_canvas"><iframe width="300" height="200" id="gmap_canvas" src="https://maps.google.com/maps?q=NNPC%20towers&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                                <Col><div class="mapouter"><div class="gmap_canvas"><iframe width="300" height="200" id="gmap_canvas" src="https://maps.google.com/maps?q=NNPC%20towers&t=&z=13&ie=UTF8&iwloc=&output=embed" frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"></iframe>
                                                 </div>
                                                 </div></Col>
                                             </Row>
@@ -231,13 +256,13 @@ class NewClient extends Component {
                                             <Row form>
                                                 <Col>
                                                     <FormGroup>
-                                                        <Input type="text" name="note" id="note" placeholder="Phones" />
+                                                        <Input type="text" name="phones" id="note" placeholder="Phones" onChange={this.change} />
                                                     </FormGroup>
                                                 </Col>
                                                 <Col>
 
                                                     <FormGroup>
-                                                        <Input type="text" name="note" id="note" placeholder="Email Address" />
+                                                        <Input type="text" name="email" id="note" placeholder="Email Address" onChange={this.change} />
                                                     </FormGroup>
 
                                                 </Col>
@@ -255,8 +280,6 @@ class NewClient extends Component {
                                                     <FormGroup>
                                                         <Input className="btn btn-sm btn-dark" type="submit" value="Continue" onClick={this.submitform} />
                                                     </FormGroup>
-
-
                                                 </Col>
                                             </Row>
                                         </CardBody>
@@ -270,8 +293,6 @@ class NewClient extends Component {
             </Row>
 
         )
-
-
     }
 }
 

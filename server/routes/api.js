@@ -2,19 +2,21 @@ var express = require('express')
 var router = express.Router()
 const db = require('../db');
 
-router.use(function timeLog (req, res, next) {
-  console.log('Time: ',  new Date())
-})
+//router.use(function timeLog (req, res, next) {
+//  console.log(req.path + ' triggered at Time: ',  new Date())
+//})
 
 router.get('/:path', function (req, res) {
     var path = req.params.path;
     if(db[path] == null)
     {
+        console.log(error)
         res.send("invalid route")
         return
     }
-
-    res.send(db[path].list())
+    var entities = db[path].list()
+    console.log(entities)
+    res.send(entities)
 })
 
 router.get('/:path/:id', function (req, res) {
@@ -36,10 +38,13 @@ router.get('/:path/:id', function (req, res) {
 
 
 router.post('/:path', function (req, res) {
-    var client  = req.body.client
+    var client  = req.body
+    console.log("Client")
+    console.log(client)
     var path = req.params.path;
     if(db[path] == null)
     {
+        console.log("error")
         res.send("invalid route")
         return
     }
