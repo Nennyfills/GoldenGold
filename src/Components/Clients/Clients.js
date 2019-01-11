@@ -1,35 +1,9 @@
 import React, { Component } from 'react';
 import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Input, Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
-import { searchObjectListbyid, searchObjectListbyvalue } from '../../Controller/controller'
-const apicalls = require('../../utilities/apicalls');
+import { searchObjectListbyid, searchObjectListbyvalue } from '../../Controller/controller';
+import {getall} from '../../utilities/apicalls'
+import {ClientRow} from './ClientRow'
 
-
-function ClientRow(props) {
-  const user = props.user
-  const userLink = `/admin/clients/${user.id}`
-  const editLink = `/admin/clients/edit/${user.id}`
-
-  const getBadge = (status) => {
-    return status === 'Active' ? 'success' :
-      status === 'Inactive' ? 'secondary' :
-        status === 'Pending' ? 'warning' :
-          status === 'Banned' ? 'danger' :
-            'primary'
-  }
-
-  return (
-    <tr key={user.id.toString()}>
-      <th style={{ textAlign: "center" }} scope="row"><a href={userLink}>{user.id}</a></th>
-      <td><a href={userLink} className="text-black-50">{user.FirstName} {user.LastName}</a></td>
-      <td>{user.Balance}</td>
-      <td>{user.Serviceplans}</td>
-      <td>{user.Connectedto}</td>
-      <td><Badge color={getBadge(user.status)}>{user.status}</Badge></td>
-      <td style={{ textAlign: "center" }}><a href={editLink} className="text-black-50"><i className="fa fa-pen-fancy"></i> </a></td>
-
-    </tr>
-  )
-}
 class Clients extends Component {
 
   constructor(props) {
@@ -48,21 +22,18 @@ class Clients extends Component {
   }
 
 
-  async componentDidMount() {
-    fetch('http://localhost:3600/api/clients')
-      .then(response => response.json())
-      .then(data => {
-        this.setState({
-          clients: data, showing: "all"
-        });
-      })
-      .catch(error => console.error(error))
+   componentDidMount() {
 
+   getall("http://localhost:3600/api/clients").then((data)=>{
+    console.log(data) 
+    this.setState({
+      clients: data, showing: "all"
+    });
+   })
   }
 
   ActiveClientCount() {
     return this.state.clients.filter(user => user.status.toString().toLowerCase() == "active").length
-
   }
 
   ActiveClient() {
@@ -72,8 +43,8 @@ class Clients extends Component {
     });
   }
 
-  showAll() {
-    let clients = apicalls.getlist("http://localhost:3600/api/clients")
+  async showAll() {
+    let clients = await getall("http://localhost:3600/api/clients")
     this.setState({
       clients: clients, showing: "all"
     });
@@ -89,7 +60,8 @@ class Clients extends Component {
 
   searchName() {
     var query = this.state.query
-    let theuser = searchObjectListbyvalue(this.state.clients, "FirstName", query);
+    var q = {"firstname": query , "lastname":query}
+    let theuser = searchObjectListbyvalue(this.state.clients, q);
 
     this.setState({
       clients: theuser, showing: "all"

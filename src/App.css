@@ -417,7 +417,11 @@ margin: 0;
 
 
 .smalller{
-  font-size: x-small
+  font-size: x-small !important
+}
+
+.small{
+  font-size: small !important
 }
 
 .block{

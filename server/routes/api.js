@@ -38,8 +38,8 @@ router.get('/:path/:id', function (req, res) {
 
 
 router.post('/:path', function (req, res) {
+    console.log("xxxxx")
     var client  = req.body
-    console.log("Client")
     console.log(client)
     var path = req.params.path;
     if(db[path] == null)
@@ -59,8 +59,8 @@ router.put("/:path", function(req, res){
         res.send("invalid route")
         return
     }
-    var newclient = req.body.client;
-    db.clients.update(newclient)
+    var newclient = req.body;
+    res.send(db.clients.update(newclient))
 })
 
 router.delete("/:path", function (req, res) {
