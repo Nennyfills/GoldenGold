@@ -1,10 +1,28 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
 import ServiceHeader from '../conponents/Header';
-import {services} from '../../../db'
 import {ServiceTable} from '../../../Operations/Services'
+import { getonebyid, getall } from '../../../utilities/apicalls'
 
 class service extends Component{
+    constructor(props){
+        super(props)
+
+        this.state={
+            services:[]
+        }
+    }
+
+    componentDidMount(){
+        getall("http://localhost:3600/api/services").then((data)=>{
+            console.log(data) 
+            this.setState({
+                services:data
+            });
+           })
+    }
+      
+    
     render(){
         return( <Row className="w-100">
         <Row className="w-100">
@@ -19,7 +37,7 @@ class service extends Component{
         </Col>
         </Row>
         <Row className="w-100 p-3">
-        <ServiceTable services={services} />
+        <ServiceTable services={this.state.services} />
 </Row>
         </Row>)
     }

@@ -6,7 +6,9 @@ const db = require('../db');
 //  console.log(req.path + ' triggered at Time: ',  new Date())
 //})
 
-router.get('/:path', function (req, res) {
+ router.get('/:path', function (req, res) {
+   
+
     var path = req.params.path;
     if(db[path] == null)
     {
@@ -15,8 +17,17 @@ router.get('/:path', function (req, res) {
         return
     }
     var entities = db[path].list()
-    console.log(entities)
-    res.send(entities)
+    let uid = req.query.cid;
+    if(uid ==null){
+        res.send(entities)
+        return entities
+    }
+        else{      
+                var t =  entities.filter(entity =>
+                entity["cid"] == uid
+            )
+            res.send(t);return t;
+        }
 })
 
 router.get('/:path/:id', function (req, res) {
@@ -38,9 +49,7 @@ router.get('/:path/:id', function (req, res) {
 
 
 router.post('/:path', function (req, res) {
-    console.log("xxxxx")
-    var client  = req.body
-    console.log(client)
+    var entity  = req.body
     var path = req.params.path;
     if(db[path] == null)
     {
@@ -48,7 +57,7 @@ router.post('/:path', function (req, res) {
         res.send("invalid route")
         return
     }
-    const id = db.clients.create(client);
+    const id = db[path].create(entity);
     res.send("Created Client @ {" + id +"}" )
 })
 
@@ -60,7 +69,7 @@ router.put("/:path", function(req, res){
         return
     }
     var newclient = req.body;
-    res.send(db.clients.update(newclient))
+    res.send(db[path].update(newclient))
 })
 
 router.delete("/:path", function (req, res) {
@@ -71,7 +80,7 @@ router.delete("/:path", function (req, res) {
         return
     }
     const id  = req.id
-    db.clients.delete(id)
+    db[path].delete(id)
 })
 
 

@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import { Badge, Row, Col, ButtonGroup, Button, Input, CardHeader, Card, CardBody, CardFooter } from 'reactstrap';
-import { clients , tickets } from '../../../db'
+import { Row, Col, ButtonGroup, Button, Input } from 'reactstrap';
 import ClientHeader from '../components/Header'
 import { TicketList } from '../../../Operations/Tickets';
+import { getonebyid, getall } from '../../../utilities/apicalls'
+
 class ClientTicket extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: {}, dropdownOpen: false
+            user: {}, tickets:[]
         };
     }
 
-    componentDidMount() {
+   async componentDidMount() {
         console.log(this.state)
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
+        var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.id)
 
         this.setState({
-            user: theuser
+            user: user
         });
     }
 
@@ -27,7 +28,7 @@ class ClientTicket extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                            <h1> <a href={"/#Clients" }> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
+                            <h1> <a href={"/#Clients" }> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.lastname} {this.state.user.firstname} </a></h1>
   <ButtonGroup className="float-right">
         <Button className="btn-outline-success btn-sm">Left</Button>
         <Button className="btn-outline-warning btn-sm">Middle</Button>
@@ -45,26 +46,20 @@ class ClientTicket extends Component {
                 <Row className="w-100">
                         <Col xs="5" id="t-1" className="p-1">
                             
-<TicketList tickets={tickets}/>
+<TicketList tickets={this.state.tickets}/>
                        
                         </Col>
                         
                         <Col xs="7" className="p-2">
                             <Row className="w-100 card-header bg-white">
-                                <div className="t-d-h">Out of Service for 20Hours</div>
+                                <div className="t-d-h"></div>
                             </Row>
                             <Row className="w-100 card-body p-3">
                             
-                            <div className="p-3 bg-white">
-                            <p>Out of Service for 20Hours 01/11/2018</p>
-                            Ipsam ratione omnis perspiciatis excepturi perferendis numquam iste dolor. Vel laborum molestias culpa perferendis et dolores temporibus. Et magnam in praesentium aspernatur.
-    
-    Doloremque culpa voluptas ut harum dolorem rerum. Quibusdam minima unde mollitia porro. In impedit cumque nemo ducimus.
-    
-    Incidunt eveniet eos commodi omnis quos. Et maxime nihil molestias facere non. A sed ducimus iste commodi ipsa sapiente quia.
-    
-Minima sed explicabo a alias facere. Ipsa minima velit minima dolorum sapiente debitis qui voluptates.
- Dolorum iure eos sunt necessitatibus exercitationem voluptates molestiae. Autem officiis ut consequatur ratione aut facilis illo maiores.</div>
+                            <div className="p-3 bg-white w-100">
+                            <p></p>
+                            
+                            </div>
  </Row>
  <Row className="w-100 card-header bg-white">
  <Input type="textarea" name="text" id="exampleText" />

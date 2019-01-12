@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import { clients } from '../../../db'
-import { payments } from '../../../db'
 import {DisplayPayment} from '../../../Operations/Payments'
+import { getonebyid, getall } from '../../../utilities/apicalls'
+
 class ClientSinglePayment extends Component{
 
     constructor(props){
@@ -20,23 +20,22 @@ class ClientSinglePayment extends Component{
             <div>
               <h6>{user.LastName}</h6> <label>{user.id} {user.type}</label>
               <h6>Address: </h6>
-              <label>{user.houseAddress}</label>
-              <label>{user.streetAddress}</label>
+              <label>{user.address}</label>
               <label>{user.city}</label>
               <label>{user.state}</label>
-              <label>{user.phone}</label>
+              <label>{user.phones}</label>
               <label>{user.email}</label>
         </div>  )
       }
 
-    componentDidMount() {
-        console.log(this.state)
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.uid)
+    async componentDidMount() {
+        var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.uid)
+        console.log(user)
+        var thepayment = await getonebyid("http://localhost:3600/api/payments", this.props.match.params.id)
         
-        const thepayment = payments.find(payment => payment.id.toString() === this.props.match.params.id)
 
         this.setState({
-            user: theuser,
+            user: user,
             payment: thepayment
         });
     }
@@ -48,7 +47,7 @@ class ClientSinglePayment extends Component{
                 <Col xs="12" className="nopcol">
                     <div className="PageHeader  bg-white">
                         <div className="PageHeader-head">
-                            <h1> {this.state.user.LastName} {this.state.user.FirstName}/ Payment</h1>
+                            <h1> {this.state.user.lastname} {this.state.user.firstname}/ Payment</h1>
                             <a href={"/admin/clients/createpayment/" + this.state.user.id }>  <i className="fa fa-plus"></i> Payment </a>
                             <a href={"/admin/clients/Deletepayment/" + this.state.user.id } className="p-1 text-warning">  <i className="fa fa-times-circle"></i>  </a>
                         </div>

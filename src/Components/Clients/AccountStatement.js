@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
-import { Badge, Row, Col, Dropdown, DropdownItem, Input, Button } from 'reactstrap';
-import classnames from 'classnames';
+import { Row, Col,  Input, Button } from 'reactstrap';
 import { accounts } from '../../db'
-import { clients } from '../../db'
 import ClientHeader from './components/Header'
+import { getonebyid, getall, postRequest } from '../../utilities/apicalls'
 
 
 
 function ClientAccountRow(props) {
     const account = props.act
 
-    if(account.Payments.toString()){
+    if(account.payments){
 return(
-    <tr  className="light-blue" key={account.id.toString()}>
-    <td>{account.Date}</td>
-    <td>{account.Item}</td>
-    <td>{account.Invoiced}</td>
-    <td>{account.Payments}</td>
+    <tr  className="light-blue"  key={account.id.toString()}>
+    <td>{account.date}</td>
+    <td>{account.id}</td>
+    <td>{account.invoice}</td>
+    <td>{account.payment}</td>
     <td>{account.Balance}</td>
 </tr>
 )
@@ -24,10 +23,10 @@ return(
 
     return (
         <tr key={account.id.toString()}>
-            <td>{account.Date}</td>
-            <td>{account.Item}</td>
-            <td>{account.Invoiced}</td>
-            <td>{account.Payments}</td>
+            <td>{account.date}</td>
+            <td>{account.id}</td>
+            <td>{account.invoice}</td>
+            <td>{account.payment}</td>
             <td>{account.Balance}</td>
         </tr>
     )
@@ -38,27 +37,45 @@ return(
 class ClientInvoice extends Component {
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
 
         this.state = {
-            user: {}, dropdownOpen: false
+            user: {}, acctrecord:[]
         };
 
     }
 
 
-    toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
-    }
+  
 
-    componentDidMount() {
+    async componentDidMount() {
         console.log(this.state)
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
+        var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.id)
+        var payments = await getall("http://localhost:3600/api/payments?cid="+ user.id)
+        var invoices = await getall("http://localhost:3600/api/invoices?cid="+ user.id)
+        var refunds = await getall("http://localhost:3600/api/refunds?cid="+ user.id)
+        var acctrecord = []
+        
+        payments.forEach(element => {
+          var item = {};
+          item["date"] = element.datetime
+          item["id"] = "payments - " + element.id
+          item["payment"] = element.amount
+            acctrecord.push(item)
+        });
+
+        invoices.forEach(element => {
+            var item = {};
+            item["date"] = element.datetime
+            item["id"] = "invoice -  " + element.id
+            item["invoice"] = element.total
+              acctrecord.push(item)
+          });
+
+          acctrecord.sort(function(a, b){return new Date(a.date) -  new Date(b.date)});
+
 
         this.setState({
-            user: theuser
+            user: user, acctrecord :acctrecord
         });
     }
 
@@ -94,13 +111,13 @@ class ClientInvoice extends Component {
                                 <tr>
                                 <th scope="col">DATE</th>
                                 <th scope="col">NAME</th>
-                                    <th scope="col">ITEM</th>
                                     <th scope="col">INVOICED</th>
                                     <th scope="col">PAYMENT</th>
+                                    <th scope="col">BALANCE</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {accounts.map((act, index) =>
+                                {this.state.acctrecord.map((act, index) =>
                                     <ClientAccountRow key={index} act={act} />
                                 )}
                             </tbody>

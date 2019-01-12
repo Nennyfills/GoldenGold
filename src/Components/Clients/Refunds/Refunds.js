@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import classnames from 'classnames';
-import { refunds } from '../../../db'
-import { clients } from '../../../db'
+import { Badge, Row, Col,  } from 'reactstrap';
+import { getonebyid, getall, postRequest } from '../../../utilities/apicalls'
+
+
 import {RefundTable} from '../../../Operations/Refunds'
 import ClientHeader from '../components/Header'
 
@@ -13,7 +13,7 @@ class ClientInvoice extends Component {
         super(props);
 
         this.state = {
-            user: {}, modal: false
+            user: {}, modal: false, refunds:[]
         };   
         this.toggle = this.toggle.bind(this);
     }
@@ -24,12 +24,15 @@ class ClientInvoice extends Component {
       });
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         console.log(this.state)
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
+        var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.id)
+        var refunds = await getall("http://localhost:3600/api/refunds?cid="+ user.id)
+
 
         this.setState({
-            user: theuser
+            user: user,
+            refunds:refunds
         });
     }
 
@@ -40,9 +43,9 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                            <h1> <a href={"/admin/Clients" }> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
+                            <h1> <a href={"/admin/Clients" }> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.lastname} {this.state.user.firstname} </a></h1>
                                                         
-                                        <i className="fa fa-plus" onClick={this.toggle}></i>
+                                       
                                         <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
                                 </a>
                             </div>
@@ -54,7 +57,7 @@ class ClientInvoice extends Component {
                 <Row className="w-100 p-3">
                     <Col xs="12" className="nopcol">
                         <Col xs="12">
-                        <RefundTable refunds ={refunds} isOpen={this.state.modal} toggle={this.toggle} />
+                        <RefundTable refunds ={this.state.refunds} isOpen={this.state.modal} toggle={this.toggle} />
                         </Col>
                     </Col>
                 </Row>

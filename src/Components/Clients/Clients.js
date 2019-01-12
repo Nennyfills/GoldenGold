@@ -23,9 +23,7 @@ class Clients extends Component {
 
 
    componentDidMount() {
-
    getall("http://localhost:3600/api/clients").then((data)=>{
-    console.log(data) 
     this.setState({
       clients: data, showing: "all"
     });

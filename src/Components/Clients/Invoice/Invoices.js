@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Badge, Row, Col, Dropdown, DropdownItem, Button, Input, FormGroup, Form } from 'reactstrap';
-import { invoices } from '../../../db'
-import { clients } from '../../../db'
+import {Row, Col,  Button, Input, FormGroup, Form } from 'reactstrap';
 import { InvoiceTable } from '../../../Operations/Invoices'
 import ClientHeader from '../components/Header'
 import {searchObjectListbyid , searchObjectListbyvalue} from '../../../Controller/controller'
+import { getonebyid, getall } from '../../../utilities/apicalls'
 
 
 
@@ -25,15 +24,17 @@ class ClientInvoice extends Component {
         }));
     }
 
-    componentDidMount() {
-        console.log(this.state)
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
+   async componentDidMount() {
 
-        this.setState({
-            user: theuser,
-            invoices:invoices
-        });
-    }
+        var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.id)
+        var invoices = await getall("http://localhost:3600/api/invoices?cid="+ user.id)
+         this.setState({
+            user:user,
+            invoices:invoices,
+            
+        })
+
+ }
 
     mtoggle(e) {
         this.filterByStatus(e.target.value)
@@ -41,10 +42,10 @@ class ClientInvoice extends Component {
  
  
      filterByStatus(val){
-         let filtered = invoices.filter(invoices =>  invoices.Status == val)
-         this.setState({
-             invoices: filtered
-         });
+        //  let filtered = invoices.filter(invoices =>  invoices.Status == val)
+        //  this.setState({
+        //      invoices: filtered
+        //  });
      }
 
     render() {
@@ -54,7 +55,7 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1> <a href={"/admin/Clients" }> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
+                                <h1> <a href={"/admin/Clients" }> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.lastname} {this.state.user.firstname} </a></h1>
                                 <a href={"/admin/clients/CreateInvoice/" + this.state.user.id}>  <i className="fa fa-plus"></i> Invoice </a>
                                 <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
                                 </a>
@@ -64,7 +65,7 @@ class ClientInvoice extends Component {
                     </Col>
                 </Row>
 
-                <Row className="w-100 p-3">
+                <Row className="w-100 p-3 .d-none .d-md-none .d-lg-none">
                     <Col xs="2" className="p-2">
                         <Button outline color="warning" className="btn-sm">Export</Button>{' '}
                     </Col>
@@ -84,14 +85,14 @@ class ClientInvoice extends Component {
                             </Col></Row>
                     </Col>
                     <Col xs="1" className="p-2">
-                        <Input type="select" name="select" id="exampleSelect" bsSize="sm">
+                        <Input type="select" name="select" id="exampleSelect" size="sm">
                             <option disabled>select</option>
                             <option>Due</option>
 
                         </Input>
                     </Col>
                     <Col xs="2" className="p-2">
-                        <Input type="select" name="select" id="exampleSelect" bsSize="sm" onChange={this.mtoggle}>
+                        <Input type="select" name="select" id="exampleSelect" size="sm" onChange={this.mtoggle}>
                             <option>Status</option>
                             <option>Paid</option>
                             <option>Unpaid</option>

@@ -105,7 +105,7 @@ function CreateService(props) {
 
          <FormGroup>
           <Label for="price">Price</Label>
-          <Input type="number" required name="email" id="email" placeholder="Price"  onChange={(e) => creating(e)} />
+          <Input type="number" required name="price" id="email" placeholder="Price"  onChange={(e) => creating(e)} />
         </FormGroup>
 
          <FormGroup>
