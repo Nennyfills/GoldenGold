@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { CardBody,  Card,  UncontrolledTooltip, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import { clients } from '../../db'
 import ClientHeader from './components/Header'
 import {updateRequest} from '../../utilities/apicalls'
 import {valid} from '../../utilities/validate'

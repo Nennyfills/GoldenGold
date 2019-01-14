@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
 import ServiceHeader from '../conponents/Header';
-import {services} from '../../../db'
 import {ServiceTable, DisplayService} from '../../../Operations/Services'
+import { getonebyid, getall } from '../../../utilities/apicalls'
 
 class service extends Component{
     constructor(props){
@@ -12,10 +12,10 @@ class service extends Component{
         }
     }
 
-    componentDidMount(){
-        var theservice = services.find(service => service.id.toString() === this.props.match.params.id)
+    async componentDidMount(){
+        var theservice =   await getonebyid("http://localhost:3600/api/services", this.props.match.params.id)
         this.setState({
-            service :theservice
+            setvice :theservice
         })
     }
     render(){

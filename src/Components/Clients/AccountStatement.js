@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Row, Col,  Input, Button } from 'reactstrap';
-import { accounts } from '../../db'
 import ClientHeader from './components/Header'
 import { getonebyid, getall, postRequest } from '../../utilities/apicalls'
 

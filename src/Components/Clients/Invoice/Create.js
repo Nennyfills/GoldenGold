@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import { invoices } from '../../../db'
 import { CreateInvoice } from '../../../Operations/Invoices'
 import ClientHeader from '../components/ClientHeader'
 import { getonebyid, getall, postRequest } from '../../../utilities/apicalls'
