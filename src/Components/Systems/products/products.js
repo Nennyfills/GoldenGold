@@ -1,9 +1,23 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
 import ServiceHeader from '../conponents/Header';
-import {products} from '../../../data'
 import {ProductTable} from '../../../Operations/Products'
+import { getonebyid, getall } from '../../../utilities/apicalls'
+
 class Product extends Component{
+constructor(props){
+    super(props)
+
+    this.state={products:[]}
+}
+    async componentDidMount() {
+        var products = await getall("http://localhost:3600/api/products")
+         this.setState({
+            products:products
+        })
+      
+    }
+
     render(){
         return( <Row className="w-100">
         <Row className="w-100">
@@ -18,7 +32,7 @@ class Product extends Component{
         </Col>
         </Row>
         <Row className="w-100 p-3">
-        <ProductTable products={products} />
+        <ProductTable products={this.state.products} />
 
 </Row>
         </Row>)

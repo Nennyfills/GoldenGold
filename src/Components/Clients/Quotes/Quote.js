@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import { clients } from '../../../data'
-import { quotes } from '../../../data'
 import {DisplayQuote} from '../../../Operations/Quotes'
+import { getonebyid } from '../../../utilities/apicalls'
+
 class ClientSinglequote extends Component{
 
     constructor(props){
@@ -30,15 +30,14 @@ class ClientSinglequote extends Component{
         </div>  )
       }
 
-    componentDidMount() {
-        console.log(this.state)
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.uid)
+    async componentDidMount() {
+       var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.uid)
+        var thequote = await getonebyid("http://localhost:3600/api/quotes", this.props.match.params.id)
         
-        const thequote = quotes.find(quote => quote.id.toString() === this.props.match.params.id)
 
         this.setState({
-            user: theuser,
-            quote: thequote
+            user: user,
+            quotes: thequote
         });
     }
 
@@ -49,8 +48,8 @@ class ClientSinglequote extends Component{
                 <Col xs="12" className="nopcol">
                     <div className="PageHeader  bg-white">
                         <div className="PageHeader-head">
-                            <h1> {this.state.user.LastName} {this.state.user.FirstName}/ quote</h1>
-                            <a href={"#/clients/Createquote/" + this.state.user.id }>  <i className="fa fa-plus"></i> quote </a>
+                            <h1> {this.state.user.lastname} {this.state.user.firstname}/ quote</h1>
+                            <a href={"/admin/clients/Createquote/" + this.state.user.id }>  <i className="fa fa-plus"></i> quote </a>
                         </div>
                     </div>
                 </Col>

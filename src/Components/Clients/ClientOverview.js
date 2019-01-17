@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import {clients} from '../../data'
+import { CardBody,  Card,  UncontrolledTooltip, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
 import ClientHeader from './components/Header'
-
+import {updateRequest} from '../../utilities/apicalls'
+import {valid} from '../../utilities/validate'
+import { getonebyid } from '../../utilities/apicalls'
 
 
 
@@ -31,11 +32,11 @@ class Client extends Component {
 
     componentDidMount() {
         console.log(this.state)
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
+        getonebyid("http://localhost:3600/api/clients", this.props.match.params.id).then((data) => {this.setState({
+            user: data
+        });})
 
-        this.setState({
-            user: theuser
-        });
+        
     }
 
     render() {
@@ -45,42 +46,45 @@ class Client extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1><a href="/#Clients"> Clients </a> / {this.state.user.FirstName}</h1>
+                                <h1><a href="/admin/Clients"> Clients </a> / {this.state.user.firstname}</h1>
                                 <Dropdown className="plusdrop" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                     <DropdownToggle caret>
                                         <i className="fa fa-plus fa-1x"></i>
                                     </DropdownToggle>
                                     <DropdownMenu className="bg-white">
-                                    <DropdownItem className="bg-white"> <a href={"#/clients/CreateInvoice/" + this.state.user.id }> Invoice</a></DropdownItem>
-                                    <DropdownItem className="bg-white"> <a>Service</a></DropdownItem>
-                                    <DropdownItem className="bg-white"> <a>Payment</a></DropdownItem>
-                                    <DropdownItem className="bg-white"> <a>Documents</a></DropdownItem>
+                                        <DropdownItem className="bg-white"> <a href={"/clients/CreateInvoice/" + this.state.user.id}> Invoice</a></DropdownItem>
+                                        <DropdownItem className="bg-white"> <a>Service</a></DropdownItem>
+                                        <DropdownItem className="bg-white"> <a>Payment</a></DropdownItem>
+                                        <DropdownItem className="bg-white"> <a>Documents</a></DropdownItem>
                                         <DropdownItem className="bg-white"> <a>Ticket</a></DropdownItem>
                                     </DropdownMenu>
-                                </Dropdown>  <Button outline color="warning" className="float-right btn-sm"> View as client
-                                </Button>
+                                </Dropdown>  <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
+                                </a>
                             </div>
                             <ClientHeader userID={this.state.user.id} active={"Overview"} />
                         </div>
                     </Col>
                 </Row>
                 <Row className="w-100 p-3">
-                    <Col xs="6">
+                    <Col md="6">
                         <Row className="bg-white mb-3">
                             <Card className="w-100">
                                 <CardBody>   <table className="w100m0">
                                     <tbody><tr>
-                                        <td className="standing" data-tooltip="Client's current account balance. Sum of credit and outstanding">
-                                            <span className="display-span">Account balance</span>
-                                            <strong>$0.00</strong>
+                                        <td className="standing">
+                                            <span className="display-span" id="actbal">Account balance</span>
+                                            <strong><span>&#8358;</span>{this.state.user.balance}</strong>
+                                            <UncontrolledTooltip placement="right" target="actbal">
+        Current balance of the client
+      </UncontrolledTooltip>
                                         </td>
-                                        <td className="standing" data-tooltip="Available funds. Sum of client's overpayments and payments not linked to any invoice">
+                                        <td className="standing">
                                             <span className="display-span">Credit</span>
-                                            <strong>$0.00</strong>
+                                            <strong><span>&#8358;</span>{this.state.user.credit}</strong>
                                         </td>
-                                        <td className="standing" data-tooltip="Total amount owed by client">
+                                        <td className="standing">
                                             <span className="display-span">Outstanding</span>
-                                            <strong>$0.00</strong>
+                                            <strong><span>&#8358;</span>{this.state.user.outstanding}</strong>
                                         </td>
                                     </tr>
                                     </tbody></table>
@@ -92,17 +96,17 @@ class Client extends Component {
                                 <div class="card-body">
                                     <table class="account-standings account-standings-info">
                                         <tbody><tr className="balance">
-                                            <td class="pok" data-tooltip="Total amount for the client's services averaged to one month.">
+                                            <td class="pok small" data-tooltip="">
                                                 <i class="fa fa-credit-card p-2"></i>
                                                 <span>
-                                                    Budget:
-                            <strong>$29.90 / month</strong>
-                                                </span>
+                                                    Budget: </span> <br/>
+                            <strong><span>&#8358; </span> 0.0 / month </strong>
+                                               
                                             </td>
-                                            <td className="poi" data-tooltip="Date when the next recurring invoice will be generated">
+                                            <td className="poi small" data-tooltip="Date when the next recurring invoice will be generated">
                                                 Next invoicing day:
                         <strong>
-                                                    1 Dec 2018
+                                                    ---
                                                     </strong>
                                             </td>
                                         </tr>
@@ -124,18 +128,7 @@ class Client extends Component {
                                 </div>
                             </div>
 
-                            <div class="card-body">
-
-                                <div className="p-2" style={{borderBottom:"1px solid #fafafa"}}>
-                                    <strong class="">Basic</strong> – <span class="">1 month</span>
-                                    <span className="float-right small">$29.90</span>
-                                  <span class="block small">
-                                        service plan: Basic connected to: Lake Gateway - ath0
-                                            </span>
-                                </div>
-
-
-                            </div>
+                           
                         </div>
 
 
@@ -143,26 +136,28 @@ class Client extends Component {
                     <Col xs="6">
                         <Card sm className="mb-3">
                             <CardHeader className="p-2">Client Details</CardHeader>
-                            <CardBody>
+                            <CardBody className="p-1">
                                 <h3>{this.state.user.Name}</h3>
                                 <div className="contain">
-                                    <table>
+                                    <table bor className="table table-sm table-borderless">
                                         <tbody> <tr>
                                             <td>ID</td>
-                                            <td></td>
+                                            <td>{this.state.user.id}</td>
                                         </tr>
                                             <tr><td>Email</td>
-                                                <td></td></tr>
+                                                <td>{this.state.user.email}</td>
+                                            </tr>
                                             <tr><td>Phone</td>
-                                                <td></td></tr></tbody>
+                                                <td>{this.state.user.phones}</td>
+                                            </tr></tbody>
 
                                     </table></div>
                             </CardBody>
-                            <CardFooter className="bg-transparent">
+                            <CardFooter className="bg-transparent p-1">
                                 <a className="btn btn-sm right float-right">Show Details</a>
                             </CardFooter>
                         </Card>
-                        <div class="card">
+                        <Card>
                             <div class="card-header p-2">
                                 <div class="card-header__title float-left">INVOICES</div>
 
@@ -170,45 +165,7 @@ class Client extends Component {
                                     <a class="action float-right" href="/client/256/invoices">See all</a>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <table style={{ borderCollapse: "separate" }} class=" table table-borderless table-sm w100m0">
-                                    <thead>
-                                        <tr className="lighter">
-                                            <th>Invoice number</th>
-                                            <th class="alignRight">Total</th>
-                                            <th class="alignRight">Amount due</th>
-                                            <th>Due</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr data-href="/client/invoice/1352">
-                                            <td>18001167 <span class="paidSpan">Paid</span></td>
-                                            <td class="grouped-column alignRight">$29.90</td>
-                                            <td class="alignRight">$0.00</td>
-                                            <td>
-                                                <span>15 Nov 2018</span>
-                                            </td>
-                                        </tr>
-                                        <tr data-href="/client/invoice/1193">
-                                            <td>18001008 <span class="paidSpan">Paid</span></td>
-                                            <td class="grouped-column alignRight">$29.90</td>
-                                            <td class="alignRight">$0.00</td>
-                                            <td>
-                                                <span>15 Oct 2018</span>
-                                            </td>
-                                        </tr>
-                                        <tr data-href="/client/invoice/1028">
-                                            <td>18000843 <span class="paidSpan">Paid</span></td>
-                                            <td class="grouped-column alignRight">$29.90</td>
-                                            <td class="alignRight">$0.00</td>
-                                            <td>
-                                                <span>15 Sep 2018</span>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        </Card>
                     </Col>
                 </Row>
             </Row>)

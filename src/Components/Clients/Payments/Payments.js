@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { Badge, Row, Col, Dropdown, Input, FormGroup, Button } from 'reactstrap';
-import classnames from 'classnames';
-import { payments } from '../../../data'
-import { clients } from '../../../data'
+import {  Row, Col, Input, FormGroup, Button } from 'reactstrap';
 import { PaymentTable } from '../../../Operations/Payments'
 import ClientHeader from '../components/Header'
+import { getonebyid, getall, postRequest , updateRequest} from '../../../utilities/apicalls'
 
 
 class ClientInvoice extends Component {
@@ -12,7 +10,7 @@ class ClientInvoice extends Component {
         super(props);
 
         this.state = {
-            user: {}, modal: false , payments :payments ,filters :{}
+            user: {}, modal: false , payments :[] ,filters :{}, unpaid:[]
         };
 
 
@@ -20,6 +18,7 @@ class ClientInvoice extends Component {
         this.mtoggle = this.mtoggle.bind(this); 
         this.amtFilter = this.amtFilter.bind(this);
         this.textflt = this.textflt.bind(this);
+        this.savepayment = this.savepayment.bind(this);
     }
 
     toggle() {
@@ -28,13 +27,20 @@ class ClientInvoice extends Component {
         });
     }
 
-    componentDidMount() {
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
+    async componentDidMount() {
+        var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.id)
+        var payments = await getall("http://localhost:3600/api/payments?cid="+ user.id)
 
-        this.setState({
-            user: theuser,
-            payments :payments
-        });
+        var invoices = await getall("http://localhost:3600/api/invoices?cid="+ user.id)
+
+        var unpaid =  invoices.filter((invoice)=> invoice.status != "paid")
+        console.log(unpaid)
+         this.setState({
+            user:user,
+            payments:payments,
+            unpaid:unpaid
+        })
+      
     }
 
     mtoggle(e) {
@@ -43,7 +49,7 @@ class ClientInvoice extends Component {
 
 
     filterByMethod(val){
-        let filtered = payments.filter(payments =>  payments.Method == val)
+        let filtered = this.state.payments.filter(payments =>  payments.Method == val)
         this.setState({
             payments: filtered
         });
@@ -61,12 +67,35 @@ class ClientInvoice extends Component {
         let obj = this.state.filters;
         var a  = obj["amtmin"] ? obj["amtmin"] :0
         var b  = obj["amtmax"] ? obj["amtmax"] :999999999999999
-        let filtered = payments.filter(function(value){
+        let filtered = this.state.payments.filter(function(value){
             return value.Amount >= a && value.Amount <=b
         } )
         this.setState({
             payments: filtered
         });
+    }
+
+    async savepayment(payment){
+        payment["cid"] = this.state.user.id
+        payment["datetime"] = new Date()
+        payment["reciept"] = false
+       var parments= await postRequest('http://localhost:3600/api/payments', JSON.stringify(payment))
+       if(payment.invoiceid){
+        var inv = await getonebyid("http://localhost:3600/api/invoices",payment.invoiceid)
+        console.log(inv)
+        var newdue = inv["amountdue"] - payment.amount
+        inv["amountdue"] = newdue;
+        if(newdue >0){
+            inv["status"] = "paid"
+        }else{
+            inv["status"] = "partial"
+
+        }
+        updateRequest("http://localhost:3600/api/invoices" , JSON.stringify(inv))
+
+       }
+        console.log(payment)
+
     }
 
   
@@ -77,9 +106,11 @@ class ClientInvoice extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1> <a href={"/#Clients"}> Clients </a> /  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a></h1>
+                                <h1> <a href={"/admin/Clients"}> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.lastname} {this.state.user.firstname} </a></h1>
                                 <i className="fa fa-plus" onClick={this.toggle}></i> Payment
-                            </div>
+                                <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
+                                </a> </div>
+                            
                             <ClientHeader userID={this.state.user.id} active="Payment" />
 
                         </div>
@@ -130,7 +161,7 @@ class ClientInvoice extends Component {
                     </Col>
 
                     <Col xs="2" className="p-2">
-                        <Input type="select" name="select" id="exampleSelect" bsSize="sm" onChange={this.mtoggle}>
+                        <Input type="select" name="select" id="exampleSelect" size="sm" onChange={this.mtoggle}>
                             <option>Method</option>
                             <option>Cash</option>
                             <option>Check</option>
@@ -139,7 +170,7 @@ class ClientInvoice extends Component {
                     </Col>
                     <Col xs="12" className="nopcol">
                         <Col xs="12">
-                            <PaymentTable payments={this.state.payments} isOpen={this.state.modal} toggle={this.toggle} />
+                            <PaymentTable payments={this.state.payments} invoices={[]} />
                         </Col>
                     </Col>
                 </Row>

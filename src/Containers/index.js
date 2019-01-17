@@ -1,3 +1,4 @@
 import Home from './Main';
+import ClientZone from './ClientZone';
 
-export  { Home};
+export  { Home, ClientZone};

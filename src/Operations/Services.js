@@ -94,23 +94,23 @@ function CreateService(props) {
         <Row className="w-100 bg-white p-3 justify-content-center ">
             <div className="w-75">
             <FormGroup>
-          <Label for="exampleEmail">Label</Label>
-          <Input type="label" name="label" id="label" placeholder="Label" onChange={(e) => creating(e)} />
+          <Label for="label">Label</Label>
+          <Input type="label" name="label" required id="label" placeholder="Label" onChange={(e) => creating(e)} />
         </FormGroup>
 
          <FormGroup>
-          <Label for="exampleEmail">Description</Label>
-          <Input type="description" name="description" id="description" placeholder="Description" />
+          <Label for="description">Description</Label>
+          <Input type="description" required name="description" id="description" placeholder="Description"  onChange={(e) => creating(e)} />
         </FormGroup>
 
          <FormGroup>
-          <Label for="exampleEmail">Price</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="Price" />
+          <Label for="price">Price</Label>
+          <Input type="number" required name="price" id="email" placeholder="Price"  onChange={(e) => creating(e)} />
         </FormGroup>
 
          <FormGroup>
-          <Label for="exampleEmail">ADD NOTE</Label>
-          <Input type="textarea" name="email" id="exampleEmail" placeholder="Note" />
+          <Label for="addnotes">ADD NOTE</Label>
+          <Input type="textarea"  name="note" id="note" placeholder="Note"  onChange={(e) => creating(e)} />
         </FormGroup>
 
          <FormGroup className="float-right">
@@ -118,7 +118,6 @@ function CreateService(props) {
         <Button outline color="warning">CANCEL</Button>{' '}
         <Button outline color="primary" onClick={() => props.save(service)}>SAVE</Button>
         </FormGroup>
-
             </div>
         </Row>
     )

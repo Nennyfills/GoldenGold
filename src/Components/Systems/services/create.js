@@ -1,30 +1,38 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
 import ServiceHeader from '../conponents/Header';
-import {services} from '../../../data'
 import {ServiceTable, DisplayService, CreateService} from '../../../Operations/Services'
-
+import {postRequest} from '../../../utilities/apicalls'
+import { Redirect } from 'react-router-dom'
+import {validservice} from '../../../utilities/validate'
 class service extends Component{
     constructor(props){
         super(props)
         this.state = {
             service:{}
         }
-        this.saveproduct = this.saveproduct.bind(this);
+        this.submitform = this.submitform.bind(this);
 
     }
 
     componentDidMount(){
-        var theservice = services.find(service => service.id.toString() === this.props.match.params.id)
-        this.setState({
-            service :theservice
-        })
+     
     }
 
-    saveproduct(service){
-        //APICall()
-        console.log("service")
-        console.log(service)
+   
+
+    submitform(service) {
+       console.log(service)
+        if (validservice(service)) {
+
+            postRequest('http://localhost:3600/api/services', JSON.stringify(service)).then(()=>{ this.setState({
+                goback: true
+            })}).catch(()=>{})
+        } else {
+            this.setState({
+                errors:"block"
+            })
+        }
     }
 
     render(){
@@ -34,13 +42,13 @@ class service extends Component{
             <div className="PageHeader  bg-white">
                 <div className="PageHeader-head">
                     <h1>services / </h1>
-                    <a href={"#/systems/createservice/"}>  <i className="fa fa-plus"></i> services </a>
+                    <a href={"/admin/systems/createservice/"}>  <i className="fa fa-plus"></i> services </a>
                 </div>
             </div>
         </Col>
         </Row>
         <Row className="w-100 p-3">
-        <CreateService  save ={(service) => this.saveproduct(service)} />
+        <CreateService  save ={(service) => this.submitform(service)} />
 </Row>
         </Row>)
     }

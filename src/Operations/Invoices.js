@@ -5,7 +5,7 @@ import { PItemTable, SItemTable } from './PandS'
 
 function InvoiceRow(props) {
     const invoice = props.invoice
-    const invoiceLink = "#/" + invoice.uid + "/invoice/" + invoice.id
+    const invoiceLink = "/admin/" + invoice.cid + "/invoice/" + invoice.id
 
     const getBadge = (status) => {
         return status === 'Paid' ? 'success' :
@@ -15,12 +15,12 @@ function InvoiceRow(props) {
 
     return (
         <tr key={invoice.id.toString()}>
-            <th scope="row"><a href={invoiceLink}>{invoice.Invoiceno}</a></th>
-            <td>{invoice.Total}</td>
-            <td>{invoice.Amountdue}</td>
-            <td>{invoice.Createddate}</td>
-            <td>{invoice.Datedue}</td>
-            <td><Badge color={getBadge(invoice.Status)}>{invoice.Status}</Badge></td>
+            <th scope="row"><a href={invoiceLink}>{invoice.id}</a></th>
+            <td>{invoice.total}</td>
+            <td>{invoice.amountdue}</td>
+            <td>{invoice.datetime}</td>
+            <td>{invoice.datedue}</td>
+            <td><Badge color={getBadge(invoice.status)}>{invoice.status}</Badge></td>
         </tr>
     )
 }
@@ -65,18 +65,18 @@ function DisplayInvoice(props) {
             <Row className="w-100">
                 <Col xs="10">
                     <h4 className="thin ">Invoice - {invoice.id}
-                        <label className="xx-small"><Badge color={getBadge(invoice.Status)} className="m-1">{invoice.Status}</Badge></label> </h4>
+                        <label className="xx-small"><Badge color={getBadge(invoice.status)} className="m-1">{invoice.status}</Badge></label> </h4>
 
 
                     <p className="n-25">
-                        <span className="xx-small" >{invoice.Createddate}</span>
-                        <span className="pl-3 xx-small">{invoice.Duedate}</span>
+                        <span className="xx-small" >{invoice.datetime}</span>
+                        <span className="pl-3 xx-small">{invoice.datedue}</span>
                     </p>
                 </Col>
                 <Col xs="2" className="flex-center">                <Button outline color="info" size="sm" className="">ADD PAYMENT</Button>{' '}
                 </Col>
             </Row>
-            <Row className="w-100 p-5">
+            <Row className="w-100 pl-5 pr-5">
 
             <Table className="">
                 <tbody>
@@ -126,18 +126,22 @@ function DisplayInvoice(props) {
 function CreateInvoice(props) {
     var Brief = props.brief
     var currentItems = props.currentItems ? props.currentItems : [];
+    var invoice = {}
+    function creating(e){
+        invoice[e.target.name] = e.target.value
+    }
     return (
-        <Form>
+        <Row className="w-100">
             <Row className="w-100">
-                <Col md={6}>
+        <Col md={6}>
                     <Form>
                         <FormGroup>
                             <Label for="exampleEmail">Invoice No</Label>
-                            <Input className="input-sm" type="text" name="invoiceNo" id="invoiceNo" placeholder="invoice No" />
+                            <Input className="input-sm" type="text" name="invoiceNo" id="invoiceNo" disabled value={props.id} placeholder="invoice No" />
                         </FormGroup>
                         <FormGroup>
                             <Label for="examplePassword">Day Left </Label>
-                            <Input type="number" name="number" id="days" placeholder="Maturity Date" />
+                            <Input type="number" name="duein" id="days" placeholder="Maturity Date" onChange={(e) => creating(e)} />
                         </FormGroup>
                     </Form>
                 </Col>
@@ -165,7 +169,7 @@ function CreateInvoice(props) {
 
                 <Col sm="4" className="p-2" style={{ backgroundColor: "#eeeeee" }}>
                     <Row className="w-100 justify-content-around p-3">
-                        <Button outline color="secondary" size="sm" si className="btn-sm" id="servicetoggler" > Add New Service</Button>
+                        <Button outline color="secondary" size="sm"  className="btn-sm" id="servicetoggler" > Add New Service</Button>
                         <Button outline color="secondary" size="sm" className="btn-sm" id="producttoggler"> Add New Product</Button>
                     </Row>
                     <Row className="w-100">
@@ -188,15 +192,15 @@ function CreateInvoice(props) {
 
             </Row>
             <Row className="w-100 bg-light p-1">
-                <Input type="textarea" placeholder="ADD EXTRA NOTE" />
+                <Input type="textarea" name="note" placeholder="ADD EXTRA NOTE"  onChange={(e) => creating(e)} />
             </Row>
 
             <Row className="w-100 row-reverse  p-2">
-                <Button outline className="float-right" color="primary">SAVE</Button>{' '}
+                <Button outline className="float-right" color="primary" onClick={()=>props.save(invoice)}>SAVE</Button>{' '}
                 <Button outline color="secondary" className="float-right">CANCEL</Button>{' '}
+                </Row>
             </Row>
-        </Form>
-    )
+            )
 }
 
 
@@ -259,10 +263,10 @@ function InvoiceItemRow(props) {
     var invoice = props.invoice
     return (
         <tr>
-            <td className="">{invoice.Label}</td>
-            <td className="">{invoice.Price}</td>
-            <td><input type="number" defaultValue={invoice.Quantity} onChange={(e) => props.qchange(e.target.value, invoice.id)}   /></td>
-            <td className="">${invoice.Totalprice}</td>
+            <td className="">{invoice.label}</td>
+            <td className="">{invoice.price}</td>
+            <td><input type="number" defaultValue={invoice.quantity} onChange={(e) => props.qchange(e.target.value, invoice.id)}/></td>
+            <td className="">${invoice.totalprice}</td>
         </tr>
     )
 }
@@ -271,16 +275,17 @@ function InvoiceItemRowView(props) {
     var invoice = props.invoice
     return (
         <tr>
-            <td className="">{invoice.Label}</td>
-            <td className="">{invoice.Price}</td>
+            <td className="">{invoice.label}</td>
+            <td className="">{invoice.price}</td>
             <td><input type="number" className="border-0" defaultValue={invoice.Quantity} onChange={(e) => props.qchange(e.target.value, invoice.id)} disabled /></td>
-            <td className="">${invoice.TotalPrice}</td>
+            <td className="">${invoice.totalprice}</td>
         </tr>
     )
 }
 
 function InvoiceSummary(props) {
     var summary = props.summary
+    console.log(summary)
     return (
         <tr>
             <td className="" colSpan="1">
@@ -290,26 +295,26 @@ function InvoiceSummary(props) {
                     <tbody>
                         <tr>
                             <th>    Subtotal</th>
-                            <td className="">${summary.Subtotal}</td>
+                            <td className="">${summary.subtotal}</td>
                         </tr>
                     </tbody>
                     <tbody className="">
                         <tr>
                             <th>    Total price </th>
                             <td className="">
-                                <strong>${summary.Totalprice}</strong>
+                                <strong>${summary.totalprice}</strong>
                             </td>
                         </tr>
                         <tr>
                             <th>    Amount paid </th>
-                            <td className="">${summary.Ammountpaid}</td>
+                            <td className="">${summary.ammountpaid}</td>
                         </tr>
                     </tbody>
                     <tbody className="">
                         <tr>
                             <th>    Amount due</th>
                             <td className="">
-                                <strong>${summary.Amountdue}</strong>
+                                <strong>${summary.amountdue}</strong>
                             </td>
                         </tr>
                     </tbody>
