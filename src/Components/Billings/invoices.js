@@ -1,20 +1,28 @@
 import React, { Component } from 'react'
-import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import Header from './Components/Header'
 import { InvoiceTable } from '../../Operations/Invoices';
-import { invoices } from '../../db'
+import { getonebyid, getall } from '../../utilities/apicalls'
 
 
 class Invoices extends Component {
 
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
 
         this.state = {
-            user: {}, dropdownOpen: false
+            invoices: []
         };
-    }  
+    }
+    async componentDidMount() {
+        var invoices = await getall("http://localhost:3600/api/invoices")
+
+        this.setState({
+            invoices: invoices
+        });
+    }
+    
+    
     toggle() {
         this.setState(prevState => ({dropdownOpen: !prevState.dropdownOpen
         }));
@@ -29,7 +37,7 @@ class Invoices extends Component {
                     </Col>
                 </Row>
                 <Row className="w-100 p-3">
-                <InvoiceTable invoices ={invoices}/>
+                <InvoiceTable invoices ={this.state.invoices}/>
 
 </Row>
             </Row>

@@ -25,7 +25,7 @@ function PaymentTable(props) {
         console.log(newpayment)
     }
     const payments = props.payments
-    const invoices = props.invoices
+    const invoices = props.invoices?props.invoices:[]
     console.log(invoices)
 
     return (

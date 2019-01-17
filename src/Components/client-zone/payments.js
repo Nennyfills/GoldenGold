@@ -1,26 +1,23 @@
 import React, { Component } from 'react'
-import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Table } from 'reactstrap';
-import { payments } from '../../db'
-import { clients } from '../../db'
+import {Row, Col } from 'reactstrap';
+
 import { PaymentTable } from '../../Operations/Payments'
+import { getonebyid, getall } from '../../utilities/apicalls'
 
 class Payments extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user: {},  payments: payments, filters: {}
+            user: {},  payments: [], filters: {}
         };
     }
-    componentDidMount() {
-        let theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
-       
-        if(theuser == null){
-            theuser = clients[2]
-        }
+    async componentDidMount() {
+        var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.id)
+        var payments = await getall("http://localhost:3600/api/payments?cid="+ user.id)
 
         this.setState({
-            user: theuser
+            user: user, payments:payments
         });
     }
     render() {
@@ -30,7 +27,7 @@ class Payments extends Component {
                     <Col xs="12" className="nopcol w-100">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1><a href="/#clientzone">  </a>  {this.state.user.FirstName}</h1>
+                                <h1><a href="/clientzone">  </a>  {this.state.user.FirstName}</h1>
 
                             </div>
                         </div>

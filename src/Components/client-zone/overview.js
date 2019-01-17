@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Table } from 'reactstrap';
-import { clients } from '../../db'
+import { Card, CardBody,CardHeader, CardFooter, Row, Col,  Table } from 'reactstrap';
+import { getonebyid, getall } from '../../utilities/apicalls'
 
 
 class Overview extends Component {
@@ -11,17 +11,14 @@ class Overview extends Component {
             user: {}
         }
     }
-    componentDidMount() {
-        let theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
-       
-        if(theuser == null){
-            theuser = clients[2]
-        }
+    async componentDidMount() {
+        var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.id)
 
         this.setState({
-            user: theuser
+            user: user
         });
     }
+  
 
     render() {
         return (

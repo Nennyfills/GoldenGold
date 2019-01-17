@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
-import { CardBody, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, CardHeader, CardFooter, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import {  Row, Col } from 'reactstrap';
 import Header from './Components/Header'
-import { payments } from '../../db'
 import {PaymentTable} from '../../Operations/Payments'
+import { getonebyid, getall } from '../../utilities/apicalls'
 
 class Payments extends Component {
 
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
 
         this.state = {
-            user: {}, dropdownOpen: false
+            payments: []
         };
 
     }
+    async componentDidMount() {
+        var payments = await getall("http://localhost:3600/api/payments")
 
-
-    toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
+        this.setState({
+            payments: payments
+        });
     }
+
 
     render() {
         return (
@@ -32,7 +32,7 @@ class Payments extends Component {
                     </Col>
                 </Row>
                 <Row className="w-100 p-3">
-                <PaymentTable payments ={payments}/>
+                <PaymentTable payments ={this.state.payments} isOpen={this.state.modal} toggle={this.toggle} save={(payment)=>this.savepayment(payment)} invoices={this.state.unpaid}/>
                 </Row>
             </Row>
         )

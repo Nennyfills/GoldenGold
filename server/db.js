@@ -13,5 +13,6 @@ module.exports = {
     payments : store.collection('payments'),
     refunds : store.collection('refunds'),
     documents : store.collection('documents'),
+    quotes : store.collection('quotes'),
   };
 
