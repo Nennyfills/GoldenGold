@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import {products} from '../../../data'
 import { DisplayProduct } from '../../../Operations/Products';
+import { getonebyid, getall } from '../../../utilities/apicalls'
 
 class Product extends Component{
 constructor(props){
@@ -11,8 +11,8 @@ constructor(props){
     }
 }
 
-componentDidMount(){
-    var theproduct = products.find(product => product.id.toString() === this.props.match.params.id)
+async componentDidMount(){
+    var theproduct =   await getonebyid("http://localhost:3600/api/products", this.props.match.params.id)
     this.setState({
         product :theproduct
     })

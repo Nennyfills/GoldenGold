@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Row , Col} from 'reactstrap'
-import { clients } from '../../../data'
-import { invoices , invoiceItems  } from '../../../data'
 import {DisplayInvoice} from '../../../Operations/Invoices'
+import { getonebyid, getall } from '../../../utilities/apicalls'
+
 class ClientSingleInvoice extends Component{
 
     constructor(props){
@@ -32,30 +32,38 @@ class ClientSingleInvoice extends Component{
 
     componentDidMount() {
         console.log(this.state)
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.uid)
-        
-        const theinvoice = invoices.find(invoice => invoice.id.toString() === this.props.match.params.id)
-        const theinvoiceItems = invoiceItems.filter(invoices => invoices.InvoiceID.toString() === this.props.match.params.id)
+        let theuser ={}
+        let invoice ={}
+        getonebyid("http://localhost:3600/api/clients", this.props.match.params.uid).then((data) => {
+     theuser = data;
+    
+            
+    getonebyid("http://localhost:3600/api/invoices", this.props.match.params.id).then((data) => {
+        invoice = data;
 
-        this.getSummary(theinvoiceItems)
+        this.getSummary( invoice.items)
         this.setState({
             user: theuser,
-            invoice: theinvoice,
-            theinvoiceItems : theinvoiceItems
+            invoice: invoice,
+            theinvoiceItems : invoice.items
         });
+       })
+        
+    })      
     }
+
 
     getSummary(params) {
         var totalP = 0;
         var paid = 0;
          let summary = {}
          params.forEach(element => {            
-            totalP = totalP +  Number(element.TotalPrice)
+            totalP = totalP +  Number(element.totalprice)
         });
-        summary.Subtotal = totalP;
-        summary.Amountdue = totalP;
-        summary.Totalprice = totalP;
-        summary.Ammountpaid = paid; 
+        summary.subtotal = totalP;
+        summary.amountdue = totalP;
+        summary.totalprice = totalP;
+        summary.ammountpaid = paid; 
 
         this.setState({summary : summary} , () =>{
             console.log("rdjtygujo")
@@ -68,8 +76,8 @@ class ClientSingleInvoice extends Component{
                 <Col xs="12" className="nopcol">
                     <div className="PageHeader  bg-white">
                         <div className="PageHeader-head">
-                            <h1>  <a href={"/#Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a>/ Invoice</h1>
-                            <a href={"#/clients/CreateInvoice/" + this.state.user.id }>  <i className="fa fa-plus"></i> Invoice </a>
+                            <h1>  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.lastname} {this.state.user.firstname} </a>/ Invoice</h1>
+                            <a href={"/admin/clients/CreateInvoice/" + this.state.user.id }>  <i className="fa fa-plus"></i> Invoice </a>
                         </div>
                     </div>
                 </Col>

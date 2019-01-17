@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
-import { quotes } from '../../../data'
-import { clients } from '../../../data'
+import { Row, Col } from 'reactstrap';
 import { CreateQuote } from '../../../Operations/Quotes'
 import ClientHeader from '../components/ClientHeader'
+import { getonebyid } from '../../../utilities/apicalls'
 
 
 class ClientQuote extends Component {
@@ -19,23 +18,22 @@ class ClientQuote extends Component {
       var user  = this.state.user
         return (
           <div className="small">
-            <div className="bold">{user.LastName}</div> <label>{user.id}  ---- {user.type}</label>
+            <div className="bold">{user.lastname}</div> <label>{user.id}  ---- {user.type}</label>
             <p>Address: </p>
             <div className="smalller">
-            <label>{user.houseAddress}</label> --
-            <label>{user.streetAddress}</label> --
+            <label>{user.address}</label> --
             <label>{user.city}</label> --
             <label>{user.state}</label> --
-            <label>{user.phone}</label>  -- 
+            <label>{user.phones}</label>  -- 
             <label>{user.email}</label></div>
       </div>  )
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         console.log(this.state)
-        const theuser = clients.find(user => user.id.toString() === this.props.match.params.id)
+        var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.uid)
         this.setState({
-            user: theuser
+            user: user
         });
     }
 
@@ -49,7 +47,7 @@ class ClientQuote extends Component {
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h3>Clients / {this.state.user.LastName} {this.state.user.FirstName}/ Add Quote</h3>
+                                <h3>Clients / {this.state.user.lastname} {this.state.user.firstname}/ Add Quote</h3>
                             </div>
                         </div>
                     </Col>

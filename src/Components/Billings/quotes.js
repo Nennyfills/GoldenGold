@@ -1,26 +1,25 @@
 import React, { Component } from 'react'
 import { Row, Col,  } from 'reactstrap';
 import {QuoteTable} from '../../Operations/Quotes'
-import { quotes } from '../../data'
 import Header from './Components/Header'
+import { getonebyid, getall } from '../../utilities/apicalls'
 
 class Quotes extends Component {
 
     constructor(props) {
         super(props);
-        this.toggle = this.toggle.bind(this);
 
         this.state = {
-            user: {}, dropdownOpen: false
+            quotes: []
         };
 
     }
+    async componentDidMount() {
+        var quotes = await getall("http://localhost:3600/api/quotes")
 
-
-    toggle() {
-        this.setState(prevState => ({
-            dropdownOpen: !prevState.dropdownOpen
-        }));
+        this.setState({
+            quotes: quotes
+        });
     }
 
     render() {
@@ -33,7 +32,7 @@ class Quotes extends Component {
                     </Col>
                 </Row>
                 <Row className="w-100 p-3">
-                <QuoteTable quotes ={quotes}/>
+                <QuoteTable quotes ={this.state.quotes}/>
 </Row>
             </Row>
         )

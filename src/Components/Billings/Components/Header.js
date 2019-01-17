@@ -13,13 +13,13 @@ class Header extends Component{
         <div className="pageheader-body pl-4 pt-2">
             <ul className="mytabnav" style={{ fontWeight: "lighter", fontSize: "smaller" }}>
 
-                <li className="mytabnav-active">          <a href={"#/billing/invoices"} >Invoices</a>
+                <li className="mytabnav-active">          <a href={"/admin/billing/invoices"} >Invoices</a>
                 </li>
-                <li>          <a href={"#/billing/quotes"}>Quotes</a>
+                <li>          <a href={"/admin/billing/quotes"}>Quotes</a>
                 </li>
-                <li>          <a href={"#/billing/payments"}>Payments</a>
+                <li>          <a href={"/admin/billing/payments"}>Payments</a>
                 </li>
-                <li>          <a href={"#/billing/Refunds"}>Refunds</a>
+                <li>          <a href={"/admin/billing/Refunds"}>Refunds</a>
                 </li>
             </ul>
         </div>

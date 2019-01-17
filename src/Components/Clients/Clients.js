@@ -1,38 +1,9 @@
 import React, { Component } from 'react';
-import { Badge, Card, CardBody, CardHeader, Col, Row, Table, Input, Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
+import {  Col, Row, Table, Input, Button, ButtonGroup, ButtonToolbar } from 'reactstrap';
+import { searchObjectListbyid, searchObjectListbyvalue } from '../../Controller/controller';
+import {getall} from '../../utilities/apicalls'
+import {ClientRow} from './ClientRow'
 
-import { clients } from '../../data'
-import {searchObjectListbyid , searchObjectListbyvalue} from '../../Controller/controller'
-
-
-
-
-function ClientRow(props) {
-  const user = props.user
-  const userLink = `#/clients/${user.id}`
-  const editLink = `#/clients/edit/${user.id}`
-
-  const getBadge = (status) => {
-    return status === 'Active' ? 'success' :
-      status === 'Inactive' ? 'secondary' :
-        status === 'Pending' ? 'warning' :
-          status === 'Banned' ? 'danger' :
-            'primary'
-  }
-
-  return (
-    <tr key={user.id.toString()}>
-      <th style={{ textAlign: "center" }} scope="row"><a href={userLink}>{user.id}</a></th>
-      <td><a href={userLink} className="text-black-50">{user.FirstName} {user.LastName}</a></td>
-      <td>{user.Balance}</td>
-      <td>{user.Serviceplans}</td>
-      <td>{user.Connectedto}</td>
-      <td><Badge color={getBadge(user.status)}>{user.status}</Badge></td>
-      <td style={{ textAlign: "center" }}><a href={editLink} className="text-black-50"><i className="fa fa-pen-fancy"></i> </a></td>
-
-    </tr>
-  )
-}
 class Clients extends Component {
 
   constructor(props) {
@@ -50,15 +21,17 @@ class Clients extends Component {
     this.clear = this.clear.bind(this);
   }
 
-  componentDidMount() {
+
+   componentDidMount() {
+   getall("http://localhost:3600/api/clients").then((data)=>{
     this.setState({
-      clients: clients, showing: "all"
+      clients: data, showing: "all"
     });
+   })
   }
 
-  ActiveClientCount(){
-    return    clients.filter(user => user.status.toString().toLowerCase() == "active").length
-
+  ActiveClientCount() {
+    return this.state.clients.filter(user => user.status.toString().toLowerCase() == "active").length
   }
 
   ActiveClient() {
@@ -68,7 +41,8 @@ class Clients extends Component {
     });
   }
 
-  showAll() {
+  async showAll() {
+    let clients = await getall("http://localhost:3600/api/clients")
     this.setState({
       clients: clients, showing: "all"
     });
@@ -84,7 +58,8 @@ class Clients extends Component {
 
   searchName() {
     var query = this.state.query
-    let theuser =     searchObjectListbyvalue(this.state.clients , "FirstName" , query);
+    var q = {"firstname": query , "lastname":query}
+    let theuser = searchObjectListbyvalue(this.state.clients, q);
 
     this.setState({
       clients: theuser, showing: "all"
@@ -106,20 +81,19 @@ class Clients extends Component {
 
 
 
-    const clientList = this.state.clients.filter((user) => user.ID > 0)
+
     return (
       <Row>
         <Row className="w-100">
           <Col xs="12" className="nopcol">
             <div className="PageHeader  bg-white">
               <div className="PageHeader-head">
-                <h1>Clients</h1> <a href="#/clients/new" className="add-btn"> <i style={{ verticalAlign: "bottom" }} class="material-icons">add</i>
+                <h1>Clients</h1> <a href="/admin/clients/new" className="add-btn"> <i style={{ verticalAlign: "bottom" }} class="material-icons">add</i>
                 </a>
               </div>
               <div className="pageheader-body pl-4 pt-2">
                 <ul className="mytabnav">
-
-                  <li className={this.state.showing == "all" ? "mytabnav-active" : ""} onClick={this.showAll}>          <a>All Client <span className="text-info"> {clients.length}</span></a>
+                  <li className={this.state.showing == "all" ? "mytabnav-active" : ""} onClick={this.showAll}>          <a>All Client <span className="text-info"> {this.state.clients.length}</span></a>
                   </li>
                   <li className={this.state.showing == "active" ? "mytabnav-active" : ""} onClick={this.ActiveClient}>          <a>Active Client <span className="text-success"> {this.ActiveClientCount()}</span></a>
                   </li>
@@ -171,22 +145,22 @@ class Clients extends Component {
           <Row className="w-100">
             <Col sm="2">
               <Input type="select" name="select" id="itemSelect" bsSize="sm">
-            <option>15 Item</option>
-            <option>30 Items</option>
-            <option>45 Items</option>
-            <option>60 Items</option>
-            <option>75 Items</option>
-          </Input>
-          </Col>
-          <Col sm="8">
-                <ButtonToolbar className="float-right">
-                  <ButtonGroup size="sm">
-                    <Button className="br-5">1</Button>
-                    <Button className="br-5">2</Button>
-                    <Button className="br-5">3</Button>
-                    <Button className="br-5">4</Button>
-                  </ButtonGroup>
-                </ButtonToolbar>
+                <option>15 Item</option>
+                <option>30 Items</option>
+                <option>45 Items</option>
+                <option>60 Items</option>
+                <option>75 Items</option>
+              </Input>
+            </Col>
+            <Col sm="8">
+              <ButtonToolbar className="float-right">
+                <ButtonGroup size="sm">
+                  <Button className="br-5">1</Button>
+                  <Button className="br-5">2</Button>
+                  <Button className="br-5">3</Button>
+                  <Button className="br-5">4</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
             </Col>
           </Row>
         </Row>
