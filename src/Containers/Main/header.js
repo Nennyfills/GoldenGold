@@ -3,15 +3,12 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
-    NavItem,
-    NavLink, Input,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
     DropdownItem } from 'reactstrap';
-    import { Route , Redirect} from 'react-router-dom';
+    import {  Redirect} from 'react-router-dom';
 
 
 class Header extends Component {
@@ -31,7 +28,6 @@ class Header extends Component {
       }
       ret =  ()=>{
         sessionStorage.clear();
-
       }
       
       logout(){
@@ -50,19 +46,17 @@ class Header extends Component {
 
                 <i id="sidebarCollapse" className="fas fa fa-bars"></i>
                
-            <div style={{color:"white" , marginLeft:"25px"}} href="/">ISP-TEMPLATE</div>
+            <div style={{marginLeft:"25px"}} className="font-weight-bolder white-text" href="/">ISP-TEMPLATE</div>
         
           <NavbarToggler onClick={this.toggle} className="mr-2" />       
           
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>                     
-              <NavItem>
-                <NavLink href="/help">Help</NavLink>
-              </NavItem>
+             
             
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                  Admin
+              <UncontrolledDropdown nav çµ>
+                <DropdownToggle nav caret className="white-text font-weight-bold">
+                  admin
                 </DropdownToggle>
                 <DropdownMenu right>
                   <DropdownItem>

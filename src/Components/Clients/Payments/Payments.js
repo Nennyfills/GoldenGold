@@ -170,7 +170,7 @@ class ClientInvoice extends Component {
                     </Col>
                     <Col xs="12" className="nopcol">
                         <Col xs="12">
-                            <PaymentTable payments={this.state.payments} invoices={[]} />
+                            <PaymentTable payments={this.state.payments} invoices={[]} isOpen={this.state.modal} toggle={this.toggle} />
                         </Col>
                     </Col>
                 </Row>

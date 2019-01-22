@@ -29,15 +29,14 @@ class Sidenav extends Component {
       <Nav vertical className="navContainer">
         <NavItem style={{}}>
           <NavLink href="/" className="myNav">
-            {" "}
-            <i className="fa fa-barcode p5" style={{}} />{" "}
-            <span> Dashboard</span>{" "}
+            <i className="fa fa-meteor p5" style={{}} />{" "}
+            <span> Dashboard</span>
           </NavLink>
         </NavItem>
         <NavItem style={{}}>
           <NavLink href="/admin/clients" className="myNav">
             {" "}
-            <i className="fas fa-user p5" style={{}} /> <span> Clients</span>{" "}
+            <i className="fas fa-users p5" style={{}} /> <span> Clients</span>{" "}
           </NavLink>
         </NavItem>
         <NavItem style={{}}>

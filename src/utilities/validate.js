@@ -1,4 +1,4 @@
-export var valid = (original) => {
+ export  var  valid = (original) => { 
     if (original["firstname"] == undefined ||
         original["lastname"] == undefined ||
         original["email"] == undefined ||

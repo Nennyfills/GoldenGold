@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Badge, Row, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { CreateInvoice } from '../../../Operations/Invoices'
-import ClientHeader from '../components/ClientHeader'
 import { getonebyid, getall, postRequest } from '../../../utilities/apicalls'
 import { randomid } from '../../../utilities/validate'
 
@@ -141,7 +140,7 @@ duedate.setDate(today.getDate()+ parseInt(invoice.duein? invoice.duein:0));
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h3><a href="/admin/Clients"> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.LastName} {this.state.user.FirstName} </a>/ Add Invoice</h3>
+                                <h3><a href="/admin/Clients"> Clients </a> /  <a href={"/admin/Clients/" + this.state.user.id}> {this.state.user.lastname} {this.state.user.firstname} </a>/ Add Invoice</h3>
                             </div>
                         </div>
                     </Col>
@@ -149,7 +148,7 @@ duedate.setDate(today.getDate()+ parseInt(invoice.duein? invoice.duein:0));
 
                 <Row className="w-100 p-3">
                     <Col xs="12" className="nopcol">
-                        <Col xs="12" className="p-3 bg-white" >
+                        <Col xs="12" className="p-3" >
                             <CreateInvoice brief = {this.ClientBrief()} id={this.state.iid}   products = {this.products} services = {this.services} addproduct = {(product) =>this.addproduct(product)} addservice = {(service) =>this.addservice(service)}  currentItems = {this.state.currentItems} summary= {this.state.summary} qchange ={(value, id)=>this.qchange(value, id)} save={(invoiceobj)=>this.saveinvoice(invoiceobj)}/>
                         </Col>
                     </Col>

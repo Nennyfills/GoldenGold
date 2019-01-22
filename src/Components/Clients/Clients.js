@@ -95,9 +95,9 @@ class Clients extends Component {
                 <ul className="mytabnav">
                   <li className={this.state.showing == "all" ? "mytabnav-active" : ""} onClick={this.showAll}>          <a>All Client <span className="text-info"> {this.state.clients.length}</span></a>
                   </li>
-                  <li className={this.state.showing == "active" ? "mytabnav-active" : ""} onClick={this.ActiveClient}>          <a>Active Client <span className="text-success"> {this.ActiveClientCount()}</span></a>
+                  <li className={this.state.showing == "active" ? "mytabnav-active" : ""} onClick={this.ActiveClient}>          <a>Active  <span className="text-success"> {this.ActiveClientCount()}</span></a>
                   </li>
-                  <li className={this.state.showing == "inactive" ? "mytabnav-active" : ""} onClick={this.InActiveClient}>          <a>Suspended Client</a>
+                  <li className={this.state.showing == "inactive" ? "mytabnav-active" : ""} onClick={this.InActiveClient}>          <a>Suspended </a>
                   </li>
 
                 </ul>
@@ -143,7 +143,7 @@ class Clients extends Component {
           </table>
           </Col>
           <Row className="w-100">
-            <Col sm="2">
+            <Col sm="4">
               <Input type="select" name="select" id="itemSelect" bsSize="sm">
                 <option>15 Item</option>
                 <option>30 Items</option>
@@ -155,10 +155,10 @@ class Clients extends Component {
             <Col sm="8">
               <ButtonToolbar className="float-right">
                 <ButtonGroup size="sm">
-                  <Button className="br-5">1</Button>
-                  <Button className="br-5">2</Button>
-                  <Button className="br-5">3</Button>
-                  <Button className="br-5">4</Button>
+                  <Button outline className="br-5">1</Button>
+                  <Button outline className="br-5">2</Button>
+                  <Button outline className="br-5">3</Button>
+                  <Button outline className="br-5">4</Button>
                 </ButtonGroup>
               </ButtonToolbar>
             </Col>

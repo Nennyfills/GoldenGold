@@ -165,7 +165,7 @@ const clientzone = Loadable({
 const routes = [
   { path: '/', exact: true, name: 'Home', component: Home },
   { path: '/clientzone', exact: true, name: 'Client Zone', component: clientzone },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/admin',  exact: true, name: 'Dashboard', component: Dashboard },
     { path: '/admin/clients', exact:true, name: 'Clients', component: Clients },
     { path: '/admin/clients/new',  name: 'Add', component: newClient },
     { path: '/admin/clients/CreateInvoice/:id',  exact:true,  name: 'Client', component: ClientCreateInvoice },

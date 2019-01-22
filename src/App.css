@@ -13,6 +13,8 @@
   z-index: 999;
   color: #fff;
   transition: all 0.3s;
+  font-weight: 200;
+  font-family: "Lato","Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif !important;
 }
 
 #sidebar.active {
@@ -36,7 +38,20 @@
 #sidebar i {line-height: 1.5
 }
 
+.over-item{
+display: flex;
+align-items: center;
+font-weight: 200
+}
 
+.over-item span{
+  font-size: small
+}
+
+.over-item-no{
+  font-size: xx-large;
+  font-weight: bold
+}
 .contain {
   padding-left: 35px !important;
   padding-right: 35px !important
@@ -256,6 +271,8 @@ li  :hover{
   border: none
 
 }
+
+.white-text{color:white!important}
 
 .light-blue{
   background-color: azure !important

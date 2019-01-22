@@ -1,53 +1,65 @@
 import React, { Component } from 'react';
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Button, Card, CardBody, CardGroup, Col, Container, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Row } from 'reactstrap';
+import {  login } from '../../utilities/apicalls'
 
 class Login extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.LogAdmin = this.LogAdmin.bind(this);
-    this.LogClient = this.LogClient.bind(this);
+    this.Login = this.Login.bind(this);
+    this.loginCreate = this.loginCreate.bind(this);
 
-    this.state ={
+    this.state = {
+      user:{}
     }
   }
 
-  checkif(){
+  checkif() {
     this.setState({
-      rtoa : sessionStorage.getItem("isAdmin"),
-      rtoc : sessionStorage.getItem("isClient")
-    })  
+      rtoa: sessionStorage.getItem("isAdmin"),
+      rtoc: sessionStorage.getItem("isClient")
+    })
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.checkif()
   }
 
-  LogAdmin(){
-    sessionStorage.setItem("isAdmin" , true)
+  loginCreate(e){
+    var user = this.state.user
+     user[e.target.name] = e.target.value
     this.setState({
-      rtoa : true
-    })   
-  }
-
-  
-  LogClient(){
-    sessionStorage.setItem("isClient" , true)       
-    this.setState({
-      rtoc : true
+      "user":user
     })
   }
+
+  async Login() {
+    var user = await login("http://localhost:3600/api/login", this.state.user)
+    console.log(user)
+    if (user.type == "admin") {
+      sessionStorage.setItem("isAdmin", true)
+      this.setState({
+        rtoa: true
+      })
+    } else if (user.type == "client") {
+      sessionStorage.setItem("isClient", true); this.setState({
+        rtoc: true
+      })
+    }
+  }
+
+
 
   render() {
     const { rtoc } = this.state;
     const { rtoa } = this.state;
 
     if (rtoc) {
-      return <Redirect to='/clientzone'/>;
+      return <Redirect to='/clientzone' />;
     }
     if (rtoa) {
-      return <Redirect to='/admin'/>;
+      return <Redirect to='/admin' />;
     }
     return (
       <div className="app flex-row align-items-center">
@@ -66,7 +78,7 @@ class Login extends Component {
                             <i className="icon-user"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="text" placeholder="Username" autoComplete="username" />
+                        <Input type="text" name="username" placeholder="Username" autoComplete="username"  onChange={this.loginCreate} />
                       </InputGroup>
                       <InputGroup className="mb-4">
                         <InputGroupAddon addonType="prepend">
@@ -74,16 +86,14 @@ class Login extends Component {
                             <i className="icon-lock"></i>
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input type="password" placeholder="Password" autoComplete="current-password" />
+                        <Input type="password" name="password" placeholder="Password" autoComplete="current-password" onChange={this.loginCreate} />
                       </InputGroup>
-                      
+
                       <Row>
                         <Col xs="6">
-                        
-                    <Button color="primary" className="px-4" onClick={this.LogAdmin}>ADMIN Login</Button>
+                          <Button color="primary" className="px-4" onClick={this.Login}>Login</Button>
                         </Col>
                         <Col xs="6" className="text-right">
-                        <Button color="primary" className="px-4" onClick={this.LogClient}>Client Login</Button>
                           <Button color="link" className="px-0">Forgot password?</Button>
                         </Col>
                       </Row>

@@ -3,6 +3,7 @@ import { Card, CardBody, CardTitle, Form, Row, Col, FormGroup, Input, Label, But
 import { Redirect } from 'react-router-dom'
 import {valid} from '../../utilities/validate'
 import {postRequest} from '../../utilities/apicalls'
+import { randomid } from '../../utilities/validate'
 
 class NewClient extends Component {
 
@@ -16,9 +17,22 @@ class NewClient extends Component {
         };
         this.toggle = this.toggle.bind(this);
         this.submitform = this.submitform.bind(this);
-        this.postRequest = this.postRequest.bind(this);
         this.newC = {};
+        this.key =""
+        randomid(6).then((data)=>{
+            this.key= data
 
+            this.newC.key = data
+        })
+    }
+
+    componentDidMount(){
+        randomid(6).then((data)=>{
+            this.setState({
+                "key":data
+            })
+            this.key= data
+        })
     }
 
 
@@ -61,7 +75,6 @@ class NewClient extends Component {
         newclient["credit"] = 0.0;
         newclient["outstanding"] = 0.0;
         if (valid(newclient)) {
-
             postRequest('http://localhost:3600/api/clients', JSON.stringify(newclient)).then(()=>{ this.setState({
                 goback: true
             })}).catch(()=>{})
@@ -91,7 +104,7 @@ class NewClient extends Component {
         return (
 
             <Row>
-                <Row className="w-100 mb-3" >
+{goal}                <Row className="w-100 mb-3" >
                     <Col xs="12" className="nopcol">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
@@ -132,6 +145,11 @@ class NewClient extends Component {
                                                                 <option>Individual</option>
                                                             </Input>
                                                         </FormGroup>
+                                                        <FormGroup>
+                                                        <Label for="">Client passcode</Label>
+
+                                                                    <Input type="text" name="key" id="exampleEmail" value={this.key} disabled />
+                                                                </FormGroup>
                                                     </Form>
                                                 </Col>
 
