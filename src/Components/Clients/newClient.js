@@ -74,6 +74,7 @@ class NewClient extends Component {
         newclient["balance"] = 0.0;
         newclient["credit"] = 0.0;
         newclient["outstanding"] = 0.0;
+        newclient["key"] = this.key;
         if (valid(newclient)) {
             postRequest('http://localhost:3600/api/clients', JSON.stringify(newclient)).then(()=>{ this.setState({
                 goback: true
