@@ -56,7 +56,7 @@ class Client extends Component {
                                         <DropdownItem className="bg-white"> <a  href={"/admin/clients/CreateQuote/" + this.state.user.id}>Quote</a></DropdownItem>
                                         <DropdownItem className="bg-white"> <a  href={"#"}>Ticket</a></DropdownItem>
                                     </DropdownMenu>
-                                </Dropdown>  <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
+                                </Dropdown>  <a outline color="warning" className="float-right btn-sm"  href={"/clientzone/"+ this.state.user.id} > View as client
                                 </a>
                             </div>
                             <ClientHeader userID={this.state.user.id} active={"Overview"} />

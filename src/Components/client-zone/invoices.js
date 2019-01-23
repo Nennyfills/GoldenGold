@@ -28,7 +28,7 @@ class Invoices extends Component {
                     <Col xs="12" className="nopcol w-100">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1><a href="/clientzone">  </a>  {this.state.user.FirstName}</h1>
+                            <h1> {this.state.user.firstname} {this.state.user.lastname}</h1>
 
                             </div>
                         </div>

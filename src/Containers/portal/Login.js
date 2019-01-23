@@ -38,13 +38,13 @@ class Login extends Component {
     var user = await login("http://localhost:3600/api/login", this.state.user)
     console.log(user)
     if (user.type == "admin") {
-      sessionStorage.setItem("isAdmin", true)
+      sessionStorage.setItem("isAdmin", true); sessionStorage.setItem("token", user.user.id);
       this.setState({
-        rtoa: true
+        rtoa: true, userid: user.user.id
       })
     } else if (user.type == "client") {
-      sessionStorage.setItem("isClient", true); this.setState({
-        rtoc: true
+      sessionStorage.setItem("isClient", true);  sessionStorage.setItem("token", user.user.id); this.setState({
+        rtoc: true, userid: user.user.id
       })
     }
   }
@@ -54,9 +54,11 @@ class Login extends Component {
   render() {
     const { rtoc } = this.state;
     const { rtoa } = this.state;
+    const { userid } = this.state;
 
     if (rtoc) {
-      return <Redirect to='/clientzone' />;
+      var route = "/clientzone/"+ userid
+      return <Redirect to={route} />;
     }
     if (rtoa) {
       return <Redirect to='/admin' />;

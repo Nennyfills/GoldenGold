@@ -46,7 +46,7 @@ class Header extends Component {
 
                 <i id="sidebarCollapse" className="fas fa fa-bars"></i>
                
-            <div style={{marginLeft:"25px"}} className="font-weight-bolder white-text" href="/">ISP-TEMPLATE</div>
+            <div style={{marginLeft:"25px"}} href="/"><a href="/"  className="font-weight-bolder white-text">ISP-TEMPLATE</a></div>
         
           <NavbarToggler onClick={this.toggle} className="mr-2" />       
           
@@ -58,7 +58,7 @@ class Header extends Component {
                 <DropdownToggle nav caret className="white-text font-weight-bold">
                   admin
                 </DropdownToggle>
-                <DropdownMenu right>
+                <DropdownMenu right className="light-blue">
                   <DropdownItem>
                     Option 1
                   </DropdownItem>

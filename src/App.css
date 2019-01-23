@@ -48,6 +48,10 @@ font-weight: 200
   font-size: small
 }
 
+.red-text{
+  color:red
+}
+
 .over-item-no{
   font-size: xx-large;
   font-weight: bold

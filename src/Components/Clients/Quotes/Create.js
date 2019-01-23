@@ -55,7 +55,7 @@ class ClientQuote extends Component {
 
                 <Row className="w-100 p-3">
                     <Col xs="12" className="nopcol">
-                        <Col xs="12" className="p-3 bg-white" >
+                        <Col xs="12" className="p-2" >
                             <CreateQuote brief = {this.ClientBrief()}  />
                         </Col>
                     </Col>

@@ -9,10 +9,26 @@ router.post('/login', function (req, res) {
         res.send("invalid route")
         return
     }
-    var entities = db["users"].list()
-    var user = entities.find(entity =>
-        entity["email"] == req.body.username && entity["password"] == req.body.password);
-    res.send(user);
+    var entities;
+    var user = null; 
+    var result = {}; 
+
+    if(user == null){
+        entities = db["users"].list()
+        user = entities.find(entity =>
+            entity["email"] == req.body.username && entity["password"] == req.body.password);
+            result["type"] = "admin";
+            result["user"] = user;
+    }
+  
+    if(user == null){
+        entities = db["clients"].list()
+        user = entities.find(entity =>
+                entity["email"] == req.body.username && entity["key"] == req.body.password);    
+                result["type"] = "client";
+                result["user"] = user;        
+        }
+    res.send(result);
     return user;
 })
 

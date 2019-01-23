@@ -12,8 +12,8 @@ class Overview extends Component {
         }
     }
     async componentDidMount() {
+        sessionStorage.setItem("token", this.props.match.params.id);
         var user = await getonebyid("http://localhost:3600/api/clients", this.props.match.params.id)
-
         this.setState({
             user: user
         });
@@ -27,8 +27,8 @@ class Overview extends Component {
                     <Col xs="12" className="nopcol w-100">
                         <div className="PageHeader  bg-white">
                             <div className="PageHeader-head">
-                                <h1><a href="/#clientzone">  </a>  {this.state.user.FirstName}</h1>
-
+                                <h1> {this.state.user.firstname} {this.state.user.lastname}</h1>
+ 
                             </div>
                         </div>
                     </Col>
@@ -37,38 +37,23 @@ class Overview extends Component {
                     <Col md="12">
                         <Card>
                             <div className="card-header">
-                                <div className="card-header__title">Unpaid invoices</div>
+                                <div className="red-text">Unpaid invoices <span className="font-weight-bold float-right">see all</span></div>
 
-                                <div className="card-header__actions">
-                                    <a className="action" href="/client-zone/invoices">See all</a>
-                                </div>
                             </div>
                             <CardBody>
-                                <Table className="table-striped table-sm">
+                                <Table size="sm" borderless stripped className="">
                                     <thead>
-                                        <tr>
-                                            <th>Invoice number</th>
-                                            <th className="alignRight">Total</th>
-                                            <th className="alignRight visible--mdUp">Amount due</th>
-                                            <th className="visible--mdUp">Created</th>
-                                            <th>Due</th>
-                                            <th className="alignRight visible--mdUp">Actions</th>
+                                        <tr className="">
+                                            <th className="font-weight-bold">Invoice number</th>
+                                            <th className="font-weight-bold">Total</th>
+                                            <th className="font-weight-bold">Amount due</th>
+                                            <th className="font-weight-bold">Created</th>
+                                            <th className="font-weight-bold">Due</th>
+                                            <th className="font-weight-bold">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr data-href="/client-zone/invoices/1257">
-                                            <td>18001072 <span className="invoice-status-badge ml-10 appType--micro success">Partial</span></td>
-                                            <td className="grouped-column alignRight">$79.90</td>
-                                            <td className="alignRight visible--mdUp">$60.00</td>
-                                            <td className="grouped-column visible--mdUp">
-                                                1 Jan 2019
-                            </td>
-                                            <td className="grouped-column">
-                                                <span data-tooltip="15 Jan 2019">due in 13 days</span>
-                                            </td>
-                                            <td className="alignRight visible--mdUp actions">
-                                            </td>
-                                        </tr>
+                                       
                                     </tbody>
                                 </Table>
                             </CardBody>
@@ -82,15 +67,15 @@ class Overview extends Component {
                                 <tbody><tr>
                                     <td className="standing" data-tooltip="Client's current account balance. Sum of credit and outstanding">
                                         <span className="display-span">Account balance</span>
-                                        <strong><span>&#8358;</span>{this.state.user.balance}</strong>
+                                        <strong><span>&#8358;</span> {this.state.user.balance}</strong>
                                     </td>
                                     <td className="standing" data-tooltip="Available funds. Sum of client's overpayments and payments not linked to any invoice">
                                         <span className="display-span">Credit</span>
-                                        <strong><span>&#8358;</span>{this.state.user.credit}</strong>
+                                        <strong><span>&#8358;</span> {this.state.user.credit}</strong>
                                     </td>
                                     <td className="standing" data-tooltip="Total amount owed by client">
                                         <span className="display-span">Outstanding</span>
-                                        <strong><span>&#8358;</span>{this.state.user.outstanding}</strong>
+                                        <strong><span>&#8358;</span> {this.state.user.outstanding}</strong>
                                     </td>
                                 </tr>
                                 </tbody></table>
@@ -111,7 +96,7 @@ class Overview extends Component {
                                                 <td>{this.state.user.email}</td>
                                             </tr>
                                             <tr><td>Phone</td>
-                                                <td>{this.state.user.phone}</td>
+                                                <td>{this.state.user.phones}</td>
                                             </tr></tbody>
 
                                     </table></div>
@@ -127,10 +112,10 @@ class Overview extends Component {
                         <Card>
 
                             <CardHeader>
-                                <div className="card-header__title">Services</div>
+                                <div className="">Services</div>
 
-                                <div className="card-header__actions">
-                                    <a className="action action--icon-only" href="/client/service/new/256">
+                                <div className="">
+                                    <a className="" href="/client/service/new/256">
                                         <i className="fa fa-plus"></i>
                                     </a>
                                 </div>

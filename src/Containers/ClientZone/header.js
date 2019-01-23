@@ -5,8 +5,6 @@ import {
     NavbarToggler,
     NavbarBrand,
     Nav,
-    NavItem,
-    NavLink, Input,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
@@ -45,23 +43,23 @@ class Header extends Component {
       return <Redirect to='/'/>;
     }
     return (
-        <Navbar color=""  className="naf"  style={{backgroundColor:"#00a0df", color:"white !important", zIndex:"50"}} light expand="md">
+        <Navbar color=""  className="naf"  style={{backgroundColor:"#00a0df", zIndex:"50"}} light expand="md">
                 <i id="sidebarCollapse" className="fas fa fa-bars"></i>               
-                <div style={{color:"white" , marginLeft:"25px"}} href="/">ISP-TEMPLATE</div>
-        
+                <div style={{marginLeft:"25px"}} className="font-weight-bolder white-text" ><a href={"/clientzone/" + this.props.id
+              
+              }  className="font-weight-bolder white-text">ISP-TEMPLATE</a> </div>
+
           <NavbarToggler onClick={this.toggle} className="mr-2" />       
           
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>                     
-              <NavItem>
-                <NavLink href="/help">Help</NavLink>
-              </NavItem>
+           
             
               <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                <span><i className="fa fa-user"></i> </span>
+              <DropdownToggle nav caret className="white-text font-weight-bold">
+                  user
                 </DropdownToggle>
-                <DropdownMenu right>
+                <DropdownMenu right className="light-blue">
                   <DropdownItem>
                     Option 1
                   </DropdownItem>

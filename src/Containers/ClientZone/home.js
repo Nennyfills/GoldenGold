@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import Header from "./header";
-import Footer from "./footer";
 import Sidebar from "./sidenav";
 import { Container, Row } from "reactstrap";
-import { Redirect, Route, Switch } from "react-router-dom";
+import {Redirect, Route,Switch } from "react-router";
 import routes from "../../clientzoneroutes";
-class Home extends Component {
 
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -15,6 +14,11 @@ class Home extends Component {
       , isClient: sessionStorage.getItem("isClient")
 
     }
+    this.uid =  sessionStorage.getItem("token");
+  }
+
+  componentDidMount(){
+
   }
 
 
@@ -27,10 +31,10 @@ isAuth = true;
       isAuth ? (
         y = 
         <div>
-          <Header />
+          <Header  id={this.uid} />
           <div className="wrapper">
             <nav id="sidebar">
-              <Sidebar />
+              <Sidebar id={this.uid}/>
             </nav>
   
             <div id="content" style={{ backgroundColor: "#edf0f3" }}>
@@ -48,7 +52,7 @@ isAuth = true;
                         />
                       ) : null;
                     })}
-                    <Redirect from="/clientzone" to="/overview" />
+                    <Redirect  to="/" />
                   </Switch>
                 </Container>
               </Row>
