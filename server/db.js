@@ -14,5 +14,6 @@ module.exports = {
     refunds : store.collection('refunds'),
     documents : store.collection('documents'),
     quotes : store.collection('quotes'),
+    users : store.collection('users')
   };
 

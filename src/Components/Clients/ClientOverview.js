@@ -52,13 +52,11 @@ class Client extends Component {
                                         <i className="fa fa-plus fa-1x"></i>
                                     </DropdownToggle>
                                     <DropdownMenu className="bg-white">
-                                        <DropdownItem className="bg-white"> <a href={"/clients/CreateInvoice/" + this.state.user.id}> Invoice</a></DropdownItem>
-                                        <DropdownItem className="bg-white"> <a>Service</a></DropdownItem>
-                                        <DropdownItem className="bg-white"> <a>Payment</a></DropdownItem>
-                                        <DropdownItem className="bg-white"> <a>Documents</a></DropdownItem>
-                                        <DropdownItem className="bg-white"> <a>Ticket</a></DropdownItem>
+                                        <DropdownItem className="bg-white"> <a href={"/admin/clients/CreateInvoice/" + this.state.user.id}> Invoice</a></DropdownItem>
+                                        <DropdownItem className="bg-white"> <a  href={"/admin/clients/CreateQuote/" + this.state.user.id}>Quote</a></DropdownItem>
+                                        <DropdownItem className="bg-white"> <a  href={"#"}>Ticket</a></DropdownItem>
                                     </DropdownMenu>
-                                </Dropdown>  <a outline color="warning" className="float-right btn-sm"  href="/clientzone" > View as client
+                                </Dropdown>  <a outline color="warning" className="float-right btn-sm"  href={"/clientzone/"+ this.state.user.id} > View as client
                                 </a>
                             </div>
                             <ClientHeader userID={this.state.user.id} active={"Overview"} />

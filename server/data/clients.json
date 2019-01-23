@@ -64,5 +64,39 @@
     "email": "f6",
     "status": "inactive",
     "balance": 0
+  },
+  {
+    "id": "r1HdIh7XN",
+    "type": "Individual",
+    "firstname": "Kassim",
+    "lastname": "Damilola",
+    "Inote": "reverend from goke",
+    "phones": "23635 ,5334365",
+    "address": "Golden street ajoa",
+    "city": "Ikeja",
+    "state": "Lagos",
+    "email": "eidetic@outlook.com",
+    "status": "inactive",
+    "balance": 0,
+    "credit": 0,
+    "outstanding": 0,"key":"golden"
+  },
+  {
+    "id": "r1KyZlEmE",
+    "type": "Individual",
+    "firstname": "uygvb",
+    "lastname": "vu",
+    "Inote": "vyu",
+    "phones": "gvygv",
+    "address": "gvyu",
+    "city": "fvy",
+    "state": "fvyt",
+    "long": "cvy",
+    "lat": "tvc",
+    "email": "v",
+    "status": "inactive",
+    "balance": 0,
+    "credit": 0,
+    "outstanding": 0
   }
 ]

@@ -7,7 +7,7 @@ function QuoteRow(props) {
     const quote = props.quote
     const quoteLink = "#/" + quote.uid + "/quote/" + quote.id
 
-  
+
 
     return (
         <tr key={quote.id.toString()}>
@@ -31,7 +31,7 @@ function QuoteTable(props) {
                     <th scope="col">CLIENT</th>
                     <th scope="col">TOTAL</th>
                     <th scope="col">CREATED DATE</th>
-                  
+
                 </tr>
             </thead>
             <tbody>
@@ -48,7 +48,7 @@ function DisplayQuote(props) {
     const quote = props.quote
     var Brief = props.brief
 
-  
+
     return (
         <Row className="w-100 block">
             <Col>
@@ -57,7 +57,7 @@ function DisplayQuote(props) {
                 <p className="n-25">
                     <span className="xx-small" >{quote.Createddate}</span>
                 </p>
-                
+
             </Col>
 
             <table className="table">
@@ -100,7 +100,7 @@ function DisplayQuote(props) {
 
 function QuoteItemTable(props) {
     var items = props.items
-    var summary = props.summary ? props.summary : {} 
+    var summary = props.summary ? props.summary : {}
     return (
         <table className="table">
             <thead>
@@ -116,7 +116,7 @@ function QuoteItemTable(props) {
                 {items.map((item, index) =>
                     <QuoteItemRow key={index} quote={item} />
                 )}
-                <QuoteSummary summary = {summary} />
+                <QuoteSummary summary={summary} />
             </tbody>
             <tfoot>
             </tfoot>
@@ -125,7 +125,7 @@ function QuoteItemTable(props) {
 }
 
 function QuoteItemRow(props) {
-    var quote  = props.quote
+    var quote = props.quote
     return (
         <tr>
             <td className="">{quote.Label}</td>
@@ -157,9 +157,9 @@ function QuoteSummary(props) {
                                 <strong>${summary.Totalprice}</strong>
                             </td>
                         </tr>
-                       
+
                     </tbody>
-                   
+
                 </table>
             </td>
         </tr>
@@ -168,12 +168,12 @@ function QuoteSummary(props) {
 
 function CreateQuote(props) {
     var Brief = props.brief
-    var Items = props.items ? props.items:[]; 
+    var Items = props.items ? props.items : [];
     return (
         <Form>
             <Row className="w-100">
                 <Col md={6}>
-                    <Form>
+                    <Form className="bg-white p-3">
                         <FormGroup>
                             <Label for="exampleEmail">Quote No</Label>
                             <Input className="input-sm" type="text" name="quoteNo" id="quoteNo" placeholder="quote No" />
@@ -185,7 +185,7 @@ function CreateQuote(props) {
                     </Form>
                 </Col>
                 <Col md={6}>
-                    <Row className="w-100">
+                    <Row className="w-100 bg-white p-3">
                         <Col md={6} className="small">
                             <p>Your Profile</p>
                             UBNT ISP
@@ -203,41 +203,41 @@ function CreateQuote(props) {
 
                 </Col>
             </Row>
-            <br/>
+            <br />
             <Row className="w-100">
 
-                <Col sm="4" className="p-2" style={{backgroundColor:"#eeeeee"}}>
-                    <Row className="w-100">
-                        <Button color="default" className="btn-sm" id="servicetoggler" style={{ marginBottom: '1rem' }}> Add New Service</Button>
-                        <SItemTable />
-                    </Row>
-                    <Row className="w-100">
-                        <Button color="default" className="btn-sm" id="producttoggler" style={{ marginBottom: '1rem' }}> Add New Product</Button>
-                        <PItemTable />
-                    </Row>
-                    <Row className="w-100">
-                    <h6>ADD CUSTOM PRODUCT</h6>
-                    <Input placeholder="Label" />
-                    <Input placeholder="Quantity" />
-                    <Input placeholder="Unit price" />
-                    <Button outline className="float-right" color="primary">ADD</Button>{' '}
+                <Col sm="4" >
+                    <Row className="w-100 bg-white p-3">
+                        <Row className="w-100">
+                            <Button color="default" className="btn-sm" id="servicetoggler" style={{ marginBottom: '1rem' }}> Add New Service</Button>
+                            <SItemTable />
+                        </Row>
+                        <Row className="w-100">
+                            <Button color="default" className="btn-sm" id="producttoggler" style={{ marginBottom: '1rem' }}> Add New Product</Button>
+                            <PItemTable />
+                        </Row>
+                        <Row className="w-100">
+                            <h6>ADD CUSTOM PRODUCT</h6>
+                            <Input placeholder="Label" />
+                            <Input placeholder="Quantity" />
+                            <Input placeholder="Unit price" />
+                            <Button outline className="float-right" color="primary">ADD</Button>{' '}
 
+                        </Row>
                     </Row>
                 </Col>
-                <Col sm="8" className="" style={{backgroundColor:"#e0e0e0"}}>
-                    <QuoteItemTable items={Items} />
+                <Col sm="8" >
+                    <Row className="w-100 bg-white p-3">
+                        <QuoteItemTable items={Items} />
+                    </Row>
                 </Col>
-                <br />
-            
+
             </Row>
             <Row className="w-100 bg-light p-1">
-                    <Input type="textarea" placeholder="ADD EXTRA NOTE" />
-                </Row>
-
-                   <Row className="w-100 row-reverse  p-2">
-                   <Button outline className="float-right" color="primary">SAVE</Button>{' '}
-        <Button outline color="secondary"  className="float-right">CANCEL</Button>{' '}
-                </Row>
+                <Input type="textarea" placeholder="ADD EXTRA NOTE" />       
+                <Button outline className="float-right" color="primary">SAVE</Button>{' '}
+                <Button outline color="secondary" className="float-right">CANCEL</Button>{' '}
+            </Row>
         </Form>
     )
 }
@@ -245,4 +245,4 @@ function CreateQuote(props) {
 
 
 
-export {QuoteTable , DisplayQuote, CreateQuote}
+export { QuoteTable, DisplayQuote, CreateQuote }

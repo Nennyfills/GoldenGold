@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Row, Col, Form, FormGroup, Label, Input ,Table } from 'reactstrap';
+import { Badge, Row, Col, Form, FormGroup, Label, Input, Table } from 'reactstrap';
 import { UncontrolledCollapse, Button, CardBody, Card } from 'reactstrap';
 import { PItemTable, SItemTable } from './PandS'
 
@@ -78,25 +78,25 @@ function DisplayInvoice(props) {
             </Row>
             <Row className="w-100 pl-5 pr-5">
 
-            <Table className="">
-                <tbody>
-                    <tr>
-                        <td>Sender</td>
-                        <td>
-                            UBNT ISP
+                <Table className="">
+                    <tbody>
+                        <tr>
+                            <td>Sender</td>
+                            <td>
+                                UBNT ISP
         427 West 12800 South <br />
-                            Draper UT  84020 <br />
-                            United States</td>
-                        <td>Recipients</td>
-                        <td>                                {Brief}
-                        </td>
-                    </tr>
-                </tbody>
-            </Table>
+                                Draper UT  84020 <br />
+                                United States</td>
+                            <td>Recipients</td>
+                            <td>                                {Brief}
+                            </td>
+                        </tr>
+                    </tbody>
+                </Table>
             </Row>
             <Row className="w-100 p-5">
-            <hr className="block"/>
-            <InvoiceItemTableView items={props.invoiceItems} summary={props.summary} />
+                <hr className="block" />
+                <InvoiceItemTableView items={props.invoiceItems} summary={props.summary} />
 
             </Row>
             <hr />
@@ -127,14 +127,14 @@ function CreateInvoice(props) {
     var Brief = props.brief
     var currentItems = props.currentItems ? props.currentItems : [];
     var invoice = {}
-    function creating(e){
+    function creating(e) {
         invoice[e.target.name] = e.target.value
     }
     return (
         <Row className="w-100">
-            <Row className="w-100">
-        <Col md={6}>
-                    <Form>
+            <Row className="w-100 mb-3">
+                <Col >
+                    <Form className="bg-white p-3">
                         <FormGroup>
                             <Label for="exampleEmail">Invoice No</Label>
                             <Input className="input-sm" type="text" name="invoiceNo" id="invoiceNo" disabled value={props.id} placeholder="invoice No" />
@@ -145,8 +145,8 @@ function CreateInvoice(props) {
                         </FormGroup>
                     </Form>
                 </Col>
-                <Col md={6}>
-                    <Row className="w-100">
+                <Col>
+                    <Row className="w-100 bg-white p-3">
                         <Col md={6} className="small">
                             <p>Your Profile</p>
                             UBNT ISP
@@ -161,46 +161,48 @@ function CreateInvoice(props) {
                             </div>
                         </Col>
                     </Row>
-
                 </Col>
             </Row>
             <br />
-            <Row className="w-100">
+            <Row className="w-100 mb-3">
 
-                <Col sm="4" className="p-2" style={{ backgroundColor: "#eeeeee" }}>
-                    <Row className="w-100 justify-content-around p-3">
-                        <Button outline color="secondary" size="sm"  className="btn-sm" id="servicetoggler" > Add New Service</Button>
-                        <Button outline color="secondary" size="sm" className="btn-sm" id="producttoggler"> Add New Product</Button>
-                    </Row>
-                    <Row className="w-100">
-                        <SItemTable services={props.services} addservice={(service) => props.addservice(service)} />
-                        <PItemTable products={props.products} addproduct={(product) => props.addproduct(product)} />
-                    </Row>
-                    <Row className="w-100">
-                        <h6>ADD CUSTOM PRODUCT</h6>
-                        <Input placeholder="Label" />
-                        <Input placeholder="Quantity" />
-                        <Input placeholder="Unit price" />
-                        <Button outline className="float-right" color="primary">ADD</Button>{' '}
+                <Col sm="4">
+                    <Row className="w-100  bg-white p-3">
+                        <Row className="w-100 justify-content-around p-3">
+                            <Button outline color="secondary" size="sm" className="btn-sm" id="servicetoggler" > Add New Service</Button>
+                            <Button outline color="secondary" size="sm" className="btn-sm" id="producttoggler"> Add New Product</Button>
+                        </Row>
+                        <Row className="w-100">
+                            <SItemTable services={props.services} addservice={(service) => props.addservice(service)} />
+                            <PItemTable products={props.products} addproduct={(product) => props.addproduct(product)} />
+                        </Row>
+                        <Row className="w-100">
+                            <h6>ADD CUSTOM PRODUCT</h6>
+                            <Input placeholder="Label" />
+                            <Input placeholder="Quantity" />
+                            <Input placeholder="Unit price" />
+                            <Button outline className="float-right" color="primary">ADD</Button>{' '}
 
+                        </Row>
                     </Row>
                 </Col>
-                <Col sm="8" className="" style={{ backgroundColor: "#e0e0e0" }}>
+                <Col sm="8">                <Row className="w-100  bg-white p-3">
+
                     <InvoiceItemTable items={currentItems} summary={props.summary} qchange={(value, id) => props.qchange(value, id)} />
-                </Col>
+                </Row>  </Col>
                 <br />
 
             </Row>
-            <Row className="w-100 bg-light p-1">
-                <Input type="textarea" name="note" placeholder="ADD EXTRA NOTE"  onChange={(e) => creating(e)} />
+            <Row className="w-100">
+                <Col className="bg-white p-3">
+                    <Input type="textarea" name="note" placeholder="ADD EXTRA NOTE" onChange={(e) => creating(e)} />
+                    <br/>
+                    <Button outline className="float-right" color="primary" onClick={() => props.save(invoice)}>SAVE</Button>{' '}
+                    <Button outline color="secondary" className="float-right">CANCEL</Button>{' '}
+                </Col>
             </Row>
-
-            <Row className="w-100 row-reverse  p-2">
-                <Button outline className="float-right" color="primary" onClick={()=>props.save(invoice)}>SAVE</Button>{' '}
-                <Button outline color="secondary" className="float-right">CANCEL</Button>{' '}
-                </Row>
-            </Row>
-            )
+        </Row>
+    )
 }
 
 
@@ -221,7 +223,7 @@ function InvoiceItemTableView(props) {
 
             <tbody>
                 {items.map((item, index) =>
-                    <InvoiceItemRowView key={index} invoice={item} qchange={(value, id) => props.qchange(value, id)}  />
+                    <InvoiceItemRowView key={index} invoice={item} qchange={(value, id) => props.qchange(value, id)} />
                 )}
 
                 <InvoiceSummary summary={summary} />
@@ -248,7 +250,7 @@ function InvoiceItemTable(props) {
 
             <tbody>
                 {items.map((item, index) =>
-                    <InvoiceItemRow key={index} invoice={item} qchange={(value, id) => props.qchange(value, id)}  />
+                    <InvoiceItemRow key={index} invoice={item} qchange={(value, id) => props.qchange(value, id)} />
                 )}
 
                 <InvoiceSummary summary={summary} />
@@ -265,7 +267,7 @@ function InvoiceItemRow(props) {
         <tr>
             <td className="">{invoice.label}</td>
             <td className="">{invoice.price}</td>
-            <td><input type="number" defaultValue={invoice.quantity} onChange={(e) => props.qchange(e.target.value, invoice.id)}/></td>
+            <td><input type="number" defaultValue={invoice.quantity} onChange={(e) => props.qchange(e.target.value, invoice.id)} /></td>
             <td className="">${invoice.totalprice}</td>
         </tr>
     )
