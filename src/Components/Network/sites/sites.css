@@ -4,30 +4,37 @@
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 30px;
   font-stretch: narrower;
-
   color: #646867;
   box-shadow: red;
 }
+.siteFonts {
+  font-size: 15px;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: #646867;
+}
 .remove {
-  margin-left: 15px;
+  margin: 0 30px;
+
   height: 5px;
   color: #b0b1b2;
 }
 .tick {
-  padding-left: 20px;
+  padding: 0 0 0 20px;
   height: 5px;
 }
 
 .inputSearch {
-  /* float: right; */
   position: relative;
-
-  /* padding-left: px; */
 }
+
 input {
   outline: none;
   background-color: #edf0f3;
   border: solid 1px #bfddfc !important;
+  color: #646867;
+}
+.input placeholder {
+  color: red;
 }
 .inputSearch i {
   position: absolute;
@@ -35,24 +42,13 @@ input {
   padding-top: 4px;
   color: #b0b1b2;
 }
-/* .inputSearch input[type="text"]:focus + i {
-  color: dodgerblue;
 
-} */
-/* .inputSearch input[type="text"] {
-  padding-left:
-} */
-
-.table {
+.tables {
   background-color: white;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color: #646867;
-  font-size: 100px !important;
+  font-size: 15px !important;
 }
-/* .input {
-  height: "100px" !important;
-  width: "16px" !important;
-} */
 
 .tBtn {
   height: 25px;
@@ -67,8 +63,8 @@ input {
 
 .tAllButton i {
   position: absolute;
-  padding-left: 8px;
-  padding-top: 8px;
+  padding-left: 6px;
+  padding-top: 6px;
 }
 .numberBtn {
   color: #b0b1b2;
@@ -89,4 +85,8 @@ input {
 }
 .cancelandSave {
   margin: 10px 150px 0 40px;
+}
+
+.dropdownDesign {
+  border: solid 1px;
 }

@@ -20,7 +20,7 @@ const AddSite = () => {
       <Row>
         <Col xs="12" className="nopcol">
           <div className="box pl-5 pt-3">
-            <Link to="/sites" className="float-left">
+            <Link to="/admin/sites/" className="float-left">
               <p>Sites</p>
             </Link>
             <span className="float-left pl-1"> / Add sites</span>

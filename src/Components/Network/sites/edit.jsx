@@ -10,7 +10,7 @@ import {
   Button,
   Card
 } from "reactstrap";
-import { sitesApi } from "../../../networkData.js";
+import { sitesApi } from "./networkData";
 import { Link } from "react-router-dom";
 import "./sites.css";
 import Mymap from "../map/map";

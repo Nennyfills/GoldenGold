@@ -19,8 +19,8 @@
   margin-left: -220px;
 }
 
-.default-bg{
-  background-color: "#edf0f3" !important
+.default-bg {
+  background-color: "#edf0f3" !important;
 }
 
 #sidebar.active {
@@ -30,16 +30,16 @@
 #sidebar a {
   color: white;
   padding-left: 15px;
-  font-size: .92857rem;
+  font-size: 0.92857rem;
 }
 
-#sidebar i {line-height: 1.5
+#sidebar i {
+  line-height: 1.5;
 }
-
 
 .contain {
   padding-left: 35px !important;
-  padding-right: 35px !important
+  padding-right: 35px !important;
 }
 
 #content {
@@ -56,23 +56,23 @@
 }
 
 .md12 {
-  top: 12px
+  top: 12px;
 }
 
 .md24 {
-  top: 24px
+  top: 24px;
 }
 
 .md36 {
-  top: 36px
+  top: 36px;
 }
 
 .md48 {
-  top: 48px
+  top: 48px;
 }
 
 .md50 {
-  top: 60px
+  top: 60px;
 }
 
 /* ---------------------------------------------------
@@ -106,29 +106,25 @@
   z-index: 100 !important;
   width: 100% !important;
   height: 42px !important;
-  box-shadow: 0 4px 2px -2px gray !important
+  box-shadow: 0 4px 2px -2px gray !important;
 }
-
-
 
 .nav-item :hover {
   background-color: #212121;
   color: white;
 }
 
-
-
 .p5 {
-  padding: 5px !important
+  padding: 5px !important;
 }
 
 .p10 {
-  padding: 10px !important
+  padding: 10px !important;
 }
 
 #contentHeader {
   min-height: 61px;
-  background-color: white
+  background-color: white;
 }
 
 #contentMain {
@@ -139,16 +135,13 @@
   padding: 5px !important;
 }
 
-
-
 .row {
   margin-left: 0px !important;
-  margin-right: 0px !important
+  margin-right: 0px !important;
 }
 
-
 .mb20 {
-  margin-bottom: 20px
+  margin-bottom: 20px;
 }
 
 .nopcol {
@@ -157,23 +150,22 @@
 }
 
 .font-xxs {
-  font-size: xx-small
+  font-size: xx-small;
 }
 
 .font-xs {
-  font-size: x-small
+  font-size: x-small;
 }
 
-
 .nop {
-  padding: 0px !important
+  padding: 0px !important;
 }
 
 .container {
   min-width: 100% !important;
   width: 100% !important;
   max-width: 100% !important;
-  padding :0px
+  padding: 0px;
 }
 a,
 a:hover {
@@ -181,14 +173,14 @@ a:hover {
 }
 
 .card {
-  border-radius: 0px
+  border-radius: 0px;
 }
 
-.PageHeader-head{
+.PageHeader-head {
   padding: 1rem;
 }
 
-.PageHeader-head h1{
+.PageHeader-head h1 {
   display: inline-block;
   margin: 0 1.42857rem 0 0;
   font-size: 1.57143rem;
@@ -197,8 +189,7 @@ a:hover {
   font-weight: 100;
 }
 
-
-.PageHeader-head h3{
+.PageHeader-head h3 {
   display: inline-block;
   margin: 0 1.42857rem 0 0;
   font-size: 1.17143rem;
@@ -207,75 +198,67 @@ a:hover {
   font-weight: 100;
 }
 
-
-.add-btn{
+.add-btn {
   padding: 1px 5px;
-  border: .07143rem solid #b2cad7;
+  border: 0.07143rem solid #b2cad7;
 }
 
-.mytabnav{
+.mytabnav {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-
-.mytabnav
-li {
+.mytabnav li {
   float: left;
-  cursor: pointer
+  cursor: pointer;
 }
 
-.mytabnav
-li  :hover{
+.mytabnav li :hover {
   background-color: #edf0f3;
 }
-
 
 .mytabnav li active {
   background-color: #edf0f3;
   border-bottom: 1px solid #212121;
 }
 
-
-.thin{
+.thin {
   font-weight: 100;
-  color: #39444d
+  color: #39444d;
 }
 
-.plus-btn{
+.plus-btn {
 }
 
-.n-25{
-  margin-top: -25px
+.n-25 {
+  margin-top: -25px;
 }
 
-.dropdown-toggle{
+.dropdown-toggle {
   padding: 1px 6px;
-  border: none
-
+  border: none;
 }
 
-.light-blue{
-  background-color: azure !important
+.light-blue {
+  background-color: azure !important;
 }
 
-.xx-small{
-  font-size: xx-small
+.xx-small {
+  font-size: xx-small;
 }
-
 
 .mytabnav-active a {
-  color: #00a0df !important
+  color: #00a0df !important;
 }
 
 .mytabnav li a {
   display: block;
   text-align: center;
-  padding: .5rem;
+  padding: 0.5rem;
   text-decoration: none;
-  color: #212121
+  color: #212121;
 }
 
 .mytabnav-active {
@@ -283,40 +266,37 @@ li  :hover{
   border-bottom: 1px solid #39444d;
 }
 
-
-th{font-weight: lighter; font-size: small}
-
-
-.table-striped tbody tr:nth-of-type(odd) {
-  background-color: #fbfbfc
+th {
+  font-weight: lighter;
+  font-size: small;
 }
 
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #fbfbfc;
+}
 
 .table-hover tbody tr:hover {
   background-color: #edf0f3;
 }
 
-
-
-.lh36{
-  line-height: 36px
+.lh36 {
+  line-height: 36px;
 }
 
-tbody{
+/* tbody{
   font-size: x-small
+} */
+
+.plusdrop {
+  display: inline-block;
+  vertical-align: super;
 }
 
-
-.plusdrop{
-  display: inline-block; vertical-align: super
+.plusdrop button {
+  background-color: #00a0df;
 }
 
-.plusdrop button{
-background-color: #00a0df 
-}
-
-
-.decbtn{
+.decbtn {
   float: right;
   background-color: red;
   color: white;
@@ -324,75 +304,67 @@ background-color: #00a0df
   border: 1px solid red;
 }
 
-
 .dropdown-toggle::after {
   display: none !important;
-  
 }
 
-.text-light{
-  font-weight: lighter
+.text-light {
+  font-weight: lighter;
 }
 
-.w100m0{
-margin: 0;
-    width: 100%;}
-
-
-
-    .display-span{
-    display: block;
-    border: 0;
-    padding: 0;
-    margin-top: .42857rem;
-    margin-bottom: .28571rem;
-    font-size: 1rem;
-    font-weight: 300;
-    color: #000;
-    line-height: 1.22;
-    text-align: left;
-  }
-
-  .standing td{
-    font-size: 1.14286rem;
-    border-right: .07143rem solid #e7e7e7;
-  }
-
-  .standing{
-    border-right: .07143rem solid #e7e7e7;
-    padding: 0 1.42857rem .78571rem;
-
-  }
-
-
-
-  .standing strong {
-    font-size: 1.28571rem;
-    font-weight: 400;
-  }
-
-  .balance td {
-    font-size: .92857rem;
-    line-height: 1.25;
-    color: #747474;
-    vertical-align: middle;
-  }
-
-  .pok{
-    position: relative;
-    width: 55%;
-  }
-
-.poi{
-  padding-right: .57143rem;
+.w100m0 {
+  margin: 0;
+  width: 100%;
 }
 
+.display-span {
+  display: block;
+  border: 0;
+  padding: 0;
+  margin-top: 0.42857rem;
+  margin-bottom: 0.28571rem;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #000;
+  line-height: 1.22;
+  text-align: left;
+}
 
-.paidSpan{
+.standing td {
+  font-size: 1.14286rem;
+  border-right: 0.07143rem solid #e7e7e7;
+}
+
+.standing {
+  border-right: 0.07143rem solid #e7e7e7;
+  padding: 0 1.42857rem 0.78571rem;
+}
+
+.standing strong {
+  font-size: 1.28571rem;
+  font-weight: 400;
+}
+
+.balance td {
+  font-size: 0.92857rem;
+  line-height: 1.25;
+  color: #747474;
+  vertical-align: middle;
+}
+
+.pok {
+  position: relative;
+  width: 55%;
+}
+
+.poi {
+  padding-right: 0.57143rem;
+}
+
+.paidSpan {
   margin-left: 10px;
   color: #969ba3;
   font-size: 12px;
-
 }
 
 .card-header__actions {
@@ -415,35 +387,34 @@ margin: 0;
   padding-right: 1rem;
 }
 
-
-.smalller{
-  font-size: x-small !important
+.smalller {
+  font-size: x-small !important;
 }
 
-.small{
-  font-size: small !important
+.small {
+  font-size: small !important;
 }
 
-.block{
-  display: block
-}
-
-.ticket-brief{
-  display: flex;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.21429;
-    color: #7f7f7f;
-    overflow: hidden;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-.ticket-heading{
+.block {
   display: block;
-  margin-bottom: .35714rem;
+}
+
+.ticket-brief {
+  display: flex;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.21429;
+  color: #7f7f7f;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.ticket-heading {
+  display: block;
+  margin-bottom: 0.35714rem;
   font-weight: 500;
   font-size: 1.14286rem;
   line-height: 1.25;
@@ -453,52 +424,55 @@ margin: 0;
   word-wrap: break-word;
 }
 
-#t-1{
+#t-1 {
   z-index: 2;
   float: left;
   width: 37%;
   overflow-y: scroll;
-  box-shadow: 0.14286rem 0 0.35714rem 0 rgba(0,0,0,.18);
+  box-shadow: 0.14286rem 0 0.35714rem 0 rgba(0, 0, 0, 0.18);
   height: 100%;
 }
 
-.t-d-h{    font-weight: 700;
+.t-d-h {
+  font-weight: 700;
   font-size: 1.42857rem;
   line-height: 1.2;
   color: #434343;
 }
 
-
-.row-reverse{
-  flex-direction: row-reverse
+.row-reverse {
+  flex-direction: row-reverse;
 }
 
-.br-5{
-  border-radius: 5px !important
+.br-5 {
+  border-radius: 5px !important;
 }
-.sub-menu{
+.sub-menu {
   margin-bottom: 0;
   background-color: #272f37;
   list-style: none;
 }
 
-.sub-menu li{
-
-background-color: #272f37;
+.sub-menu li {
+  background-color: #272f37;
 }
 
-
-.hand{cursor: pointer}
+.hand {
+  cursor: pointer;
+}
 
 .app.flex-row.align-items-center {
   height: 100vh;
 }
 
-.app, app-dashboard, app-root {
+.app,
+app-dashboard,
+app-root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.flex-center{
-align-self: center;}
+.flex-center {
+  align-self: center;
+}
